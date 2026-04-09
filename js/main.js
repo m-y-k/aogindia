@@ -131,5 +131,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+  
+  // ─── Fetch Creator Stats ──────────────
+  const fetchStats = async () => {
+    try {
+      const response = await fetch('js/data/stats.json');
+      if (!response.ok) throw new Error('Stats not found');
+      const data = await response.json();
+      
+      for (const [creatorKey, stats] of Object.entries(data)) {
+        const ytEl = document.getElementById(`stat-yt-${creatorKey}`);
+        const igEl = document.getElementById(`stat-ig-${creatorKey}`);
+        
+        if (ytEl && stats.youtube_subs) {
+          ytEl.textContent = stats.youtube_subs;
+        }
+        if (igEl && stats.instagram_followers) {
+          igEl.textContent = stats.instagram_followers;
+        }
+      }
+    } catch (err) {
+      console.warn('Could not load creator stats:', err);
+    }
+  };
+
+  fetchStats();
 
 });
