@@ -11,7 +11,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Icons: Boxicons -->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -24,10 +24,19 @@
 </head>
 <body>
 
+  <!-- ========== BACKGROUND EFFECTS ========== -->
+  <div class="bg-hex"></div>
+  <div class="bg-scan"></div>
+  <div class="bg-grain"></div>
+  <div class="bg-smoke s1"></div>
+  <div class="bg-smoke s2"></div>
+  <div class="bg-smoke s3"></div>
+
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#" class="nav-logo">
+        <div class="brand-hex">A</div>
         <span>AOG</span> India
       </a>
       <ul class="nav-links" id="navLinks">
@@ -48,12 +57,28 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero" id="hero">
+
+    <!-- Crosshair SVG decoration -->
+    <svg class="hero-crosshair" viewBox="0 0 100 100" fill="none" stroke="#ff7a1a" stroke-width="1.5">
+      <circle cx="50" cy="50" r="46" opacity=".4"/>
+      <circle cx="50" cy="50" r="32" opacity=".6"/>
+      <circle cx="50" cy="50" r="3" fill="#ff7a1a"/>
+      <line x1="50" y1="0" x2="50" y2="20"/>
+      <line x1="50" y1="80" x2="50" y2="100"/>
+      <line x1="0" y1="50" x2="20" y2="50"/>
+      <line x1="80" y1="50" x2="100" y2="50"/>
+      <path d="M 20 20 L 30 30 M 80 20 L 70 30 M 20 80 L 30 70 M 80 80 L 70 70" opacity=".7"/>
+    </svg>
+
     <div class="hero-content">
       <div class="hero-tag" data-aos="fade-down" data-aos-delay="200">India's Gaming Creator Network</div>
       <h1 data-aos="fade-up" data-aos-delay="400">
-        Alliance Of
-        <span>Gamers</span>
+        <span>Alliance Of</span>
+        <span class="accent-text">Gamers</span>
       </h1>
+      <div class="hero-sub-line" data-aos="fade-up" data-aos-delay="500">
+        Powering <b>India's Top BGMI</b> Creators
+      </div>
       <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="600">
         Connecting brands with India's top BGMI creators for campaigns that drive real results.
       </p>
@@ -194,7 +219,6 @@
         <div class="creator-card onboarding" data-aos="fade-up" data-aos-delay="100">
           <span class="onboarding-badge">Onboarding</span>
           <div class="creator-img gradient-2">
-            <!-- <span class="creator-initials">KL</span> -->
              <img src="images/Kaur.jpeg" alt="Kaur Op Live">
           </div>
           <div class="creator-info">
@@ -246,7 +270,6 @@
         <!-- Miss Amy Gaming -->
         <div class="creator-card" data-aos="fade-up" data-aos-delay="100">
           <div class="creator-img gradient-5">
-            <!-- <span class="creator-initials">MA</span> -->
              <img src="images/Miss Amy.jpeg" alt="Miss Amy Gaming">
           </div>
           <div class="creator-info">
