@@ -971,6 +971,29 @@ img {
   font-size: 0.8rem;
   letter-spacing: 1px;
   margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.creator-subs i {
+  font-size: 1rem;
+}
+
+.creator-ig {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.creator-ig i {
+  font-size: 1rem;
 }
 
 .creator-socials {
