@@ -1373,7 +1373,11 @@ img {
 }
 
 .footer-bottom {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid var(--border-color);
@@ -1381,6 +1385,75 @@ img {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 1px;
+}
+
+/* --- Developer Credit --- */
+.dev-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: rgba(255, 122, 26, 0.04);
+  border: 1px solid var(--border-color);
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.dev-credit:hover {
+  background: rgba(255, 122, 26, 0.08);
+  border-color: rgba(255, 122, 26, 0.3);
+}
+
+.dev-credit-label {
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.dev-credit-name {
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.dev-credit-name:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.dev-credit-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 10px;
+  margin-left: 2px;
+  border-left: 1px solid var(--border-color);
+}
+
+.dev-credit-links a {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.dev-credit-links a:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 /* ============================================
