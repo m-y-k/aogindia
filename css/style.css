@@ -207,15 +207,19 @@ img {
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 18px 0;
-  transition: background var(--transition-med), padding var(--transition-med), box-shadow var(--transition-med);
+  padding: 0;
+  height: 80px;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  overflow: visible;
+  transition: background var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med);
 }
 
 .navbar.scrolled {
   background: rgba(7, 8, 6, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 12px 0;
+  border-bottom-color: rgba(255, 122, 26, 0.25);
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 122, 26, 0.15);
 }
 
@@ -223,38 +227,87 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 80px;
 }
 
+/* --- Nav left group: logo + brand + links --- */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- Logo badge --- */
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #111410 0%, #0a0c08 100%);
+  border: 2px solid rgba(255, 122, 26, 0.5);
+  overflow: hidden;
+  box-shadow:
+    0 0 14px rgba(255, 122, 26, 0.25),
+    0 0 30px rgba(255, 122, 26, 0.08),
+    inset 0 0 12px rgba(0, 0, 0, 0.6);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-logo:hover {
+  border-color: rgba(255, 122, 26, 0.8);
+  box-shadow:
+    0 0 22px rgba(255, 122, 26, 0.4),
+    0 0 50px rgba(255, 122, 26, 0.12),
+    inset 0 0 12px rgba(0, 0, 0, 0.6);
+  transform: scale(1.06);
+}
+
+.nav-logo .brand-hex {
+  display: none;
+}
+
+.nav-logo-img {
+  height: 110%;
+  width: 110%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 50%;
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px rgba(255, 122, 26, 0.2));
+  transition: filter var(--transition-fast);
+}
+
+.nav-logo:hover .nav-logo-img {
+  filter: drop-shadow(0 0 12px rgba(255, 122, 26, 0.45));
+}
+
+/* --- Brand name --- */
+.nav-brand {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--text-primary);
+  white-space: nowrap;
+  transition: color var(--transition-fast);
 }
 
-.nav-logo .brand-hex {
-  width: 40px;
-  height: 40px;
-  background: var(--accent);
-  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-  display: grid;
-  place-items: center;
-  font-family: var(--font-heading);
-  color: #0a0b08;
-  font-size: 16px;
-  box-shadow: 0 0 20px rgba(255, 122, 26, 0.5);
-  flex-shrink: 0;
+.nav-brand span {
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(255, 122, 26, 0.3);
 }
 
-.nav-logo span {
+.nav-brand:hover {
   color: var(--accent);
 }
 
+/* --- Nav links: right side --- */
 .nav-links {
   display: flex;
   gap: 32px;
@@ -263,13 +316,14 @@ img {
 
 .nav-links a {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   color: var(--text-muted);
   position: relative;
   padding: 4px 0;
+  white-space: nowrap;
 }
 
 .nav-links a::after {
@@ -294,22 +348,26 @@ img {
   width: 100%;
 }
 
-/* Hamburger */
+/* --- Hamburger: hidden on desktop, visible on mobile --- */
 .nav-hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
   z-index: 1001;
 }
 
 .nav-hamburger span {
-  width: 26px;
+  width: 28px;
   height: 2.5px;
-  background: var(--accent);
+  background: var(--text-primary);
   border-radius: 2px;
   transition: var(--transition-fast);
+}
+
+.nav-hamburger:hover span {
+  background: var(--accent);
 }
 
 .nav-hamburger.active span:nth-child(1) {
@@ -1494,6 +1552,19 @@ img {
     display: flex;
   }
 
+  .nav-left {
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .nav-brand {
+    font-size: 1rem;
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -1507,6 +1578,9 @@ img {
     justify-content: center;
     gap: 28px;
     padding: 40px;
+    margin-left: 0;
+    padding-left: 40px;
+    border-left: 1px solid var(--border-color);
     transition: right var(--transition-med);
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
   }
