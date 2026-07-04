@@ -390,18 +390,147 @@
           <h3>Send us a message</h3>
           <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
             <input type="hidden" name="access_key" value="843093db-af70-42ea-8899-3b7f2b4f8bc9">
+            
             <div class="form-group">
-              <label for="name">Your Name</label>
+              <label for="name" class="required-label">Your Name</label>
               <input type="text" id="name" name="name" placeholder="e.g. Rahul Sharma" required>
             </div>
+            
             <div class="form-group">
-              <label for="email">Email Address</label>
+              <label for="email" class="required-label">Email Address</label>
               <input type="email" id="email" name="email" placeholder="e.g. rahul@brand.com" required>
             </div>
+
+            <!-- Profile Selector -->
             <div class="form-group">
-              <label for="message">Your Message</label>
+              <label for="userType" class="required-label">I am a...</label>
+              <select id="userType" name="user_type" required>
+                <option value="" disabled selected>Select your profile</option>
+                <option value="brand">Brand / Advertiser</option>
+                <option value="creator">Creator / Influencer</option>
+              </select>
+            </div>
+
+            <!-- Brand-Specific Fields -->
+            <div class="form-group-dynamic" id="group-brand-name">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="companyName">Company / Brand Name</label>
+                  <input type="text" id="companyName" name="company_name" placeholder="e.g. HyperX India">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-brand-website">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="companyWebsite">Website URL</label>
+                  <input type="url" id="companyWebsite" name="company_website" placeholder="e.g. https://hyperx.com">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-brand-query">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="brandQueryType">Inquiry Type</label>
+                  <select id="brandQueryType" name="brand_query_type">
+                    <option value="" disabled selected>Select inquiry type</option>
+                    <option value="Campaign Collaboration">Influencer Campaign Collaboration</option>
+                    <option value="Dedicated Marketing Campaign">Dedicated Marketing Campaign</option>
+                    <option value="Long-term Sponsorship">Long-term Creator Sponsorship</option>
+                    <option value="Other">Other Inquiry</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-brand-budget">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="brandBudget">Estimated Campaign Budget</label>
+                  <select id="brandBudget" name="brand_budget">
+                    <option value="" disabled selected>Select budget range</option>
+                    <option value="Under 50k">Under ₹50,000</option>
+                    <option value="50k to 2L">₹50,000 - ₹2,00,000</option>
+                    <option value="2L to 5L">₹2,00,000 - ₹5,00,000</option>
+                    <option value="Above 5L">Above ₹5,00,000</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Creator-Specific Fields -->
+            <div class="form-group-dynamic" id="group-creator-channel">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="channelName">Channel / Creator Name</label>
+                  <input type="text" id="channelName" name="channel_name" placeholder="e.g. Dynamo Gaming">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-creator-query">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="creatorQueryType">Inquiry Type</label>
+                  <select id="creatorQueryType" name="creator_query_type">
+                    <option value="" disabled selected>Select inquiry type</option>
+                    <option value="Join Network">Join AOG Creator Network</option>
+                    <option value="Sponsorship Support">Brand Sponsorship Support</option>
+                    <option value="Channel Optimization">Channel Optimization / Growth</option>
+                    <option value="Other">Other Inquiry</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-creator-link">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="channelLink">YouTube / Social Link</label>
+                  <input type="url" id="channelLink" name="channel_link" placeholder="e.g. https://youtube.com/@DynamoGaming">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-creator-subs">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="creatorSubs">Subscriber / Follower Count</label>
+                  <input type="text" id="creatorSubs" name="creator_subs" placeholder="e.g. 500K+">
+                </div>
+              </div>
+            </div>
+
+            <!-- Discovery Field -->
+            <div class="form-group">
+              <label for="discovery" class="required-label">How did you hear about us?</label>
+              <select id="discovery" name="discovery" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Google search">Google Search</option>
+                <option value="Creator Recommendation">Creator Recommendation</option>
+                <option value="Word of Mouth">Word of Mouth</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- Discovery Specify Box (Dynamic) -->
+            <div class="form-group-dynamic" id="group-discovery-other">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="discoveryOther">Please specify</label>
+                  <input type="text" id="discoveryOther" name="discovery_other" placeholder="e.g. Twitter, YouTube Ad, Event">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message" id="messageLabel" class="required-label">Your Message</label>
               <textarea id="message" name="message" placeholder="Tell us about your campaign..." required></textarea>
             </div>
+            
             <button type="submit" class="form-submit">Send Message <i class='bx bx-send'></i></button>
           </form>
         </div>
