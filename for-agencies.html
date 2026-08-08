@@ -40,6 +40,8 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- Hero mosaic overlay (for-agencies split hero) -->
+  <link rel="stylesheet" href="css/hero-mosaic.css">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -90,7 +92,7 @@
   <div class="bg-smoke s3"></div>
 
   <!-- ========== NAVBAR ========== -->
-  <nav class="navbar scrolled" id="navbar">
+  <nav class="navbar" id="navbar">
     <div class="container">
       <div class="nav-left">
         <a href="index.html" class="nav-logo">
@@ -118,8 +120,51 @@
   <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- ========== HERO ========== -->
-  <section class="hero" id="hero" style="min-height: 75vh; padding-top: 100px;">
-    <div class="hero-content">
+  <section class="hero hero-split" id="hero">
+
+    <!-- LEFT: Creator visual mosaic with AOG logo -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual-mosaic">
+        <!-- Tall photo — spans 2 rows -->
+        <div class="hv-photo hv-tall">
+          <img src="images/Kaur.jpeg" alt="">
+        </div>
+        <!-- Right column, 3 rows -->
+        <div class="hv-photo">
+          <img src="images/FizZer.jpeg" alt="">
+        </div>
+        <div class="hv-photo">
+          <img src="images/Samar.jpeg" alt="">
+        </div>
+        <!-- Bottom row -->
+        <div class="hv-photo">
+          <img src="images/Miss Amy.jpeg" alt="">
+        </div>
+        <div class="hv-photo">
+          <img src="images/Tabby.jpeg" alt="">
+        </div>
+      </div>
+
+      <!-- Multi-layer overlay: orange tint + dark vignette + right-edge fade -->
+      <div class="hv-overlay"></div>
+
+      <!-- Orange vertical accent line on the left edge -->
+      <div class="hv-accent-bar"></div>
+
+      <!-- AOG Logo + label centered on mosaic -->
+      <div class="hv-logo-center">
+        <img src="images/aog_transaparent.png" alt="AOG India Esports Logo">
+        <span class="hv-logo-label">AOG India Esports</span>
+      </div>
+
+      <!-- Floating creator count pill at bottom -->
+      <div class="hv-stat-pill">
+        <i class='bx bx-group'></i> 200+ Creators Across India
+      </div>
+    </div>
+
+    <!-- RIGHT: Text content -->
+    <div class="hero-content hero-split-text">
       <div class="hero-tag" data-aos="fade-down" data-aos-delay="100">Agency Partnerships</div>
       <h1 data-aos="fade-up" data-aos-delay="200">
         <span>Creator Marketing</span>
@@ -129,13 +174,14 @@
         <b>200+ Creators.</b> Gaming, Tech &amp; Gen Z.
       </div>
       <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
-        AOG India Esports is the gaming, tech, and Gen Z creator network that agencies rely on — for creator sourcing, outreach, campaign execution, and white-label support across India.
+        AOG India Esports is the gaming, tech, and Gen Z creator network that agencies rely on &mdash; for creator sourcing, outreach, campaign execution, and white-label support across India.
       </p>
       <a href="#agency-contact" class="hero-cta" data-aos="fade-up" data-aos-delay="550" id="agency-hero-cta">
         Start Agency Partnership <i class='bx bx-right-arrow-alt'></i>
       </a>
     </div>
   </section>
+
 
   <!-- ========== WHO THIS IS FOR ========== -->
   <section class="about" id="who-for">
@@ -275,7 +321,7 @@
         <h2>Creator <span>Categories</span></h2>
         <p>Three specializations covering your client's audience — matched to campaign objectives and brand context.</p>
       </div>
-      <div class="services-columns">
+      <div class="services-columns services-3col">
         <div data-aos="fade-up" data-aos-delay="0">
           <div class="service-card">
             <div class="service-icon"><i class='bx bx-joystick'></i></div>
@@ -529,9 +575,11 @@
       const navOverlay = document.getElementById('navOverlay');
       const allNavAnchors = navLinks.querySelectorAll('a');
 
-      window.addEventListener('scroll', () => {
+      const handleScroll = () => {
         navbar.classList.toggle('scrolled', window.scrollY > 60);
-      }, { passive: true });
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
 
       const toggleMenu = () => {
         navHamburger.classList.toggle('active');

@@ -1,0 +1,252 @@
+/*
+ * hero-mosaic.css
+ * Creator photo mosaic + split hero layout for index.html & for-agencies.html
+ * Layers on top of the original AOG India dark gaming style.css
+ * Uses same CSS vars: --accent, --bg-primary, --bg-surface, --font-heading, etc.
+ */
+
+/* ============================================
+   HERO SPLIT — 2-column grid
+   Left: creator mosaic   Right: text
+   ============================================ */
+.hero.hero-split {
+  /* Override flex layout from base .hero */
+  display: grid !important;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: stretch;
+  justify-content: unset !important;
+  /* Override centered text from base .hero */
+  text-align: left !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hide the SVG crosshair — replaced by photo mosaic */
+.hero.hero-split .hero-crosshair { display: none; }
+
+/* Suppress glow pseudo-elements (mosaic handles depth) */
+.hero.hero-split::before,
+.hero.hero-split::after { display: none; }
+
+/* ============================================
+   LEFT PANEL — creator photo mosaic
+   ============================================ */
+.hero-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+}
+
+/* 5-photo staggered mosaic fills the panel */
+.hero-visual-mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 3px;
+  position: absolute;
+  inset: 0;
+}
+
+.hv-photo {
+  overflow: hidden;
+  position: relative;
+}
+
+/* First photo tall — spans rows 1 & 2 in column 1 */
+.hv-photo.hv-tall {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+}
+
+.hv-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.48) saturate(0.62);
+  transition: filter 0.6s ease;
+}
+
+/* ============================================
+   OVERLAYS — orange tint + dark fades
+   ============================================ */
+.hv-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    /* Right edge fades into dark hero bg */
+    linear-gradient(to right, rgba(7,8,6,0.05) 0%, rgba(7,8,6,0.45) 60%, #0a0b08 100%),
+    /* Top vignette (nav area) */
+    linear-gradient(to bottom, rgba(7,8,6,0.65) 0%, transparent 22%),
+    /* Bottom vignette */
+    linear-gradient(to top, rgba(7,8,6,0.45) 0%, transparent 22%),
+    /* Warm orange tint wash */
+    linear-gradient(135deg, rgba(255,122,26,0.28) 0%, rgba(255,122,26,0.05) 55%, transparent 75%);
+}
+
+/* Orange accent bar on far-left edge */
+.hv-accent-bar {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, #ff7a1a 30%, #ff7a1a 70%, transparent);
+  z-index: 3;
+  border-radius: 2px;
+}
+
+/* ============================================
+   AOG LOGO — centered, pulsing glow
+   ============================================ */
+.hv-logo-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 4;
+  gap: 0.65rem;
+  pointer-events: none;
+}
+
+.hv-logo-center img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter: brightness(4) drop-shadow(0 0 36px rgba(255,122,26,0.9))
+          drop-shadow(0 0 10px rgba(255,122,26,0.6));
+  opacity: 0.95;
+  animation: aogLogoGlow 3s ease-in-out infinite;
+}
+
+@keyframes aogLogoGlow {
+  0%, 100% {
+    filter: brightness(4)
+            drop-shadow(0 0 36px rgba(255,122,26,0.9))
+            drop-shadow(0 0 10px rgba(255,122,26,0.6));
+  }
+  50% {
+    filter: brightness(5)
+            drop-shadow(0 0 54px rgba(255,122,26,1))
+            drop-shadow(0 0 18px rgba(255,194,58,0.7));
+  }
+}
+
+.hv-logo-label {
+  font-family: 'Black Ops One', 'Chakra Petch', system-ui, sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(255,122,26,0.7);
+}
+
+/* ============================================
+   CREATOR PILL — bottom of mosaic
+   ============================================ */
+.hv-stat-pill {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,122,26,0.12);
+  border: 1px solid rgba(255,122,26,0.4);
+  color: #ff7a1a;
+  font-family: 'Chakra Petch', 'JetBrains Mono', system-ui, sans-serif;
+  font-size: 0.73rem;
+  font-weight: 600;
+  padding: 0.38rem 1.1rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================
+   RIGHT PANEL — text (smaller in split ctx)
+   ============================================ */
+.hero-split-text {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left !important;
+  padding: 7rem 3.5rem 4rem 3rem !important;
+  max-width: none !important;
+  margin: 0 !important;
+  width: auto !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Smaller h1 for split layout — original is clamp(3rem,9vw,6rem) */
+.hero-split-text h1 {
+  font-size: clamp(2rem, 4.5vw, 3.4rem) !important;
+  line-height: 0.95 !important;
+  margin-bottom: 18px !important;
+}
+
+/* Smaller subtitle */
+.hero-split-text .hero-subtitle {
+  font-size: 0.9rem !important;
+  max-width: 440px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* hero-sub-line: left-align instead of center */
+.hero-split-text .hero-sub-line {
+  justify-content: flex-start !important;
+  font-size: 0.88rem !important;
+  letter-spacing: 1.5px !important;
+  margin-bottom: 24px !important;
+}
+
+/* Remove the centered ::before/::after lines from hero-sub-line */
+.hero-split-text .hero-sub-line::before,
+.hero-split-text .hero-sub-line::after {
+  display: none !important;
+}
+
+/* hero-tag: slightly smaller + left-clip stays */
+.hero-split-text .hero-tag {
+  font-size: 0.7rem !important;
+  letter-spacing: 2px !important;
+  margin-bottom: 18px !important;
+  padding: 6px 16px !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 960px) {
+  .hero.hero-split {
+    grid-template-columns: 1fr !important;
+    min-height: auto;
+  }
+  .hero-visual {
+    min-height: 320px;
+    height: 320px;
+  }
+  .hero-split-text {
+    padding: 3rem 2rem !important;
+  }
+  .hero-split-text h1 {
+    font-size: clamp(2rem, 7vw, 3rem) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-visual { min-height: 250px; height: 250px; }
+  .hv-logo-center img { width: 60px; height: 60px; }
+  .hv-stat-pill { font-size: 0.66rem; padding: 0.3rem 0.8rem; bottom: 1rem; }
+  .hero-split-text { padding: 2.5rem 1.25rem !important; }
+  .hero-split-text h1 { font-size: clamp(1.8rem, 8vw, 2.6rem) !important; }
+}
