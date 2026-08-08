@@ -2044,12 +2044,20 @@ img {
 
 @media (max-width: 768px) {
   .hero-bg-collage {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: 1fr !important;
+    gap: 4px !important;
+  }
+  .hbg-photo {
+    display: block !important;
+    height: 100% !important;
+    width: 100% !important;
   }
   /* Hide the 2nd and 3rd photos on smaller screens to prevent tight squishing */
   .hero-bg-collage .hbg-photo:nth-child(2),
   .hero-bg-collage .hbg-photo:nth-child(3) {
-    display: none;
+    display: none !important;
   }
 }
 
