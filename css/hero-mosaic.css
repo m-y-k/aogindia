@@ -228,25 +228,86 @@
    ============================================ */
 @media (max-width: 960px) {
   .hero.hero-split {
-    grid-template-columns: 1fr !important;
-    min-height: auto;
+    position: relative !important;
+    display: block !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
   }
+
   .hero-visual {
-    min-height: 320px;
-    height: 320px;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    min-height: 100vh !important;
   }
+
+  /* Match the homepage's lighter overlay and vignette styling for visibility */
+  .hero-visual .hv-overlay {
+    background: 
+      linear-gradient(to bottom, #070806 0%, rgba(7, 8, 6, 0.45) 25%, rgba(7, 8, 6, 0.45) 75%, #070806 100%),
+      radial-gradient(circle at 50% 50%, rgba(255, 122, 26, 0.25) 0%, transparent 65%) !important;
+  }
+
+  .hv-photo img {
+    filter: brightness(0.42) saturate(0.85) contrast(1.05) !important;
+    opacity: 0.82 !important;
+  }
+
+  /* Hide AOG Logo + text on mobile view */
+  .hero-visual .hv-logo-center {
+    display: none !important;
+  }
+
   .hero-split-text {
-    padding: 3rem 2rem !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 10 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 2rem 1.5rem !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
   }
+
   .hero-split-text h1 {
     font-size: clamp(2rem, 7vw, 3rem) !important;
+    text-align: center !important;
+    margin: 0 auto 18px !important;
+  }
+
+  .hero-split-text .hero-subtitle {
+    font-size: 0.9rem !important;
+    max-width: 440px !important;
+    margin: 0 auto 24px !important;
+    text-align: center !important;
+  }
+
+  .hero-split-text .hero-sub-line {
+    justify-content: center !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 1.5px !important;
+    margin: 0 auto 24px !important;
+  }
+
+  .hero-split-text .hero-cta {
+    margin: 0 auto !important;
+  }
+
+  .hv-stat-pill {
+    bottom: 1.5rem !important;
   }
 }
 
 @media (max-width: 600px) {
-  .hero-visual { min-height: 250px; height: 250px; }
-  .hv-logo-center img { width: 60px; height: 60px; }
-  .hv-stat-pill { font-size: 0.66rem; padding: 0.3rem 0.8rem; bottom: 1rem; }
+  .hv-stat-pill { font-size: 0.66rem; padding: 0.3rem 0.8rem; bottom: 1.5rem; }
   .hero-split-text { padding: 2.5rem 1.25rem !important; }
   .hero-split-text h1 { font-size: clamp(1.8rem, 8vw, 2.6rem) !important; }
 }
