@@ -1945,3 +1945,214 @@ img {
     font-size: 0.88rem;
   }
 }
+
+/* ============================================
+   STAT — 200+ SUFFIX
+   ============================================ */
+
+.stat-value.with-plus::after {
+  content: '+';
+  color: var(--accent);
+}
+
+/* ============================================
+   NAV — AGENCY LINK HIGHLIGHT
+   ============================================ */
+
+.nav-agency-link {
+  color: var(--accent) !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(255, 122, 26, 0.4);
+  padding: 0.3rem 0.85rem !important;
+  border-radius: 3px;
+  transition: background var(--transition-fast), border-color var(--transition-fast) !important;
+}
+
+.nav-agency-link:hover,
+.nav-agency-link.active {
+  background: rgba(255, 122, 26, 0.12);
+  border-color: var(--accent);
+  color: var(--accent) !important;
+}
+
+/* ============================================
+   FOR AGENCIES TEASER (homepage)
+   ============================================ */
+
+.agencies-teaser {
+  padding: var(--section-padding);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.agencies-teaser::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 122, 26, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.agencies-teaser-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.agencies-badge {
+  display: inline-block;
+  background: rgba(255, 122, 26, 0.15);
+  border: 1px solid rgba(255, 122, 26, 0.45);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 3px;
+  margin-bottom: 1.25rem;
+}
+
+.agencies-teaser-inner h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.agencies-teaser-inner h2 span {
+  color: var(--accent);
+}
+
+.agencies-teaser-inner > p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.agencies-teaser-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.agencies-teaser-tags span {
+  display: inline-block;
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.agencies-teaser-tags span:hover {
+  border-color: rgba(255, 122, 26, 0.5);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   AGENCY HOW-IT-WORKS STEPS (for-agencies.html)
+   ============================================ */
+
+.agencies-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 760px;
+  margin: 2rem auto 0;
+}
+
+.agency-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: border-color var(--transition-med), box-shadow var(--transition-med);
+}
+
+.agency-step:hover {
+  border-color: rgba(255, 122, 26, 0.4);
+  box-shadow: 0 0 20px rgba(255, 122, 26, 0.06);
+}
+
+.agency-step-num {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-accent);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+
+.agency-step-content h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+
+.agency-step-content p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE — NEW SECTIONS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .agencies-teaser-inner h2 {
+    font-size: 1.6rem;
+  }
+
+  .agencies-teaser-inner > p {
+    font-size: 0.92rem;
+  }
+
+  .agencies-teaser-tags span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .agency-step {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .agency-step-num {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+}
