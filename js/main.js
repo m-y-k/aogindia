@@ -280,6 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFormFields();
 
     // Prevent submission with configuration placeholders or invalid email
+    const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbw2K2bgwPlz1ZZcNhoowRYn2YN4dkE9gqGRABfEJQALZdnqoD64okgoBFn7p1EI2A_qRA/exec';
+
     contactForm.addEventListener('submit', (e) => {
       const isEmailValid = validateEmail();
       if (!isEmailValid) {
@@ -292,6 +294,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (action && action.includes('YOUR_FORM_ID')) {
         e.preventDefault();
         alert('Contact form is not configured yet. Please email us directly at partnerships@aogindia.com');
+        return;
+      }
+
+      const botcheck = contactForm.querySelector('[name="botcheck"]');
+      if (!botcheck || !botcheck.checked) {
+        fetch(SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(contactForm)),
+          keepalive: true
+        }).catch(() => {});
       }
     });
   }

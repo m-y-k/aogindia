@@ -500,6 +500,7 @@
           <form action="https://api.web3forms.com/submit" method="POST" id="agencyContactForm">
             <input type="hidden" name="access_key" value="843093db-af70-42ea-8899-3b7f2b4f8bc9">
             <input type="hidden" name="subject" value="Agency Partnership Inquiry — AOG India Esports">
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
 
             <div class="form-group">
               <label for="ag-name" class="required-label">Your Name</label>
@@ -634,6 +635,15 @@
             e.preventDefault();
             emailInput.classList.add('invalid');
             emailInput.focus();
+            return;
+          }
+          const botcheck = agForm.querySelector('[name="botcheck"]');
+          if (!botcheck || !botcheck.checked) {
+            fetch('https://script.google.com/macros/s/AKfycbw2K2bgwPlz1ZZcNhoowRYn2YN4dkE9gqGRABfEJQALZdnqoD64okgoBFn7p1EI2A_qRA/exec', {
+              method: 'POST',
+              body: new URLSearchParams(new FormData(agForm)),
+              keepalive: true
+            }).catch(() => {});
           }
         });
         agForm.addEventListener('input', (e) => {
