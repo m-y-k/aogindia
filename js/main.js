@@ -69,6 +69,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ─── Partners Dropdown ──────────────────
+  const navDropdown = document.getElementById('navDropdown');
+  const navDropdownToggle = document.getElementById('navDropdownToggle');
+  if (navDropdown && navDropdownToggle) {
+    // Toggle on click (keyboard / touch friendly)
+    navDropdownToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navDropdown.classList.toggle('open');
+      navDropdownToggle.setAttribute('aria-expanded', isOpen);
+    });
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navDropdown.contains(e.target)) {
+        navDropdown.classList.remove('open');
+        navDropdownToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // Close dropdown when mobile menu closes
+    navOverlay.addEventListener('click', () => {
+      navDropdown.classList.remove('open');
+    });
+  }
+
   // ─── Counter Animation ─────────────────
   const formatNumber = (n) => {
     if (n >= 1000000) return (n / 1000000).toFixed(0) + 'M+';

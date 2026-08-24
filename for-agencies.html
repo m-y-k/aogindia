@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agency Partnerships | AOG India Esports — Gaming, Tech & Gen Z Creator Network for Agencies</title>
-  <meta name="description" content="AOG India Esports is a creator marketing partner for creative, digital, media, PR, and influencer agencies. Gaming, tech, and Gen Z creator sourcing, outreach, campaign execution, product seeding, and white-label support across India.">
+  <title>Gaming Creator Marketing Partner for Agencies India | AOG India Esports</title>
+  <meta name="description" content="AOG India Esports is the specialist gaming creator marketing partner for creative, digital, media, PR, and influencer agencies in India. White-label creator sourcing, BGMI campaign execution, product seeding, and performance reporting for agency clients.">
   <meta name="author" content="AOG India Esports">
   <link rel="canonical" href="https://aogindia.com/for-agencies.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aogindia.com/for-agencies.html">
-  <meta property="og:title" content="Agency Partnerships | AOG India Esports — Gaming & Tech Creator Network for Agencies">
+  <meta property="og:title" content="Gaming Creator Marketing Partner for Agencies India | AOG India Esports">
   <meta property="og:description" content="AOG India Esports partners with creative, digital, media, PR, and influencer agencies as a gaming, tech, and Gen Z creator sourcing and campaign execution partner across India.">
   <meta property="og:image" content="https://aogindia.com/images/aog.png">
   <meta property="og:site_name" content="AOG India Esports">
@@ -19,8 +19,8 @@
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Agency Partnerships | AOG India Esports">
-  <meta name="twitter:description" content="AOG India Esports is a gaming, tech & Gen Z creator network and campaign execution partner for agencies across India.">
+  <meta name="twitter:title" content="Gaming Creator Marketing Partner for Agencies India | AOG India Esports">
+  <meta name="twitter:description" content="AOG India Esports is a gaming, tech & Gen Z creator network and campaign execution partner for agencies across India. White-label support available.">
   <meta name="twitter:image" content="https://aogindia.com/images/aog.png">
 
   <!-- Favicon -->
@@ -40,7 +40,6 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
-  <!-- Hero mosaic overlay (for-agencies split hero) -->
   <link rel="stylesheet" href="css/hero-mosaic.css">
 
   <!-- JSON-LD Structured Data -->
@@ -52,7 +51,7 @@
         "@type": "WebPage",
         "@id": "https://aogindia.com/for-agencies.html#webpage",
         "url": "https://aogindia.com/for-agencies.html",
-        "name": "Agency Partnerships | AOG India Esports — Gaming, Tech & Gen Z Creator Network for Agencies",
+        "name": "Gaming Creator Marketing Partner for Agencies India | AOG India Esports",
         "description": "AOG India Esports is a creator marketing partner for creative, digital, media, PR, and influencer agencies. Gaming, tech, and Gen Z creator sourcing, outreach, campaign execution, product seeding, and white-label support across India.",
         "isPartOf": { "@id": "https://aogindia.com/#website" },
         "about": { "@id": "https://aogindia.com/#organization" },
@@ -60,7 +59,7 @@
       },
       {
         "@type": "Service",
-        "@id": "https://aogindia.com/#service-agency-partnership",
+        "@id": "https://aogindia.com/for-agencies.html#service-agency-partnership",
         "name": "Agency Creator Marketing Partnership",
         "description": "White-label and partnership services for creative, digital, media, PR, and influencer agencies. Includes gaming, tech, and Gen Z creator sourcing, outreach, campaign coordination, product seeding, and reporting for agency clients across India.",
         "provider": { "@id": "https://aogindia.com/#organization" },
@@ -70,6 +69,52 @@
           "@type": "Audience",
           "audienceType": "Creative Agencies, Digital Marketing Agencies, Media Agencies, PR Agencies, Influencer Marketing Agencies, Social Media Agencies, Performance Marketing Agencies, Content Agencies"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://aogindia.com/for-agencies.html#faqpage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can we use AOG India Esports as a white-label partner?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We can operate fully behind the scenes without AOG India Esports branding visible to your client. All creator communication and deliverables are handled under your agency's workflow, keeping your client relationship intact."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What types of agencies do you work with?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We work with creative agencies, digital marketing agencies, media agencies, PR agencies, social media agencies, influencer marketing agencies, performance marketing agencies, content agencies, event agencies, and brand strategy agencies managing campaigns for clients across India."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How quickly can you turn around a creator shortlist for an agency campaign?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For most campaigns, we deliver an initial creator shortlist with audience data and rate information within 48-72 hours of receiving a complete brief. Complex or niche campaigns may take slightly longer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you only work with gaming creators?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. While gaming (especially BGMI) is our core specialization, our creator network also includes tech reviewers, gadget creators, and Gen Z lifestyle influencers for tech, youth, and gaming-adjacent campaigns."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a minimum campaign size to work with AOG India Esports?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We work with agencies on both single-campaign projects and ongoing retainer arrangements. There is no fixed minimum — reach out with your brief and we'll discuss what's feasible for your client's budget."
+            }
+          }
+        ]
       }
     ]
   }
@@ -107,7 +152,15 @@
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#services">Services</a></li>
         <li><a href="index.html#creators">Creators</a></li>
-        <li><a href="for-agencies.html" class="active nav-agency-link">For Agencies</a></li>
+        <li class="nav-dropdown" id="navDropdown">
+          <button class="nav-dropdown-toggle" id="navDropdownToggle" aria-expanded="false" aria-haspopup="true">
+            Work With Us <span class="dd-caret">&#9660;</span>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="for-agencies.html" class="active" role="menuitem"><i class='bx bx-buildings'></i> For Agencies</a>
+            <a href="for-brands.html" role="menuitem"><i class='bx bx-package'></i> For Brands</a>
+          </div>
+        </li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
       <div class="nav-hamburger" id="navHamburger">
@@ -125,18 +178,15 @@
     <!-- LEFT: Creator visual mosaic with AOG logo -->
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-visual-mosaic">
-        <!-- Tall photo — spans 2 rows -->
         <div class="hv-photo hv-tall">
           <img src="images/Kaur.jpeg" alt="">
         </div>
-        <!-- Right column, 3 rows -->
         <div class="hv-photo">
           <img src="images/FizZer.jpeg" alt="">
         </div>
         <div class="hv-photo">
           <img src="images/Samar.jpeg" alt="">
         </div>
-        <!-- Bottom row -->
         <div class="hv-photo">
           <img src="images/Miss Amy.jpeg" alt="">
         </div>
@@ -144,20 +194,12 @@
           <img src="images/FaceMe.jpeg" alt="">
         </div>
       </div>
-
-      <!-- Multi-layer overlay: orange tint + dark vignette + right-edge fade -->
       <div class="hv-overlay"></div>
-
-      <!-- Orange vertical accent line on the left edge -->
       <div class="hv-accent-bar"></div>
-
-      <!-- AOG Logo + label centered on mosaic -->
       <div class="hv-logo-center">
         <img src="images/aog_transaparent.png" alt="AOG India Esports Logo">
         <span class="hv-logo-label">AOG India Esports</span>
       </div>
-
-      <!-- Floating creator count pill at bottom -->
       <div class="hv-stat-pill">
         <i class='bx bx-group'></i> 200+ Creators Across India
       </div>
@@ -182,7 +224,6 @@
     </div>
   </section>
 
-
   <!-- ========== WHO THIS IS FOR ========== -->
   <section class="about" id="who-for">
     <div class="container">
@@ -190,21 +231,21 @@
         <div class="about-text" data-aos="fade-right">
           <h2>Built for <span>Agency Teams</span></h2>
           <p>
-            If you run a creative, digital, media, PR, social, influencer, performance, content, or brand strategy agency — and your clients need gaming, tech, or Gen Z creators — AOG India Esports is your execution partner.
+            If you run a creative, digital, media, PR, social, influencer, performance, content, or brand strategy agency &mdash; and your clients need gaming, tech, or Gen Z creators &mdash; AOG India Esports is your execution partner.
           </p>
           <p>
-            We don't compete with you. We power your campaigns. You stay the agency of record; we provide the creator network, outreach, and campaign execution — branded however you need.
+            We don't compete with you. We power your campaigns. You stay the agency of record; we provide the creator network, outreach, and campaign execution &mdash; branded however you need.
           </p>
         </div>
         <div class="about-highlights" data-aos="fade-left">
           <div class="about-highlight-card">
             <i class='bx bx-buildings'></i>
-            <h4>Creative & Digital Agencies</h4>
-            <p>Gaming & tech creators for brand campaigns, product launches, and content production</p>
+            <h4>Creative &amp; Digital Agencies</h4>
+            <p>Gaming &amp; tech creators for brand campaigns, product launches, and content production</p>
           </div>
           <div class="about-highlight-card">
             <i class='bx bx-broadcast'></i>
-            <h4>Media & PR Agencies</h4>
+            <h4>Media &amp; PR Agencies</h4>
             <p>Youth creator amplification for product launches, events, and brand storytelling</p>
           </div>
           <div class="about-highlight-card">
@@ -215,7 +256,7 @@
           <div class="about-highlight-card">
             <i class='bx bx-shield-quarter'></i>
             <h4>Influencer Agencies</h4>
-            <p>Specialist gaming & tech creator access to supplement your existing creator roster</p>
+            <p>Specialist gaming &amp; tech creator access to supplement your existing creator roster</p>
           </div>
         </div>
       </div>
@@ -227,7 +268,7 @@
     <div class="container">
       <div class="section-heading" data-aos="fade-up">
         <h2>What We <span>Offer Agencies</span></h2>
-        <p>End-to-end creator marketing support for agencies managing gaming, tech, and Gen Z campaigns for their clients — from brief to report.</p>
+        <p>End-to-end creator marketing support for agencies managing gaming, tech, and Gen Z campaigns for their clients &mdash; from brief to report.</p>
       </div>
       <div class="services-columns">
         <div data-aos="fade-right">
@@ -235,15 +276,15 @@
           <div class="service-card">
             <div class="service-icon"><i class='bx bx-search-alt'></i></div>
             <div>
-              <h4>Creator Discovery & Shortlisting</h4>
-              <p>We identify the most relevant gaming, tech, and Gen Z creators from our 200+ network — matched by niche, audience demographics, engagement quality, and campaign fit for your client's brief.</p>
+              <h4>Creator Discovery &amp; Shortlisting</h4>
+              <p>We identify the most relevant gaming, tech, and Gen Z creators from our 200+ network &mdash; matched by niche, audience demographics, engagement quality, and campaign fit for your client's brief.</p>
             </div>
           </div>
           <div class="service-card">
             <div class="service-icon"><i class='bx bx-message-dots'></i></div>
             <div>
-              <h4>Creator Outreach & Negotiation</h4>
-              <p>We handle creator outreach, rate negotiation, and contract coordination on your behalf — saving your team time and leveraging our existing creator relationships for faster turnarounds.</p>
+              <h4>Creator Outreach &amp; Negotiation</h4>
+              <p>We handle creator outreach, rate negotiation, and contract coordination on your behalf &mdash; saving your team time and leveraging our existing creator relationships for faster turnarounds.</p>
             </div>
           </div>
           <div class="service-card">
@@ -259,22 +300,22 @@
           <div class="service-card">
             <div class="service-icon"><i class='bx bx-cog'></i></div>
             <div>
-              <h4>Campaign Coordination & Execution</h4>
-              <p>End-to-end campaign management — from creator briefing and content review to publishing schedules and live tracking — so your agency delivers without operational overhead.</p>
+              <h4>Campaign Coordination &amp; Execution</h4>
+              <p>End-to-end campaign management &mdash; from creator briefing and content review to publishing schedules and live tracking &mdash; so your agency delivers without operational overhead.</p>
             </div>
           </div>
           <div class="service-card">
             <div class="service-icon"><i class='bx bx-bar-chart-alt-2'></i></div>
             <div>
               <h4>Performance Reporting</h4>
-              <p>Structured post-campaign reports covering reach, views, engagement, and creator performance — formatted to complement your agency's client reporting workflow.</p>
+              <p>Structured post-campaign reports covering reach, views, engagement, and creator performance &mdash; formatted to complement your agency's client reporting workflow.</p>
             </div>
           </div>
           <div class="service-card">
             <div class="service-icon"><i class='bx bx-label'></i></div>
             <div>
               <h4>White-Label Support</h4>
-              <p>We operate fully behind the scenes. Campaigns run under your agency's brand — no AOG India Esports watermarks, no direct creator contact with your client unless you choose otherwise.</p>
+              <p>We operate fully behind the scenes. Campaigns run under your agency's brand &mdash; no AOG India Esports watermarks, no direct creator contact with your client unless you choose otherwise.</p>
             </div>
           </div>
         </div>
@@ -287,7 +328,7 @@
     <div class="container">
       <div class="section-heading" data-aos="fade-up" style="margin-bottom: 2.5rem;">
         <h2>Our Creator <span>Network</span></h2>
-        <p>Gaming, tech, and Gen Z creators across YouTube and Instagram — curated, verified, and ready to activate for your client campaigns.</p>
+        <p>Gaming, tech, and Gen Z creators across YouTube and Instagram &mdash; curated, verified, and ready to activate for your client campaigns.</p>
       </div>
       <div class="stats-grid">
         <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
@@ -319,7 +360,7 @@
     <div class="container">
       <div class="section-heading" data-aos="fade-up">
         <h2>Creator <span>Categories</span></h2>
-        <p>Three specializations covering your client's audience — matched to campaign objectives and brand context.</p>
+        <p>Three specializations covering your client's audience &mdash; matched to campaign objectives and brand context.</p>
       </div>
       <div class="services-columns services-3col">
         <div data-aos="fade-up" data-aos-delay="0">
@@ -327,7 +368,7 @@
             <div class="service-icon"><i class='bx bx-joystick'></i></div>
             <div>
               <h4>Gaming Creators</h4>
-              <p>BGMI, mobile gaming, PC gaming, and esports creators on YouTube and Instagram. Ideal for gaming hardware, accessories, mobile game launches, gaming accessories, and esports brand activations.</p>
+              <p>BGMI, mobile gaming, PC gaming, and esports creators on YouTube and Instagram. Ideal for gaming hardware, accessories, mobile game launches, and esports brand activations.</p>
             </div>
           </div>
         </div>
@@ -344,8 +385,8 @@
           <div class="service-card">
             <div class="service-icon"><i class='bx bx-trending-up'></i></div>
             <div>
-              <h4>Gen Z & Youth Creators</h4>
-              <p>Lifestyle, campus, and youth culture creators connecting with India's 18–25 demographic. Ideal for D2C brands, student-focused products, and youth brand campaigns targeting Gen Z.</p>
+              <h4>Gen Z &amp; Youth Creators</h4>
+              <p>Lifestyle, campus, and youth culture creators connecting with India's 18&ndash;25 demographic. Ideal for D2C brands, student-focused products, and youth brand campaigns.</p>
             </div>
           </div>
         </div>
@@ -365,21 +406,21 @@
           <div class="agency-step-num">01</div>
           <div class="agency-step-content">
             <h4>Share Your Brief</h4>
-            <p>Tell us about your client, the campaign objective, creator type needed, budget range, and timeline. We work with your agency's standard brief format — no new process to learn.</p>
+            <p>Tell us about your client, the campaign objective, creator type needed, budget range, and timeline. We work with your agency's standard brief format &mdash; no new process to learn.</p>
           </div>
         </div>
         <div class="agency-step">
           <div class="agency-step-num">02</div>
           <div class="agency-step-content">
-            <h4>Creator Shortlist & Approval</h4>
-            <p>We return a curated creator shortlist with audience data and rate information — typically within 48–72 hours. You review and approve; we handle outreach and negotiation.</p>
+            <h4>Creator Shortlist &amp; Approval</h4>
+            <p>We return a curated creator shortlist with audience data and rate information &mdash; typically within 48&ndash;72 hours. You review and approve; we handle outreach and negotiation.</p>
           </div>
         </div>
         <div class="agency-step">
           <div class="agency-step-num">03</div>
           <div class="agency-step-content">
-            <h4>Execute & Report</h4>
-            <p>We manage creator briefing, content review, scheduling, and publishing. Post-campaign, you receive a clean performance report ready for your client — under your branding if needed.</p>
+            <h4>Execute &amp; Report</h4>
+            <p>We manage creator briefing, content review, scheduling, and publishing. Post-campaign, you receive a clean performance report ready for your client &mdash; under your branding if needed.</p>
           </div>
         </div>
       </div>
@@ -399,7 +440,7 @@
           <details class="faq-details">
             <summary class="faq-question">Can we use AOG India Esports as a white-label partner?</summary>
             <div class="faq-answer">
-              <p>Yes. We can operate fully behind the scenes — without AOG India Esports branding visible to your client. All creator communication and deliverables are handled under your agency's workflow, keeping your client relationship intact.</p>
+              <p>Yes. We can operate fully behind the scenes &mdash; without AOG India Esports branding visible to your client. All creator communication and deliverables are handled under your agency's workflow, keeping your client relationship intact.</p>
             </div>
           </details>
         </div>
@@ -408,7 +449,7 @@
           <details class="faq-details">
             <summary class="faq-question">What types of agencies do you work with?</summary>
             <div class="faq-answer">
-              <p>We work with creative agencies, digital marketing agencies, media agencies, PR agencies, social media agencies, influencer marketing agencies, performance marketing agencies, content agencies, event agencies, and brand strategy agencies — managing campaigns for clients across India.</p>
+              <p>We work with creative agencies, digital marketing agencies, media agencies, PR agencies, social media agencies, influencer marketing agencies, performance marketing agencies, content agencies, event agencies, and brand strategy agencies &mdash; managing campaigns for clients across India.</p>
             </div>
           </details>
         </div>
@@ -417,7 +458,7 @@
           <details class="faq-details">
             <summary class="faq-question">How quickly can you turn around a creator shortlist?</summary>
             <div class="faq-answer">
-              <p>For most campaigns, we deliver an initial creator shortlist with audience data and rate information within 48–72 hours of receiving a complete brief. Complex or niche campaigns may take slightly longer.</p>
+              <p>For most campaigns, we deliver an initial creator shortlist with audience data and rate information within 48&ndash;72 hours of receiving a complete brief. Complex or niche campaigns may take slightly longer.</p>
             </div>
           </details>
         </div>
@@ -435,7 +476,7 @@
           <details class="faq-details">
             <summary class="faq-question">Can you handle product seeding for our client's campaign?</summary>
             <div class="faq-answer">
-              <p>Yes. We coordinate product seeding campaigns — managing product delivery to creators, creator briefing, content review, and publishing timelines. This works well for gaming accessories, tech gadgets, mobile devices, and consumer products.</p>
+              <p>Yes. We coordinate product seeding campaigns &mdash; managing product delivery to creators, creator briefing, content review, and publishing timelines. This works well for gaming accessories, tech gadgets, mobile devices, and consumer products.</p>
             </div>
           </details>
         </div>
@@ -444,7 +485,7 @@
           <details class="faq-details">
             <summary class="faq-question">Is there a minimum campaign size to work with AOG India Esports?</summary>
             <div class="faq-answer">
-              <p>We work with agencies on both single-campaign projects and ongoing retainer arrangements. There is no fixed minimum — reach out with your brief and we'll discuss what's feasible and what makes sense for your client's budget.</p>
+              <p>We work with agencies on both single-campaign projects and ongoing retainer arrangements. There is no fixed minimum &mdash; reach out with your brief and we'll discuss what's feasible and what makes sense for your client's budget.</p>
             </div>
           </details>
         </div>
@@ -549,22 +590,43 @@
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <span class="logo-a">A</span><span class="logo-o">O</span><span class="logo-g">G</span> India Esports
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo-link">
+            <img src="images/aog.jpg" alt="AOG India Esports" class="footer-logo-img">
+            <span class="footer-logo-text"><span>AOG</span> India Esports</span>
+          </a>
+          <p>India's gaming influencer marketing agency &mdash; the white-label creator partner for agencies managing gaming, tech, and Gen Z campaigns across India.</p>
         </div>
-        <div class="footer-socials">
-          <a href="mailto:partnerships@aogindia.com" title="Email AOG India Esports at partnerships@aogindia.com"><i class='bx bx-envelope'></i></a>
-          <a href="https://www.linkedin.com/company/117914370" target="_blank" rel="noopener" title="AOG India Esports on LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#about">About</a></li>
+              <li><a href="index.html#services">Services</a></li>
+              <li><a href="index.html#creators">Creators</a></li>
+              <li><a href="for-agencies.html">For Agencies</a></li>
+              <li><a href="for-brands.html">For Brands</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="mailto:partnerships@aogindia.com">partnerships@aogindia.com</a></li>
+              <li><a href="mailto:aarti.chauhan@aogindia.com">aarti.chauhan@aogindia.com</a></li>
+              <li><a href="https://www.linkedin.com/company/117914370" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 AOG India Esports (Alliance Of Gamers). All rights reserved.</span>
+        <p>&copy; 2026 AOG India Esports (Alliance Of Gamers). All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- AOS Script -->
+  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -596,6 +658,23 @@
         });
       });
 
+      // Partners dropdown
+      const navDropdown = document.getElementById('navDropdown');
+      const navDropdownToggle = document.getElementById('navDropdownToggle');
+      if (navDropdown && navDropdownToggle) {
+        navDropdownToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = navDropdown.classList.toggle('open');
+          navDropdownToggle.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', (e) => {
+          if (!navDropdown.contains(e.target)) {
+            navDropdown.classList.remove('open');
+            navDropdownToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
       // Counter animation
       const formatNumber = (n) => {
         if (n >= 1000000) return (n / 1000000).toFixed(0) + 'M+';
@@ -625,17 +704,26 @@
         statValues.forEach(el => observer.observe(el));
       }
 
-      // Agency form validation
+      // Agency form submit-lock
       const agForm = document.getElementById('agencyContactForm');
       if (agForm) {
         const emailInput = agForm.querySelector('#ag-email');
+        const agSubmitBtn = document.getElementById('ag-submit-btn');
+        let agSubmitting = false;
+
         agForm.addEventListener('submit', (e) => {
+          if (agSubmitting) { e.preventDefault(); return; }
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (!emailRegex.test(emailInput.value.trim())) {
             e.preventDefault();
             emailInput.classList.add('invalid');
             emailInput.focus();
             return;
+          }
+          agSubmitting = true;
+          if (agSubmitBtn) {
+            agSubmitBtn.disabled = true;
+            agSubmitBtn.innerHTML = "Sending&hellip; <i class='bx bx-loader-alt bx-spin'></i>";
           }
           const botcheck = agForm.querySelector('[name="botcheck"]');
           if (!botcheck || !botcheck.checked) {
@@ -645,7 +733,15 @@
               keepalive: true
             }).catch(() => {});
           }
+          setTimeout(() => {
+            agSubmitting = false;
+            if (agSubmitBtn) {
+              agSubmitBtn.disabled = false;
+              agSubmitBtn.innerHTML = "Send Inquiry <i class='bx bx-send'></i>";
+            }
+          }, 8000);
         });
+
         agForm.addEventListener('input', (e) => {
           if (e.target.classList.contains('invalid') && e.target.checkValidity()) {
             e.target.classList.remove('invalid');
