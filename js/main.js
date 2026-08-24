@@ -282,7 +282,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Prevent submission with configuration placeholders or invalid email
     const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbw2K2bgwPlz1ZZcNhoowRYn2YN4dkE9gqGRABfEJQALZdnqoD64okgoBFn7p1EI2A_qRA/exec';
 
+    // ── Submit-lock: prevents duplicate emails from rapid/double clicks ──
+    let isSubmitting = false;
+    const submitBtn = contactForm.querySelector('[type="submit"]');
+
     contactForm.addEventListener('submit', (e) => {
+      // 1. Block if already in-flight
+      if (isSubmitting) {
+        e.preventDefault();
+        return;
+      }
+
+      // 2. Validate email
       const isEmailValid = validateEmail();
       if (!isEmailValid) {
         e.preventDefault();
@@ -290,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // 3. Config placeholder guard
       const action = contactForm.getAttribute('action');
       if (action && action.includes('YOUR_FORM_ID')) {
         e.preventDefault();
@@ -297,6 +309,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // 4. Lock the button immediately so rapid clicks are ignored
+      isSubmitting = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "Sending\u2026 <i class='bx bx-loader-alt bx-spin'></i>";
+      }
+
+      // 5. Fire Google Sheets webhook (non-blocking, best-effort)
       const botcheck = contactForm.querySelector('[name="botcheck"]');
       if (!botcheck || !botcheck.checked) {
         fetch(SHEET_WEBHOOK_URL, {
@@ -305,6 +325,16 @@ document.addEventListener('DOMContentLoaded', () => {
           keepalive: true
         }).catch(() => {});
       }
+
+      // 6. Allow native web3forms POST to continue — it will navigate/redirect.
+      //    If for any reason the page doesn't unload, re-enable after 8s as a fallback.
+      setTimeout(() => {
+        isSubmitting = false;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = "Send Message <i class='bx bx-send'></i>";
+        }
+      }, 8000);
     });
   }
   
