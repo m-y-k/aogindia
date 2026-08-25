@@ -54,6 +54,29 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": "https://aogindia.com/#organization",
+        "name": "AOG India Esports",
+        "alternateName": "Alliance Of Gamers",
+        "url": "https://aogindia.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://aogindia.com/#logo",
+          "url": "https://aogindia.com/images/aog-logo.webp",
+          "width": 256,
+          "height": 256
+        },
+        "sameAs": ["https://www.linkedin.com/company/117914370"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://aogindia.com/#website",
+        "url": "https://aogindia.com/",
+        "name": "AOG India Esports",
+        "publisher": { "@id": "https://aogindia.com/#organization" },
+        "inLanguage": "en"
+      },
+      {
         "@type": "WebPage",
         "@id": "https://aogindia.com/for-agencies.html#webpage",
         "url": "https://aogindia.com/for-agencies.html",
