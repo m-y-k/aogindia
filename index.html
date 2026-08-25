@@ -13,7 +13,10 @@
   <meta property="og:url" content="https://aogindia.com/">
   <meta property="og:title" content="Gaming Marketing Agency India | AOG India Esports — Gaming, Tech & Gen Z Creators">
   <meta property="og:description" content="AOG India Esports is India's gaming influencer marketing agency. BGMI creator campaigns, mobile game marketing, YouTube & Instagram influencer campaigns, and white-label agency support across India.">
-  <meta property="og:image" content="https://aogindia.com/images/aog.png">
+  <meta property="og:image" content="https://aogindia.com/images/aog-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:site_name" content="AOG India Esports">
   <meta property="og:locale" content="en_IN">
 
@@ -21,26 +24,29 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gaming Marketing Agency India | AOG India Esports">
   <meta name="twitter:description" content="India's gaming influencer marketing agency — BGMI creator campaigns, mobile game marketing, YouTube & Instagram influencers. 200+ creators network across India.">
-  <meta name="twitter:image" content="https://aogindia.com/images/aog.png">
+  <meta name="twitter:image" content="https://aogindia.com/images/aog-og.jpg">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="images/aog.png">
-  <link rel="shortcut icon" type="image/png" href="images/aog.png">
+  <!-- Favicon (SVG + tiny PNG fallback — was a 6.4MB PNG before) -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
+  <link rel="apple-touch-icon" href="images/favicon-64.png">
 
-  <!-- Fonts -->
+  <!-- Fonts: Bebas Neue removed (unused). Chakra Petch weights trimmed to those actually used -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Icons: Boxicons -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- AOS: Animate on Scroll -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/hero-mosaic.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/hero-mosaic.min.css">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -56,8 +62,10 @@
         "logo": {
           "@type": "ImageObject",
           "@id": "https://aogindia.com/#logo",
-          "url": "https://aogindia.com/images/aog.png",
-          "contentUrl": "https://aogindia.com/images/aog.png"
+          "url": "https://aogindia.com/images/aog-logo.webp",
+          "contentUrl": "https://aogindia.com/images/aog-logo.webp",
+          "width": 256,
+          "height": 256
         },
         "image": { "@id": "https://aogindia.com/#logo" },
         "description": "AOG India Esports (Alliance Of Gamers) is a gaming, tech, and Gen Z influencer marketing agency based in India. We connect brands and marketing agencies with 200+ gaming, tech, and youth creators on YouTube and Instagram for influencer marketing campaigns, product seeding, and creator-led brand activations.",
@@ -239,11 +247,25 @@
   }
   </script>
 
-  <!-- Apollo Tracking -->
-  <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
-    o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
-    o.onload=function(){window.trackingFunctions.onLoad({appId:"69dfbb09541bea00110f0d05"})},
-    document.head.appendChild(o)}initApollo();</script>
+  <!-- Apollo Tracking: deferred until page load + browser idle so it never blocks render -->
+  <script>
+    (function () {
+      var started = false;
+      function initApollo() {
+        if (started) return;
+        started = true;
+        var n = Math.random().toString(36).substring(7), o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true; o.defer = true;
+        o.onload = function () { window.trackingFunctions.onLoad({ appId: "69dfbb09541bea00110f0d05" }); };
+        document.head.appendChild(o);
+      }
+      window.addEventListener("load", function () {
+        if ("requestIdleCallback" in window) { requestIdleCallback(initApollo, { timeout: 4000 }); }
+        else { setTimeout(initApollo, 2000); }
+      });
+    })();
+  </script>
 </head>
 <body>
 
@@ -260,7 +282,7 @@
     <div class="container">
       <div class="nav-left">
         <a href="#" class="nav-logo">
-          <img src="images/aog.jpg" alt="AOG India Esports" class="nav-logo-img">
+          <img src="images/aog-logo.webp" alt="AOG India Esports" class="nav-logo-img" width="68" height="68" fetchpriority="high">
         </a>
         <a href="#" class="nav-brand">
           <span>AOG</span> India Esports
@@ -296,11 +318,11 @@
 
     <!-- Creator Background Collage -->
     <div class="hero-bg-collage" aria-hidden="true">
-      <div class="hbg-photo"><img src="images/Kaur.jpeg" alt=""></div>
-      <div class="hbg-photo"><img src="images/FizZer.jpeg" alt=""></div>
-      <div class="hbg-photo"><img src="images/FaceMe.jpeg" alt=""></div>
-      <div class="hbg-photo"><img src="images/Samar.jpeg" alt=""></div>
-      <div class="hbg-photo"><img src="images/Miss Amy.jpeg" alt=""></div>
+      <div class="hbg-photo"><img src="images/kaur.webp" alt="" width="720" height="960" decoding="async"></div>
+      <div class="hbg-photo"><img src="images/fizzer.webp" alt="" width="800" height="800" decoding="async"></div>
+      <div class="hbg-photo"><img src="images/faceme.webp" alt="" width="720" height="1278" decoding="async"></div>
+      <div class="hbg-photo"><img src="images/samar.webp" alt="" width="800" height="806" decoding="async"></div>
+      <div class="hbg-photo"><img src="images/miss-amy.webp" alt="" width="800" height="786" decoding="async"></div>
     </div>
     
     <!-- Smooth gradient overlays to make text readable -->
@@ -458,7 +480,7 @@
         <!-- FaceMe Gaming -->
         <div class="creator-card" data-aos="fade-up" data-aos-delay="0">
           <div class="creator-img gradient-1">
-            <img src="images/FaceMe.jpeg" alt="FaceMe Gaming">
+            <img src="images/faceme.webp" alt="FaceMe Gaming — BGMI creator" width="720" height="1278" loading="lazy" decoding="async">
           </div>
           <div class="creator-info">
             <div class="creator-text">
@@ -477,7 +499,7 @@
         <div class="creator-card onboarding" data-aos="fade-up" data-aos-delay="100">
           <span class="onboarding-badge">Onboarding</span>
           <div class="creator-img gradient-2">
-             <img src="images/Kaur.jpeg" alt="Kaur Op Live">
+             <img src="images/kaur.webp" alt="Kaur Op Live — BGMI creator" width="720" height="960" loading="lazy" decoding="async">
           </div>
           <div class="creator-info">
             <div class="creator-text">
@@ -495,7 +517,7 @@
         <!-- Samar Playz -->
         <div class="creator-card" data-aos="fade-up" data-aos-delay="200">
           <div class="creator-img gradient-3">
-            <img src="images/Samar.jpeg" alt="Samar Playz">
+            <img src="images/samar.webp" alt="Samar Playz — gaming creator" width="800" height="806" loading="lazy" decoding="async">
           </div>
           <div class="creator-info">
             <div class="creator-text">
@@ -513,7 +535,7 @@
         <!-- FizZer -->
         <div class="creator-card" data-aos="fade-up" data-aos-delay="0">
           <div class="creator-img gradient-4">
-            <img src="images/FizZer.jpeg" alt="FizZer">
+            <img src="images/fizzer.webp" alt="FizZer — gaming creator" width="800" height="800" loading="lazy" decoding="async">
           </div>
           <div class="creator-info">
             <div class="creator-text">
@@ -531,7 +553,7 @@
         <!-- Miss Amy Gaming -->
         <div class="creator-card" data-aos="fade-up" data-aos-delay="100">
           <div class="creator-img gradient-5">
-             <img src="images/Miss Amy.jpeg" alt="Miss Amy Gaming">
+             <img src="images/miss-amy.webp" alt="Miss Amy Gaming — gaming creator" width="800" height="786" loading="lazy" decoding="async">
           </div>
           <div class="creator-info">
             <div class="creator-text">
@@ -549,7 +571,7 @@
         <!-- Tabby BGMI -->
         <div class="creator-card" data-aos="fade-up" data-aos-delay="200">
           <div class="creator-img gradient-6">
-            <img src="images/Tabby.jpeg" alt="Tabby BGMI">
+            <img src="images/tabby.webp" alt="Tabby BGMI — BGMI creator" width="800" height="800" loading="lazy" decoding="async">
           </div>
           <div class="creator-info">
             <div class="creator-text">
@@ -934,6 +956,6 @@
   <!-- AOS Script -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <!-- Main Script -->
-  <script src="js/main.js"></script>
+  <script src="js/main.min.js"></script>
 </body>
 </html>

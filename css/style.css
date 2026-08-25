@@ -3,8 +3,9 @@
    Theme: BGMI Tactical Orange + Military HUD
    ============================================ */
 
-/* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap');
+/* --- Google Fonts ---
+   Fonts are loaded via <link> in each HTML <head> (with preconnect).
+   The old @import here was a render-blocking serial round-trip and has been removed. */
 
 /* --- CSS Custom Properties --- */
 :root {

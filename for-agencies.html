@@ -13,7 +13,10 @@
   <meta property="og:url" content="https://aogindia.com/for-agencies.html">
   <meta property="og:title" content="Gaming Creator Marketing Partner for Agencies India | AOG India Esports">
   <meta property="og:description" content="AOG India Esports partners with creative, digital, media, PR, and influencer agencies as a gaming, tech, and Gen Z creator sourcing and campaign execution partner across India.">
-  <meta property="og:image" content="https://aogindia.com/images/aog.png">
+  <meta property="og:image" content="https://aogindia.com/images/aog-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:site_name" content="AOG India Esports">
   <meta property="og:locale" content="en_IN">
 
@@ -21,26 +24,29 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gaming Creator Marketing Partner for Agencies India | AOG India Esports">
   <meta name="twitter:description" content="AOG India Esports is a gaming, tech & Gen Z creator network and campaign execution partner for agencies across India. White-label support available.">
-  <meta name="twitter:image" content="https://aogindia.com/images/aog.png">
+  <meta name="twitter:image" content="https://aogindia.com/images/aog-og.jpg">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="images/aog.png">
-  <link rel="shortcut icon" type="image/png" href="images/aog.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
+  <link rel="apple-touch-icon" href="images/favicon-64.png">
 
-  <!-- Fonts -->
+  <!-- Fonts: Bebas Neue removed (unused) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Icons: Boxicons -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- AOS: Animate on Scroll -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/hero-mosaic.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/hero-mosaic.min.css">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -120,11 +126,25 @@
   }
   </script>
 
-  <!-- Apollo Tracking -->
-  <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
-    o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
-    o.onload=function(){window.trackingFunctions.onLoad({appId:"69dfbb09541bea00110f0d05"})},
-    document.head.appendChild(o)}initApollo();</script>
+  <!-- Apollo Tracking: deferred until page load + browser idle so it never blocks render -->
+  <script>
+    (function () {
+      var started = false;
+      function initApollo() {
+        if (started) return;
+        started = true;
+        var n = Math.random().toString(36).substring(7), o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true; o.defer = true;
+        o.onload = function () { window.trackingFunctions.onLoad({ appId: "69dfbb09541bea00110f0d05" }); };
+        document.head.appendChild(o);
+      }
+      window.addEventListener("load", function () {
+        if ("requestIdleCallback" in window) { requestIdleCallback(initApollo, { timeout: 4000 }); }
+        else { setTimeout(initApollo, 2000); }
+      });
+    })();
+  </script>
 </head>
 <body>
 
@@ -141,7 +161,7 @@
     <div class="container">
       <div class="nav-left">
         <a href="index.html" class="nav-logo">
-          <img src="images/aog.jpg" alt="AOG India Esports" class="nav-logo-img">
+          <img src="images/aog-logo.webp" alt="AOG India Esports" class="nav-logo-img" width="68" height="68" fetchpriority="high">
         </a>
         <a href="index.html" class="nav-brand">
           <span>AOG</span> India Esports
@@ -179,25 +199,25 @@
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-visual-mosaic">
         <div class="hv-photo hv-tall">
-          <img src="images/Kaur.jpeg" alt="">
+          <img src="images/kaur.webp" alt="" width="720" height="960" decoding="async">
         </div>
         <div class="hv-photo">
-          <img src="images/FizZer.jpeg" alt="">
+          <img src="images/fizzer.webp" alt="" width="800" height="800" decoding="async">
         </div>
         <div class="hv-photo">
-          <img src="images/Samar.jpeg" alt="">
+          <img src="images/samar.webp" alt="" width="800" height="806" decoding="async">
         </div>
         <div class="hv-photo">
-          <img src="images/Miss Amy.jpeg" alt="">
+          <img src="images/miss-amy.webp" alt="" width="800" height="786" decoding="async">
         </div>
         <div class="hv-photo">
-          <img src="images/FaceMe.jpeg" alt="">
+          <img src="images/faceme.webp" alt="" width="720" height="1278" decoding="async">
         </div>
       </div>
       <div class="hv-overlay"></div>
       <div class="hv-accent-bar"></div>
       <div class="hv-logo-center">
-        <img src="images/aog_transaparent.png" alt="AOG India Esports Logo">
+        <img src="images/aog-transparent.webp" alt="AOG India Esports Logo" width="900" height="900">
         <span class="hv-logo-label">AOG India Esports</span>
       </div>
       <div class="hv-stat-pill">
@@ -593,7 +613,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="footer-logo-link">
-            <img src="images/aog.jpg" alt="AOG India Esports" class="footer-logo-img">
+            <img src="images/aog-logo.webp" alt="AOG India Esports" class="footer-logo-img" width="48" height="48" loading="lazy" decoding="async">
             <span class="footer-logo-text"><span>AOG</span> India Esports</span>
           </a>
           <p>India's gaming influencer marketing agency &mdash; the white-label creator partner for agencies managing gaming, tech, and Gen Z campaigns across India.</p>
