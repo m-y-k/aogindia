@@ -3308,4 +3308,74 @@ img {
   filter: drop-shadow(0 0 12px rgba(255, 122, 26, 0.6)) !important;
 }
 
-
+/* ============================================
+   MOBILE SPACE OPTIMISATION — Brands & Agencies pages
+   Card descriptions hidden on small screens (text
+   remains in DOM so Googlebot still indexes it).
+   ============================================ */
+@media (max-width: 768px) {
+
+  /* Hide verbose card body text on sub-pages only.
+     Scoped to .page-brands / .page-agencies body class
+     so homepage service card descriptions are untouched. */
+  .page-brands .service-card p,
+  .page-agencies .service-card p,
+  .page-agencies .about-highlight-card p,
+  .page-agencies .agency-step .agency-step-content p {
+    display: none;
+  }
+
+  /* Tighten section vertical padding on sub-pages */
+  .page-brands .agency-keyword-section,
+  .page-brands .services,
+  .page-brands .stats,
+  .page-brands .faq,
+  .page-agencies .services,
+  .page-agencies .stats,
+  .page-agencies .faq,
+  .page-agencies .about {
+    padding: 48px 0;
+  }
+
+  /* Reduce section heading margin on sub-pages */
+  .page-brands .section-heading,
+  .page-agencies .section-heading {
+    margin-bottom: 28px !important;
+  }
+
+  /* Make service cards more compact on sub-pages */
+  .page-brands .service-card,
+  .page-agencies .service-card {
+    padding: 16px 14px;
+    gap: 12px;
+  }
+
+  /* Compact agency-kw-card (why-aog section on brands page) */
+  .page-brands .agency-kw-card {
+    padding: 18px 14px;
+  }
+
+  .page-brands .agency-kw-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  /* Compact about-highlight-cards on agencies page */
+  .page-agencies .about-highlight-card {
+    padding: 16px 14px;
+  }
+
+  /* Compact How It Works steps on agencies page */
+  .page-agencies .agency-step {
+    padding: 18px 16px;
+  }
+
+  /* Tighten FAQ on sub-pages */
+  .page-brands .faq-question,
+  .page-agencies .faq-question {
+    font-size: 0.9rem;
+    padding: 14px 16px;
+  }
+}
