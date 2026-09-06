@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const navOverlay = document.getElementById('navOverlay');
   const allNavAnchors = navLinks.querySelectorAll('a');
 
+  // ─── Floating Promo Toast ───────────────────
+  const promoToast = document.getElementById('promoToast');
+  if (promoToast) {
+    const hideToast = () => promoToast.classList.add('promo-toast--hidden');
+    const promoToastClose = document.getElementById('promoToastClose');
+    if (promoToastClose) promoToastClose.addEventListener('click', hideToast);
+    const promoBtn = promoToast.querySelector('.promo-toast-btn');
+    if (promoBtn) promoBtn.addEventListener('click', hideToast);
+  }
+
   // ─── Navbar Scroll Effect ───────────────
   const handleScroll = () => {
     if (window.scrollY > 60) {

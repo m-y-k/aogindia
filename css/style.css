@@ -3378,4 +3378,196 @@ img {
     font-size: 0.9rem;
     padding: 14px 16px;
   }
-}
+}
+
+/* ============================================
+   FLOATING PROMO TOAST (BOTTOM-RIGHT)
+   ============================================ */
+
+.promo-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px 10px 12px;
+  background: rgba(13, 16, 12, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 122, 26, 0.45);
+  border-radius: 6px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 122, 26, 0.2);
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  max-width: 440px;
+}
+
+/* Tactical HUD corner accents */
+.promo-toast::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+
+.promo-toast::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.promo-toast.promo-toast--hidden {
+  transform: translateY(24px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.promo-toast-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(255, 122, 26, 0.15);
+  border: 1px solid rgba(255, 122, 26, 0.35);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(255, 122, 26, 0.3);
+}
+
+.promo-toast-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-right: 2px;
+}
+
+.promo-toast-label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.promo-toast-price {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.promo-toast-price strong {
+  color: var(--accent-2);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-shadow: 0 0 10px rgba(255, 194, 58, 0.45);
+}
+
+.promo-toast-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--bg-primary);
+  background: var(--accent);
+  padding: 6px 12px;
+  clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+  white-space: nowrap;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.promo-toast-btn:hover {
+  background: var(--accent-2);
+  color: var(--bg-primary);
+  box-shadow: 0 0 14px rgba(255, 122, 26, 0.6);
+  transform: scale(1.04);
+}
+
+.promo-toast-close {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 2px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.promo-toast-close:hover {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 640px) {
+  .promo-toast {
+    bottom: 12px;
+    right: 12px;
+    left: auto;
+    width: auto;
+    max-width: calc(100vw - 24px);
+    padding: 7px 10px 7px 8px;
+    gap: 7px;
+    border-radius: 5px;
+  }
+
+  .promo-toast-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+  }
+
+  .promo-toast-label {
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+  }
+
+  .promo-toast-price {
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  .promo-toast-price strong {
+    font-size: 0.8rem;
+  }
+
+  .promo-toast-btn {
+    padding: 4px 8px;
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+    margin-left: 2px;
+  }
+
+  .promo-toast-close {
+    font-size: 1rem;
+    padding: 2px;
+    margin-left: 0;
+  }
+}
