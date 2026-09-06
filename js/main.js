@@ -24,7 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── Floating Promo Toast ───────────────────
   const promoToast = document.getElementById('promoToast');
   if (promoToast) {
-    const hideToast = () => promoToast.classList.add('promo-toast--hidden');
+    try {
+      if (sessionStorage.getItem('promoToastDismissed') === 'true') {
+        promoToast.classList.add('promo-toast--hidden');
+      }
+    } catch (e) {}
+    const hideToast = () => {
+      promoToast.classList.add('promo-toast--hidden');
+      try {
+        sessionStorage.setItem('promoToastDismissed', 'true');
+      } catch (e) {}
+    };
     const promoToastClose = document.getElementById('promoToastClose');
     if (promoToastClose) promoToastClose.addEventListener('click', hideToast);
     const promoBtn = promoToast.querySelector('.promo-toast-btn');
