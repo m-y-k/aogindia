@@ -204,6 +204,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGroup('group-creator-query', true, true);
         toggleGroup('group-creator-link', true, true); // Channel Link is now mandatory for Creators
         toggleGroup('group-creator-subs', true, true); // Subscriber Count is now mandatory for Creators
+        toggleGroup('group-creator-platform', true, false);
+        toggleGroup('group-creator-gaming-type', true, false);
+        toggleGroup('group-creator-niche', true, false);
 
         if (messageLabel) messageLabel.textContent = 'Channel & Growth Details';
         if (messageInput) messageInput.placeholder = 'Tell us about your audience, your primary games, and what you hope to achieve with AOG...';
@@ -218,6 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGroup('group-creator-query', false);
         toggleGroup('group-creator-link', false);
         toggleGroup('group-creator-subs', false);
+        toggleGroup('group-creator-platform', false);
+        toggleGroup('group-creator-gaming-type', false);
+        toggleGroup('group-creator-niche', false);
 
         if (messageLabel) messageLabel.textContent = 'Your Message';
         if (messageInput) messageInput.placeholder = 'Tell us about your campaign...';
@@ -293,7 +299,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, true);
 
     // Attach selectors change listeners
-    const selectors = ['userType', 'brandQueryType', 'creatorQueryType', 'discovery'];
+    const selectors = ['userType', 'brandQueryType', 'creatorQueryType', 'discovery',
+      'creatorPlatform', 'creatorGamingType', 'creatorNiche'];
     selectors.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('change', updateFormFields);
@@ -387,3 +394,17 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchStats();
 
 });
+
+// ─── See More / Show Less Toggle ───────────────
+window.toggleSeeMore = function(btn) {
+  if (!btn) return;
+  const parent = btn.parentElement;
+  if (!parent) return;
+  const moreText = parent.querySelector('.more-text');
+  if (moreText) {
+    const isExpanded = moreText.classList.toggle('expanded');
+    btn.textContent = isExpanded ? ' show less' : '...see more';
+    btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+  }
+};
+

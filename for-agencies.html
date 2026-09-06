@@ -45,7 +45,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/hero-mosaic.min.css">
 
   <!-- JSON-LD Structured Data -->
@@ -200,8 +200,8 @@
             Work With Us <span class="dd-caret">&#9660;</span>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="for-agencies.html" class="active" role="menuitem"><i class='bx bx-buildings'></i> For Agencies</a>
             <a href="for-brands.html" role="menuitem"><i class='bx bx-package'></i> For Brands</a>
+            <a href="for-agencies.html" class="active" role="menuitem"><i class='bx bx-buildings'></i> For Agencies</a>
           </div>
         </li>
         <li><a href="index.html#contact">Contact</a></li>
@@ -373,26 +373,58 @@
         <h2>Our Creator <span>Network</span></h2>
         <p>Gaming, tech, and Gen Z creators across YouTube and Instagram &mdash; curated, verified, and ready to activate for your client campaigns.</p>
       </div>
-      <div class="stats-grid">
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="stat-icon"><i class='bx bx-group'></i></div>
-          <div class="stat-value with-plus" data-count="200" data-no-format="true">0</div>
-          <div class="stat-label">Creator Network</div>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="stat-icon"><i class='bx bx-play-circle'></i></div>
-          <div class="stat-value" data-count="1000000">0</div>
-          <div class="stat-label">Combined Subscribers</div>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="stat-icon"><i class='bx bx-trending-up'></i></div>
-          <div class="stat-value" data-count="3000000">0</div>
-          <div class="stat-label">Monthly Views</div>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="stat-icon"><i class='bx bx-joystick'></i></div>
-          <div class="stat-value" data-count="3" data-no-format="true">0</div>
-          <div class="stat-label">Creator Categories</div>
+      <div class="stats-marquee-wrap" data-aos="fade-up">
+        <div class="stats-track">
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class='bx bx-group'></i></div>
+            <div class="stat-value with-plus" data-count="200" data-no-format="true">200+</div>
+            <div class="stat-label">Creator Network</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class='bx bx-play-circle'></i></div>
+            <div class="stat-value" data-count="1000000">1M+</div>
+            <div class="stat-label">Combined Subscribers</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class='bx bx-trending-up'></i></div>
+            <div class="stat-value" data-count="3000000">3M+</div>
+            <div class="stat-label">Monthly Views</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class='bx bx-joystick'></i></div>
+            <div class="stat-value" data-count="3" data-no-format="true">3</div>
+            <div class="stat-label">Creator Categories</div>
+          </div>
+
+          <!-- DUPLICATE LOOP FOR CONTINUOUS STATS SLIDING -->
+          <div class="stat-card" aria-hidden="true">
+            <div class="stat-icon"><i class='bx bx-group'></i></div>
+            <div class="stat-value">200+</div>
+            <div class="stat-label">Creator Network</div>
+          </div>
+
+          <div class="stat-card" aria-hidden="true">
+            <div class="stat-icon"><i class='bx bx-play-circle'></i></div>
+            <div class="stat-value">1M+</div>
+            <div class="stat-label">Combined Subscribers</div>
+          </div>
+
+          <div class="stat-card" aria-hidden="true">
+            <div class="stat-icon"><i class='bx bx-trending-up'></i></div>
+            <div class="stat-value">3M+</div>
+            <div class="stat-label">Monthly Views</div>
+          </div>
+
+          <div class="stat-card" aria-hidden="true">
+            <div class="stat-icon"><i class='bx bx-joystick'></i></div>
+            <div class="stat-value">3</div>
+            <div class="stat-label">Creator Categories</div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -560,6 +592,7 @@
               <h4>Agency Partnerships</h4>
               <a href="mailto:partnerships@aogindia.com">partnerships@aogindia.com</a>
             </div>
+            <a href="mailto:partnerships@aogindia.com" class="contact-send-btn" title="Send Email to Partnerships"><i class='bx bx-paper-plane'></i></a>
           </div>
 
           <div class="contact-item">
@@ -568,6 +601,7 @@
               <h4>Brand Outreach</h4>
               <a href="mailto:aarti.chauhan@aogindia.com">aarti.chauhan@aogindia.com</a>
             </div>
+            <a href="mailto:aarti.chauhan@aogindia.com" class="contact-send-btn" title="Send Email to Brand Outreach"><i class='bx bx-paper-plane'></i></a>
           </div>
 
           <div class="contact-item">
@@ -576,6 +610,7 @@
               <h4>LinkedIn</h4>
               <a href="https://www.linkedin.com/company/117914370" target="_blank" rel="noopener">AOG India Esports</a>
             </div>
+            <a href="https://www.linkedin.com/company/117914370" target="_blank" rel="noopener" class="contact-send-btn" title="Visit LinkedIn"><i class='bx bx-link-external'></i></a>
           </div>
         </div>
 
