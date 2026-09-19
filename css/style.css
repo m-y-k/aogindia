@@ -687,9 +687,12 @@ img {
   clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
 }
 
-.hero-tag::before {
-  content: '▶';
-  font-size: 0.7rem;
+.tag-arrow {
+  font-size: 0.72rem;
+  display: inline-block;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.9;
 }
 
 .hero h1 {
@@ -4124,3 +4127,339 @@ img {
     margin-left: 0;
   }
 }
+
+/* ============================================
+   GAME ROSTER BADGE BAR (PC & MOBILE TITLES)
+   ============================================ */
+.game-roster-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px auto 24px auto;
+  padding: 8px 16px;
+  background: rgba(14, 18, 12, 0.65);
+  border: 1px solid rgba(255, 122, 26, 0.25);
+  border-radius: 40px;
+  backdrop-filter: blur(8px);
+  max-width: fit-content;
+  text-align: center;
+}
+
+
+
+.game-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  transition: all var(--transition-fast);
+}
+
+.game-tag * {
+  display: inline-block;
+}
+
+/* Valorant Tag: Light Blue Cyan */
+.game-tag.valorant {
+  background: rgba(0, 212, 255, 0.08);
+  color: #00d4ff;
+  border: 1px solid rgba(0, 212, 255, 0.35);
+}
+.game-tag.valorant:hover {
+  background: rgba(0, 212, 255, 0.22);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Minecraft Tag: Emerald Grass Green */
+.game-tag.minecraft {
+  background: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.4);
+}
+.game-tag.minecraft:hover {
+  background: rgba(46, 204, 113, 0.22);
+  box-shadow: 0 0 14px rgba(46, 204, 113, 0.45);
+  transform: translateY(-2px);
+}
+
+/* BGMI Tag: Tactical Amber / Gold */
+.game-tag.bgmi {
+  background: rgba(255, 122, 26, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(255, 122, 26, 0.4);
+}
+.game-tag.bgmi:hover {
+  background: rgba(255, 122, 26, 0.22);
+  box-shadow: 0 0 14px rgba(255, 122, 26, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Free Fire Tag: Fiery Yellow */
+.game-tag.freefire {
+  background: rgba(255, 194, 58, 0.1);
+  color: var(--accent-2);
+  border: 1px solid rgba(255, 194, 58, 0.4);
+}
+.game-tag.freefire:hover {
+  background: rgba(255, 194, 58, 0.22);
+  box-shadow: 0 0 14px rgba(255, 194, 58, 0.45);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   EXPANDING OPERATIONS: TITLE SPONSOR CARD
+   ============================================ */
+.title-sponsor-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20, 24, 16, 0.95) 0%, rgba(10, 14, 8, 0.98) 100%);
+  border: 1px solid rgba(255, 194, 58, 0.4);
+  border-radius: 12px;
+  padding: 36px 32px;
+  margin: 40px auto 20px auto;
+  box-shadow: 0 0 30px rgba(255, 194, 58, 0.12), inset 0 0 20px rgba(255, 122, 26, 0.05);
+  overflow: hidden;
+}
+
+.title-sponsor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 50%, #00d4ff 100%);
+}
+
+.sponsor-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 194, 58, 0.12);
+  border: 1px solid rgba(255, 194, 58, 0.5);
+  color: var(--accent-2);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+
+.sponsor-card-badge i {
+  font-size: 1rem;
+  color: var(--accent-2);
+}
+
+.sponsor-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.sponsor-card-title span {
+  color: var(--accent-2);
+  background: linear-gradient(90deg, #ffc23a 0%, #ff7a1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sponsor-card-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.sponsor-card-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.sponsor-metric-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 122, 26, 0.2);
+  border-radius: 8px;
+  padding: 16px 14px;
+  text-align: center;
+}
+
+.sponsor-metric-num {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  line-height: 1.1;
+  text-shadow: 0 0 12px rgba(255, 194, 58, 0.35);
+}
+
+.sponsor-metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.sponsor-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sponsor-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--accent-2) 0%, var(--accent) 100%);
+  color: var(--bg-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(255, 194, 58, 0.3);
+}
+
+.sponsor-primary-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(255, 194, 58, 0.5);
+  color: var(--bg-primary);
+}
+
+.sponsor-note {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 768px) {
+  .game-roster-bar {
+    width: 100%;
+    max-width: 320px;
+    padding: 0;
+    gap: 8px 10px;
+    margin: 10px auto 16px auto;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  .game-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.8px;
+    padding: 5px 12px;
+    gap: 4px;
+    width: calc(50% - 5px);
+    justify-content: center;
+    border-radius: 20px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  
+  .game-tag.valorant {
+    background: rgba(0, 212, 255, 0.08) !important;
+    color: #00d4ff !important;
+    border: 1px solid rgba(0, 212, 255, 0.35) !important;
+  }
+  .game-tag.minecraft {
+    background: rgba(46, 204, 113, 0.08) !important;
+    color: #2ecc71 !important;
+    border: 1px solid rgba(46, 204, 113, 0.35) !important;
+  }
+  .game-tag.bgmi {
+    background: rgba(255, 122, 26, 0.08) !important;
+    color: var(--accent) !important;
+    border: 1px solid rgba(255, 122, 26, 0.35) !important;
+  }
+  .game-tag.freefire {
+    background: rgba(255, 194, 58, 0.08) !important;
+    color: var(--accent-2) !important;
+    border: 1px solid rgba(255, 194, 58, 0.35) !important;
+  }
+
+  .title-sponsor-card {
+    padding: 22px 16px;
+    margin: 24px auto 16px auto;
+    border-radius: 10px;
+  }
+  .sponsor-card-badge {
+    font-size: 0.64rem;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+  }
+  .sponsor-card-title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .sponsor-card-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .sponsor-card-metrics {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .sponsor-metric-box {
+    padding: 10px 4px;
+  }
+  .sponsor-metric-num {
+    font-size: 1.2rem;
+  }
+  .sponsor-metric-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+  .sponsor-card-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .sponsor-primary-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.78rem;
+    padding: 12px 16px;
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  }
+  .sponsor-note {
+    font-size: 0.74rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsor-card-metrics {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .game-roster-bar {
+    max-width: 300px;
+  }
+}
