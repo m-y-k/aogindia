@@ -28,8 +28,11 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: python scripts/auto_seo.py
 
+      - name: Ping Search Engine Crawlers (Google & Bing)
+        run: python scripts/ping_search_engines.py
+
       - name: Commit and Push SEO Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(seo): automated weekly keyword discovery & meta refresh [skip ci]"
-          file_pattern: "index.html for-brands.html for-agencies.html sitemap.xml"
+          commit_message: "chore(seo): automated weekly keyword discovery & search engine crawler ping [skip ci]"
+          file_pattern: "index.html for-brands.html for-agencies.html sitemap.xml robots.txt"

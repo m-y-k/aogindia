@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Sitemap Location
 Sitemap: https://aogindia.com/sitemap.xml
