@@ -411,9 +411,24 @@ img {
   transform: rotate(180deg);
 }
 
+.nav-dropdown {
+  position: relative;
+}
+
+/* Invisible bridge so mouse hover is never lost when moving down to dropdown items */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -20%;
+  width: 140%;
+  height: 18px;
+  display: block;
+}
+
 .nav-dropdown-menu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 6px);
   left: 50%;
   transform: translateX(-50%) translateY(-6px);
   min-width: 180px;
@@ -481,26 +496,65 @@ img {
   border-top: 1px solid rgba(255, 122, 26, 0.25);
 }
 
-/* Mobile: dropdown becomes inline list */
+/* Mobile: dropdown becomes inline integrated list inside drawer */
 @media (max-width: 900px) {
-  .nav-dropdown-menu {
-    position: static;
-    transform: none;
-    opacity: 1;
-    pointer-events: auto;
-    box-shadow: none;
-    border: none;
-    border-left: 2px solid rgba(255,122,26,0.3);
-    border-radius: 0;
-    background: rgba(255,122,26,0.05);
-    padding: 4px 0 4px 12px;
-    margin-top: 6px;
-    display: none;
-    backdrop-filter: none;
+  .nav-links li.nav-dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .nav-dropdown-menu::before { display: none; }
-  .nav-dropdown.open .nav-dropdown-menu { display: block; }
-  .nav-dropdown-toggle { color: var(--text-muted); }
+  .nav-dropdown-toggle {
+    font-size: 1rem !important;
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2.5px !important;
+    color: var(--text-muted) !important;
+    padding: 4px 0 !important;
+    background: none !important;
+    border: none !important;
+  }
+  .nav-dropdown-menu {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-left: 2px solid var(--accent) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 6px 0 6px 14px !important;
+    margin: 8px 0 0 0 !important;
+    display: none;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: auto !important;
+    min-width: unset !important;
+  }
+  .nav-dropdown-menu::before { display: none !important; }
+  .nav-dropdown.open .nav-dropdown-menu { display: flex !important; }
+  .nav-dropdown-menu a {
+    font-size: 0.88rem !important;
+    letter-spacing: 2px !important;
+    color: var(--text-muted) !important;
+    padding: 2px 0 !important;
+    background: transparent !important;
+    text-transform: uppercase !important;
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    gap: 8px !important;
+  }
+  .nav-dropdown-menu a:hover,
+  .nav-dropdown-menu a.active {
+    color: var(--accent) !important;
+    background: transparent !important;
+  }
 }
 
 /* --- Hamburger: hidden on desktop, visible on mobile --- */
@@ -2365,15 +2419,10 @@ img {
 }
 
 /* 3-Column Services Layout (Creator Categories on Agencies page) */
-.services-columns.services-3col {
+.services-columns.services-3col > div {
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-}
-
-@media (max-width: 960px) {
-  .services-columns.services-3col {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ============================================
@@ -2981,7 +3030,7 @@ img {
 }
 
 /* ============================================
-   BRANDS — INFINITE SLIDER / MARQUEE
+   BRANDS — FIXED STATIC GRID (NO SLIDING)
    ============================================ */
 .brands {
   padding: var(--section-padding);
@@ -2998,43 +3047,36 @@ img {
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0.25;
 }
+
 .brands-marquee-wrap {
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   width: 100%;
   padding: 10px 0;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
 }
+
 .brands-track {
-  display: flex;
-  gap: 16px;
-  width: max-content;
-  animation: brandsMarquee 30s linear infinite;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 14px;
+  width: 100%;
 }
-.brands-marquee-wrap:hover .brands-track {
-  animation-play-state: paused;
-}
-@keyframes brandsMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+
 .brand-card {
-  flex: 0 0 170px;
-  width: 170px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 22px 14px 18px;
+  gap: 8px;
+  padding: 16px 10px;
   background: rgba(13,16,12,0.75);
-  border: 1px solid rgba(255,122,26,0.12);
+  border: 1px solid rgba(255,122,26,0.15);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   text-align: center;
   transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 .brand-card::after {
   content: '';
@@ -3047,8 +3089,8 @@ img {
 }
 .brand-card:hover {
   border-color: rgba(255,122,26,0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(255,122,26,0.18);
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(255,122,26,0.18);
 }
 .brand-card:hover::after { opacity: 1; }
 
@@ -3072,12 +3114,12 @@ img {
 }
 
 .brand-logo-wrap {
-  width: 130px;
-  height: 48px;
+  width: 100%;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 6px;
+  padding: 2px 4px;
   background: transparent;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -3094,26 +3136,45 @@ img {
 .brand-card:hover .brand-logo-wrap {
   border-color: rgba(255, 122, 26, 0.3);
   background: rgba(255, 122, 26, 0.05);
-  box-shadow: 0 0 16px rgba(255, 122, 26, 0.2);
+  box-shadow: 0 0 12px rgba(255, 122, 26, 0.2);
 }
 .brand-card:hover .brand-logo-img {
   transform: scale(1.05);
 }
 .brand-name {
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   color: var(--text-primary);
 }
 .brand-cat {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   color: var(--accent);
   opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .brands-track {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .brands-track {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .brand-card {
+    padding: 10px 6px !important;
+  }
+  .brand-name {
+    font-size: 0.7rem !important;
+  }
 }
 
 /* ============================================
@@ -3145,117 +3206,75 @@ img {
 }
 
 /* ============================================
-   CREATORS MARQUEE TRACK (CONTINUOUS SLIDING)
+   CREATORS — FIXED STATIC GRID (NO SLIDING, 2/LINE ON MOBILE)
    ============================================ */
 .creators-marquee-wrap {
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   width: 100%;
-  padding: 24px 0 !important;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  padding: 10px 0 !important;
 }
 
 .creators-track {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  width: max-content;
-  animation: creatorsMarquee 35s linear infinite;
-  perspective: 1200px;
-}
-
-.creators-marquee-wrap:hover .creators-track {
-  animation-play-state: paused;
-}
-
-@keyframes creatorsMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  width: 100%;
 }
 
 .creators-track .creator-card {
-  flex: 0 0 320px;
-  width: 320px;
+  flex: initial;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
+  .creators-track {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
   .creators-track .creator-card {
-    flex: 0 0 250px;
-    width: 250px;
+    flex: initial !important;
+    width: 100% !important;
   }
 }
 
 /* ============================================
-   STATS MARQUEE TRACK (CONTINUOUS SLIDING)
+   STATS — FIXED STATIC GRID (NO SLIDING, 2/LINE ON MOBILE)
    ============================================ */
 .stats-marquee-wrap {
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   width: 100%;
-  padding: 24px 0 !important;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  padding: 10px 0 !important;
 }
 
 .stats-track {
-  display: flex;
-  gap: 24px;
-  width: max-content;
-  animation: statsMarquee 25s linear infinite;
-  perspective: 1200px;
-}
-
-.stats-marquee-wrap:hover .stats-track {
-  animation-play-state: paused;
-}
-
-@keyframes statsMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
 }
 
 .stats-track .stat-card {
-  flex: 0 0 270px;
-  width: 270px;
+  flex: initial;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
+  .stats-track {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
   .stats-track .stat-card {
-    flex: 0 0 220px;
-    width: 220px;
+    flex: initial !important;
+    width: 100% !important;
+    padding: 16px 12px !important;
   }
 }
 
 /* ============================================
-   DYNAMIC 3D CARD HOVER POP ANIMATIONS (NO CLIPPING)
+   SUBTLE CARD HOVER EFFECTS (NO DRAMATIC TILT)
    ============================================ */
-.about-marquee-wrap,
-.services-marquee-wrap,
-.brands-marquee-wrap,
-.creators-marquee-wrap,
-.stats-marquee-wrap {
-  padding: 24px 0 !important;
-}
-
-.creators-grid,
-.agency-kw-grid,
-.stats-grid {
-  padding-top: 18px !important;
-  padding-bottom: 18px !important;
-}
-
-.creators-grid,
-.creators-track,
-.brands-track,
-.stats-track,
-.agency-kw-grid,
-.services-columns,
-.stats-grid,
-.about-grid,
-.agencies-steps {
-  perspective: 1200px;
-}
-
 .creator-card,
 .brand-card,
 .agency-kw-card,
@@ -3265,11 +3284,7 @@ img {
 .about-icon-item,
 .sig-item,
 .agency-step {
-  transform-style: preserve-3d;
-  will-change: transform, box-shadow;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1.2), 
-              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1.2), 
-              border-color 0.3s ease !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
 }
 
 .creator-card:hover,
@@ -3277,106 +3292,661 @@ img {
 .service-card:hover,
 .stat-card:hover,
 .about-highlight-card:hover,
-.agency-step:hover {
-  transform: translateY(-8px) scale(1.04) rotateX(4deg) rotateY(-2deg) translateZ(10px) !important;
-  box-shadow: 0 20px 45px rgba(255, 122, 26, 0.32), 
-              0 8px 20px rgba(0, 0, 0, 0.75), 
-              0 0 25px rgba(255, 122, 26, 0.22) !important;
-  border-color: var(--accent) !important;
-  z-index: 10;
-}
-
+.agency-step:hover,
 .brand-card:hover,
 .about-icon-item:hover,
 .sig-item:hover {
-  transform: translateY(-6px) scale(1.05) rotateX(3deg) translateZ(8px) !important;
-  box-shadow: 0 14px 35px rgba(255, 122, 26, 0.35), 
-              0 0 20px rgba(255, 122, 26, 0.2) !important;
-  border-color: rgba(255, 122, 26, 0.5) !important;
-  z-index: 10;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(255, 122, 26, 0.18), 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+  border-color: var(--accent) !important;
+  z-index: 2;
 }
 
 .creator-card:hover .creator-img img {
-  transform: scale(1.08) translateZ(20px) !important;
+  transform: scale(1.04) !important;
 }
 
 .agency-kw-card:hover .agency-kw-icon,
 .service-card:hover .service-icon,
 .stat-card:hover .stat-icon,
 .agency-step:hover .agency-step-num {
-  transform: scale(1.15) translateZ(30px) !important;
-  filter: drop-shadow(0 0 12px rgba(255, 122, 26, 0.6)) !important;
+  transform: scale(1.08) !important;
+  filter: drop-shadow(0 0 10px rgba(255, 122, 26, 0.5)) !important;
 }
 
 /* ============================================
-   MOBILE SPACE OPTIMISATION — Brands & Agencies pages
-   Card descriptions hidden on small screens (text
-   remains in DOM so Googlebot still indexes it).
+   CONNECTIVITY ROADMAP COMPONENT ("Who We Are & What We Do")
    ============================================ */
-@media (max-width: 768px) {
+.roadmap-container {
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
+  padding: 40px 20px;
+  background: rgba(13, 16, 12, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-  /* Hide verbose card body text on sub-pages only.
-     Scoped to .page-brands / .page-agencies body class
-     so homepage service card descriptions are untouched. */
-  .page-brands .service-card p,
-  .page-agencies .service-card p,
-  .page-agencies .about-highlight-card p,
-  .page-agencies .agency-step .agency-step-content p {
+.roadmap-svg-bg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.roadmap-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.roadmap-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Alternating top and bottom alignment on desktop */
+.roadmap-step:nth-child(odd) {
+  margin-bottom: 50px;
+}
+.roadmap-step:nth-child(even) {
+  margin-top: 50px;
+}
+
+.roadmap-card {
+  background: rgba(18, 22, 16, 0.92);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 18px 16px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.roadmap-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 30px rgba(255, 122, 26, 0.25);
+  transform: translateY(-4px);
+}
+
+.roadmap-card h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--accent-2);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.roadmap-card p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.roadmap-pin {
+  width: 44px;
+  height: 44px;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 14px 0;
+  box-shadow: 0 0 16px rgba(255, 122, 26, 0.4);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.roadmap-pin i {
+  transform: rotate(45deg);
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.roadmap-card:hover + .roadmap-pin,
+.roadmap-pin:hover {
+  background: var(--accent);
+  box-shadow: 0 0 24px rgba(255, 122, 26, 0.7);
+}
+
+.roadmap-card:hover + .roadmap-pin i,
+.roadmap-pin:hover i {
+  color: var(--bg-primary);
+}
+
+@media (max-width: 960px) {
+  .roadmap-container {
+    padding: 24px 16px;
+  }
+  .roadmap-svg-bg {
     display: none;
   }
+  .roadmap-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    padding-left: 4px;
+  }
+  .roadmap-grid::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 21px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+    box-shadow: 0 0 10px var(--accent-glow);
+    z-index: 1;
+  }
+  .roadmap-step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .roadmap-pin {
+    order: 1 !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+    z-index: 2;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .roadmap-pin i {
+    font-size: 1.1rem !important;
+  }
+  .roadmap-card {
+    order: 2 !important;
+    flex: 1;
+    text-align: left !important;
+    padding: 14px 16px !important;
+  }
+  .roadmap-card h4 {
+    font-size: 0.9rem !important;
+    margin-bottom: 4px !important;
+  }
+  .roadmap-card p {
+    font-size: 0.8rem !important;
+  }
+}
 
-  /* Tighten section vertical padding on sub-pages */
-  .page-brands .agency-keyword-section,
-  .page-brands .services,
-  .page-brands .stats,
-  .page-brands .faq,
-  .page-agencies .services,
-  .page-agencies .stats,
-  .page-agencies .faq,
-  .page-agencies .about {
-    padding: 48px 0;
+/* ============================================
+   ULTRA-COMPACT FOOTER FOR BRANDS & AGENCIES PAGES
+   ============================================ */
+.footer.footer--compact {
+  padding: 16px 0 12px !important;
+  background: #050604 !important;
+  border-top: 1px solid rgba(255, 122, 26, 0.15) !important;
+}
+
+.footer.footer--compact .footer-top {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid rgba(255, 122, 26, 0.1) !important;
+  flex-wrap: wrap !important;
+}
+
+.footer.footer--compact .footer-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.footer.footer--compact .footer-brand p {
+  display: none !important;
+}
+
+.footer.footer--compact .footer-logo-img {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.footer.footer--compact .footer-logo-text {
+  font-size: 0.95rem !important;
+}
+
+.footer.footer--compact .footer-links {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 20px !important;
+  margin-top: 0 !important;
+}
+
+.footer.footer--compact .footer-col h4 {
+  display: none !important;
+}
+
+.footer.footer--compact .footer-col ul {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 14px !important;
+  margin: 0 !important;
+}
+
+.footer.footer--compact .footer-col ul li {
+  margin: 0 !important;
+}
+
+.footer.footer--compact .footer-col ul li a {
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+}
+
+.footer.footer--compact .footer-col ul li a:hover {
+  color: var(--accent) !important;
+}
+
+.footer.footer--compact .footer-bottom {
+  padding-top: 8px !important;
+  margin-top: 0 !important;
+  text-align: center !important;
+}
+
+.footer.footer--compact .footer-bottom p {
+  font-size: 0.72rem !important;
+  color: var(--text-dim) !important;
+}
+
+/* ============================================
+   ULTRA-MINI FOOTER FOR BRANDS & AGENCIES SUBPAGES
+   (Single minimal strip, no redundant navigation lists)
+   ============================================ */
+.footer.footer--ultra-mini {
+  padding: 14px 0 !important;
+  background: #050604 !important;
+  border-top: 1px solid rgba(255, 122, 26, 0.15) !important;
+  position: relative;
+  z-index: 10;
+}
+
+.footer.footer--ultra-mini .footer-mini-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+.footer.footer--ultra-mini .footer-logo-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.footer.footer--ultra-mini .footer-logo-img {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid var(--accent) !important;
+  object-fit: cover !important;
+}
+
+.footer.footer--ultra-mini .footer-logo-text {
+  font-family: var(--font-heading) !important;
+  font-size: 0.88rem !important;
+  letter-spacing: 1.5px !important;
+  color: var(--text-primary) !important;
+  text-transform: uppercase !important;
+}
+
+.footer.footer--ultra-mini .footer-logo-text span {
+  color: var(--accent) !important;
+}
+
+.footer.footer--ultra-mini .footer-mini-contact {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.76rem !important;
+}
+
+.footer.footer--ultra-mini .footer-mini-contact a {
+  color: var(--text-muted) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  transition: color var(--transition-fast) !important;
+}
+
+.footer.footer--ultra-mini .footer-mini-contact a:hover {
+  color: var(--accent) !important;
+}
+
+.footer.footer--ultra-mini .mini-bullet {
+  color: var(--accent) !important;
+  opacity: 0.5;
+}
+
+.footer.footer--ultra-mini .footer-mini-copy p {
+  font-family: var(--font-mono) !important;
+  font-size: 0.72rem !important;
+  color: var(--text-dim) !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .footer.footer--ultra-mini .footer-mini-inner {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+}
+
+/* ============================================
+   BRAND-CARD DESIGN SYSTEM FOR SUBPAGE CARDS
+   (Matches "Brands We've Worked With" .brand-card)
+   ============================================ */
+
+/* Base Card Container */
+.page-brands .service-card,
+.page-agencies .service-card,
+.page-brands .agency-kw-card,
+.page-agencies .about-highlight-card,
+.page-agencies .agency-step {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 18px 12px 16px !important;
+  gap: 8px !important;
+  background: rgba(13, 16, 12, 0.75) !important;
+  border: 1px solid rgba(255, 122, 26, 0.15) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 4px !important;
+  margin-bottom: 0 !important;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+
+/* Bottom glowing accent line on hover (identical to .brand-card::after) */
+.page-brands .service-card::after,
+.page-agencies .service-card::after,
+.page-brands .agency-kw-card::after,
+.page-agencies .about-highlight-card::after,
+.page-agencies .agency-step::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent) !important;
+  opacity: 0 !important;
+  transition: opacity var(--transition-fast) !important;
+}
+
+.page-brands .service-card:hover,
+.page-agencies .service-card:hover,
+.page-brands .agency-kw-card:hover,
+.page-agencies .about-highlight-card:hover,
+.page-agencies .agency-step:hover {
+  border-color: rgba(255, 122, 26, 0.45) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(255, 122, 26, 0.18) !important;
+}
+
+.page-brands .service-card:hover::after,
+.page-agencies .service-card:hover::after,
+.page-brands .agency-kw-card:hover::after,
+.page-agencies .about-highlight-card:hover::after,
+.page-agencies .agency-step:hover::after {
+  opacity: 1 !important;
+}
+
+/* Icon container (borderless glowing icon) */
+.page-brands .service-icon,
+.page-agencies .service-icon,
+.page-brands .agency-kw-icon,
+.page-agencies .about-highlight-card i,
+.page-agencies .agency-step-num {
+  width: auto !important;
+  height: auto !important;
+  min-width: unset !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  border-radius: 0 !important;
+  font-size: 1.6rem !important;
+  color: var(--accent) !important;
+  filter: drop-shadow(0 0 8px rgba(255, 122, 26, 0.45)) !important;
+  margin: 0 auto 4px auto !important;
+  flex-shrink: 0 !important;
+  transition: transform var(--transition-fast), filter var(--transition-fast) !important;
+}
+
+.page-brands .service-card:hover .service-icon,
+.page-agencies .service-card:hover .service-icon,
+.page-brands .agency-kw-card:hover .agency-kw-icon,
+.page-agencies .about-highlight-card:hover i,
+.page-agencies .agency-step:hover .agency-step-num {
+  transform: scale(1.1) !important;
+  filter: drop-shadow(0 0 14px rgba(255, 122, 26, 0.7)) !important;
+}
+
+.page-agencies .agency-step-num {
+  font-family: var(--font-heading) !important;
+  font-size: 1.4rem !important;
+}
+.page-agencies .agency-step-num::after {
+  display: none !important;
+}
+
+/* Inner wrapper alignment */
+.page-brands .service-card > div,
+.page-agencies .service-card > div,
+.page-agencies .agency-step-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* Headings: thin uppercase body font style (like .brand-cat / last line think text) */
+.page-brands .service-card h4,
+.page-agencies .service-card h4,
+.page-brands .agency-kw-card h3,
+.page-agencies .about-highlight-card h4,
+.page-agencies .agency-step-content h4 {
+  font-family: var(--font-body) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 0 !important;
+  text-align: center !important;
+  line-height: 1.35 !important;
+  transition: color var(--transition-fast) !important;
+}
+
+/* Yellow card headings on PC view ONLY */
+@media (min-width: 769px) {
+  .page-brands .service-card h4,
+  .page-agencies .service-card h4,
+  .page-brands .agency-kw-card h3,
+  .page-agencies .about-highlight-card h4,
+  .page-agencies .agency-step-content h4 {
+    color: var(--accent-2) !important; /* Golden Yellow */
   }
 
-  /* Reduce section heading margin on sub-pages */
-  .page-brands .section-heading,
-  .page-agencies .section-heading {
-    margin-bottom: 28px !important;
+  .page-brands .service-card:hover h4,
+  .page-agencies .service-card:hover h4,
+  .page-brands .agency-kw-card:hover h3,
+  .page-agencies .about-highlight-card:hover h4,
+  .page-agencies .agency-step:hover .agency-step-content h4 {
+    color: #ffffff !important;
+  }
+}
+
+/* Compact section paddings on sub-pages */
+.page-brands .agency-keyword-section,
+.page-brands .services,
+.page-brands .stats,
+.page-brands .faq,
+.page-agencies .services,
+.page-agencies .stats,
+.page-agencies .faq,
+.page-agencies .about {
+  padding: 48px 0 !important;
+}
+
+.page-brands .section-heading,
+.page-agencies .section-heading {
+  margin-bottom: 28px !important;
+}
+
+/* ============================================
+   MOBILE CARD GRIDS & BREAKPOINTS
+   ============================================ */
+@media (max-width: 768px) {
+  /* Sequential stack: Creator Services & Creator Categories (3 cards in 1 line) */
+  .page-brands .services-columns,
+  .page-agencies .services-columns {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
   }
 
-  /* Make service cards more compact on sub-pages */
+  .page-brands .services-columns > div,
+  .page-agencies .services-columns > div {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .page-brands .services-columns > div > h3,
+  .page-agencies .services-columns > div > h3 {
+    grid-column: 1 / -1 !important;
+    font-size: 0.85rem !important;
+    text-align: center !important;
+    margin-bottom: 6px !important;
+    color: var(--accent) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+  }
+
+  /* 3-column tile grids for keywords and How It Works (3 cards per line) */
+  .page-brands .agency-kw-grid,
+  .page-agencies .agencies-steps {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  /* 2-column tile grid for Built for Agency Teams (4 items) */
+  .page-agencies .about-highlights {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
   .page-brands .service-card,
-  .page-agencies .service-card {
-    padding: 16px 14px;
-    gap: 12px;
-  }
-
-  /* Compact agency-kw-card (why-aog section on brands page) */
-  .page-brands .agency-kw-card {
-    padding: 18px 14px;
-  }
-
-  .page-brands .agency-kw-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-  }
-
-  /* Compact about-highlight-cards on agencies page */
-  .page-agencies .about-highlight-card {
-    padding: 16px 14px;
-  }
-
-  /* Compact How It Works steps on agencies page */
+  .page-agencies .service-card,
+  .page-brands .agency-kw-card,
+  .page-agencies .about-highlight-card,
   .page-agencies .agency-step {
-    padding: 18px 16px;
+    padding: 6px 3px !important;
+    gap: 2px !important;
+    aspect-ratio: 1 / 1 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    overflow: hidden !important;
   }
 
-  /* Tighten FAQ on sub-pages */
-  .page-brands .faq-question,
-  .page-agencies .faq-question {
-    font-size: 0.9rem;
-    padding: 14px 16px;
+  .page-brands .service-icon,
+  .page-agencies .service-icon,
+  .page-brands .agency-kw-icon,
+  .page-agencies .agency-step-num {
+    font-size: 1rem !important;
+    margin-bottom: 2px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Built for Agency Teams icons: larger like Creator Network icons */
+  .page-agencies .about-highlight-card i {
+    font-size: 1.65rem !important;
+    margin-bottom: 6px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    filter: drop-shadow(0 0 10px rgba(255, 122, 26, 0.5)) !important;
+  }
+
+  .page-brands .service-card h4,
+  .page-agencies .service-card h4,
+  .page-brands .agency-kw-card h3,
+  .page-agencies .about-highlight-card h4,
+  .page-agencies .agency-step-content h4 {
+    font-size: 0.54rem !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0 !important;
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    color: var(--text-muted) !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    white-space: normal !important;
+    hyphens: none !important;
+  }
+
+  /* Hide verbose text on mobile for small clean cards (preserved in DOM for SEO) */
+  .page-brands .service-card p,
+  .page-agencies .service-card p,
+  .page-brands .agency-kw-card p,
+  .page-agencies .about-highlight-card p,
+  .page-agencies .agency-step-content p {
+    display: none !important;
+  }
+
+  /* Concise Agency FAQs on mobile (show top 3) */
+  .page-agencies .faq-list .faq-item:nth-child(n+4) {
+    display: none !important;
   }
 }
 
@@ -3385,24 +3955,7 @@ img {
    ============================================ */
 
 .promo-toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1050;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 14px 10px 12px;
-  background: rgba(13, 16, 12, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 122, 26, 0.45);
-  border-radius: 6px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(255, 122, 26, 0.2);
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-  max-width: 440px;
+  display: none !important;
 }
 
 /* Tactical HUD corner accents */
