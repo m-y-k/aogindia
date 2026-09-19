@@ -4147,6 +4147,13 @@ img {
   text-align: center;
 }
 
+/* Left alignment for split-hero pages (For Brands & For Agencies) */
+.hero-split-text .game-roster-bar {
+  margin-left: 0;
+  margin-right: auto;
+  justify-content: flex-start;
+}
+
 
 
 .game-tag {
@@ -4212,6 +4219,179 @@ img {
 .game-tag.freefire:hover {
   background: rgba(255, 194, 58, 0.22);
   box-shadow: 0 0 14px rgba(255, 194, 58, 0.45);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   VARIANT 1: HOMEPAGE — DEEP ONYX GLASS + GLOWING NEON BORDER PULSE
+   ============================================ */
+.v1-tags .game-tag {
+  background: linear-gradient(135deg, rgba(16, 20, 14, 0.92) 0%, rgba(8, 10, 6, 0.96) 100%);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.74rem;
+}
+
+.v1-tags .game-tag.bgmi {
+  border: 1px solid rgba(255, 122, 26, 0.7);
+  color: #ff914d;
+  box-shadow: 0 0 14px rgba(255, 122, 26, 0.3), inset 0 0 8px rgba(255, 122, 26, 0.15);
+}
+.v1-tags .game-tag.bgmi:hover {
+  border-color: #ff7a1a;
+  box-shadow: 0 0 22px rgba(255, 122, 26, 0.6), inset 0 0 12px rgba(255, 122, 26, 0.3);
+  transform: translateY(-2px);
+}
+
+.v1-tags .game-tag.freefire {
+  border: 1px solid rgba(255, 194, 58, 0.7);
+  color: #ffc23a;
+  box-shadow: 0 0 14px rgba(255, 194, 58, 0.3), inset 0 0 8px rgba(255, 194, 58, 0.15);
+}
+.v1-tags .game-tag.freefire:hover {
+  border-color: #ffd266;
+  box-shadow: 0 0 22px rgba(255, 194, 58, 0.6), inset 0 0 12px rgba(255, 194, 58, 0.3);
+  transform: translateY(-2px);
+}
+
+.v1-tags .game-tag.valorant {
+  border: 1px solid rgba(0, 212, 255, 0.7);
+  color: #00d4ff;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.3), inset 0 0 8px rgba(0, 212, 255, 0.15);
+}
+.v1-tags .game-tag.valorant:hover {
+  border-color: #33e0ff;
+  box-shadow: 0 0 22px rgba(0, 212, 255, 0.6), inset 0 0 12px rgba(0, 212, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.v1-tags .game-tag.minecraft {
+  border: 1px solid rgba(46, 204, 113, 0.7);
+  color: #2ecc71;
+  box-shadow: 0 0 14px rgba(46, 204, 113, 0.3), inset 0 0 8px rgba(46, 204, 113, 0.15);
+}
+.v1-tags .game-tag.minecraft:hover {
+  border-color: #4cd985;
+  box-shadow: 0 0 22px rgba(46, 204, 113, 0.6), inset 0 0 12px rgba(46, 204, 113, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   VARIANT 2: AGENCY PAGE — CARBON MATTE + PRISMATIC GRADIENT BORDER
+   ============================================ */
+.v2-tags .game-tag {
+  background: #0d0f0b;
+  position: relative;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.74rem;
+}
+
+.v2-tags .game-tag.bgmi {
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(#0d0f0b, #0d0f0b), linear-gradient(135deg, #ff7a1a, #ffc23a);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #ffa366;
+  box-shadow: 0 0 16px rgba(255, 122, 26, 0.25);
+}
+.v2-tags .game-tag.bgmi:hover {
+  box-shadow: 0 0 24px rgba(255, 122, 26, 0.55);
+  transform: translateY(-2px);
+}
+
+.v2-tags .game-tag.freefire {
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(#0d0f0b, #0d0f0b), linear-gradient(135deg, #ffc23a, #ff4655);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #ffd166;
+  box-shadow: 0 0 16px rgba(255, 194, 58, 0.25);
+}
+.v2-tags .game-tag.freefire:hover {
+  box-shadow: 0 0 24px rgba(255, 194, 58, 0.55);
+  transform: translateY(-2px);
+}
+
+.v2-tags .game-tag.valorant {
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(#0d0f0b, #0d0f0b), linear-gradient(135deg, #00d4ff, #0072ff);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #66e0ff;
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.25);
+}
+.v2-tags .game-tag.valorant:hover {
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.v2-tags .game-tag.minecraft {
+  border: 1.5px solid transparent;
+  background-image: linear-gradient(#0d0f0b, #0d0f0b), linear-gradient(135deg, #2ecc71, #a3e635);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #6ee7b7;
+  box-shadow: 0 0 16px rgba(46, 204, 113, 0.25);
+}
+.v2-tags .game-tag.minecraft:hover {
+  box-shadow: 0 0 24px rgba(46, 204, 113, 0.55);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   VARIANT 3: BRANDS PAGE — METALLIC CHARCOAL + NEON RIM SHIMMER
+   ============================================ */
+.v3-tags .game-tag {
+  background: rgba(22, 26, 18, 0.88);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.v3-tags .game-tag.bgmi {
+  border: 1px solid rgba(255, 122, 26, 0.8);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 122, 26, 0.4), inset 0 0 12px rgba(255, 122, 26, 0.25);
+}
+.v3-tags .game-tag.bgmi i { color: #ff7a1a; }
+.v3-tags .game-tag.bgmi:hover {
+  box-shadow: 0 0 24px rgba(255, 122, 26, 0.75), inset 0 0 16px rgba(255, 122, 26, 0.4);
+  transform: translateY(-2px);
+}
+
+.v3-tags .game-tag.freefire {
+  border: 1px solid rgba(255, 194, 58, 0.8);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 194, 58, 0.4), inset 0 0 12px rgba(255, 194, 58, 0.25);
+}
+.v3-tags .game-tag.freefire i { color: #ffc23a; }
+.v3-tags .game-tag.freefire:hover {
+  box-shadow: 0 0 24px rgba(255, 194, 58, 0.75), inset 0 0 16px rgba(255, 194, 58, 0.4);
+  transform: translateY(-2px);
+}
+
+.v3-tags .game-tag.valorant {
+  border: 1px solid rgba(0, 212, 255, 0.8);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4), inset 0 0 12px rgba(0, 212, 255, 0.25);
+}
+.v3-tags .game-tag.valorant i { color: #00d4ff; }
+.v3-tags .game-tag.valorant:hover {
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.75), inset 0 0 16px rgba(0, 212, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.v3-tags .game-tag.minecraft {
+  border: 1px solid rgba(46, 204, 113, 0.8);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.4), inset 0 0 12px rgba(46, 204, 113, 0.25);
+}
+.v3-tags .game-tag.minecraft i { color: #2ecc71; }
+.v3-tags .game-tag.minecraft:hover {
+  box-shadow: 0 0 24px rgba(46, 204, 113, 0.75), inset 0 0 16px rgba(46, 204, 113, 0.4);
   transform: translateY(-2px);
 }
 
@@ -4366,6 +4546,11 @@ img {
     box-shadow: none !important;
     backdrop-filter: none !important;
   }
+  .hero-split-text .game-roster-bar,
+  .game-roster-bar {
+    margin: 10px auto 16px auto !important;
+    justify-content: center !important;
+  }
   .game-tag {
     font-size: 0.68rem;
     letter-spacing: 0.8px;
@@ -4378,25 +4563,33 @@ img {
     flex-shrink: 0;
   }
   
+  .v1-tags .game-tag.valorant,
   .game-tag.valorant {
-    background: rgba(0, 212, 255, 0.08) !important;
+    background: linear-gradient(135deg, rgba(16, 20, 14, 0.95) 0%, rgba(8, 10, 6, 0.98) 100%) !important;
+    border: 1px solid rgba(0, 212, 255, 0.7) !important;
     color: #00d4ff !important;
-    border: 1px solid rgba(0, 212, 255, 0.35) !important;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3) !important;
   }
+  .v1-tags .game-tag.minecraft,
   .game-tag.minecraft {
-    background: rgba(46, 204, 113, 0.08) !important;
+    background: linear-gradient(135deg, rgba(16, 20, 14, 0.95) 0%, rgba(8, 10, 6, 0.98) 100%) !important;
+    border: 1px solid rgba(46, 204, 113, 0.7) !important;
     color: #2ecc71 !important;
-    border: 1px solid rgba(46, 204, 113, 0.35) !important;
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.3) !important;
   }
+  .v1-tags .game-tag.bgmi,
   .game-tag.bgmi {
-    background: rgba(255, 122, 26, 0.08) !important;
-    color: var(--accent) !important;
-    border: 1px solid rgba(255, 122, 26, 0.35) !important;
+    background: linear-gradient(135deg, rgba(16, 20, 14, 0.95) 0%, rgba(8, 10, 6, 0.98) 100%) !important;
+    border: 1px solid rgba(255, 122, 26, 0.7) !important;
+    color: #ff914d !important;
+    box-shadow: 0 0 12px rgba(255, 122, 26, 0.3) !important;
   }
+  .v1-tags .game-tag.freefire,
   .game-tag.freefire {
-    background: rgba(255, 194, 58, 0.08) !important;
-    color: var(--accent-2) !important;
-    border: 1px solid rgba(255, 194, 58, 0.35) !important;
+    background: linear-gradient(135deg, rgba(16, 20, 14, 0.95) 0%, rgba(8, 10, 6, 0.98) 100%) !important;
+    border: 1px solid rgba(255, 194, 58, 0.7) !important;
+    color: #ffc23a !important;
+    box-shadow: 0 0 12px rgba(255, 194, 58, 0.3) !important;
   }
 
   .title-sponsor-card {
