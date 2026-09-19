@@ -37,11 +37,11 @@ NEGATIVE_KEYWORDS = {
 # ─── BASE CORE BRAND KEYWORDS (ALWAYS RETAINED) ─────────────────────
 CORE_KEYWORDS = [
     "gaming marketing agency india",
-    "gaming influencer agencies",
-    "gaming media agency",
+    "influencer marketing agency india",
+    "gaming influencer marketing india",
     "BGMI creator campaigns",
     "mobile game marketing india",
-    "gaming influencer marketing",
+    "paid promotions gaming creators india",
     "gaming product seeding",
     "white-label influencer marketing",
     "esports agency india",
