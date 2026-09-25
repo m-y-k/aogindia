@@ -2857,6 +2857,20 @@ img {
   color: var(--accent);
   text-shadow: 0 0 30px rgba(255, 122, 26, 0.65), 4px 4px 0 rgba(0,0,0,0.55);
 }
+/* Visible SEO H1 — shown to both users and Google */
+.hero-tagline {
+  font-size: 0.5px;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+
 .hero-seo-h1 {
   /* Visually hidden — SEO only. Google reads it; visitors see Alliance Of Gamers */
   position: absolute;
@@ -3336,11 +3350,12 @@ img {
   top: 50%;
   left: 0;
   width: 100%;
-  height: 140px;
+  height: 160px;
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
 }
+
 
 .roadmap-grid {
   position: relative;

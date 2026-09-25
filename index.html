@@ -50,6 +50,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/team-blog.css">
   <script>
     window.toggleSeeMore = function(btn) {
       if (!btn) return;
@@ -88,6 +89,33 @@
         "description": "AOG India Esports (Alliance Of Gamers) is a gaming marketing agency, gaming influencer agency, and gaming media agency based in India. We connect brands and marketing agencies with 200+ gaming, tech, and Gen Z creators on YouTube and Instagram for influencer campaigns, product seeding, and creator-led brand activations.",
         "sameAs": [
           "https://www.linkedin.com/company/117914370"
+        ],
+        "founder": [
+          {
+            "@type": "Person",
+            "@id": "https://aogindia.com/#person-yusuf",
+            "name": "Mohammad Yusuf Khan",
+            "jobTitle": "Founder",
+            "worksFor": { "@id": "https://aogindia.com/#organization" },
+            "sameAs": "https://www.linkedin.com/in/m-y-k-/",
+            "image": "https://aogindia.com/images/team/yusuf.webp"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://aogindia.com/#person-aarti",
+            "name": "Aarti Chauhan",
+            "jobTitle": "Co-Founder",
+            "worksFor": { "@id": "https://aogindia.com/#organization" },
+            "email": "aarti.chauhan@aogindia.com"
+          },
+          {
+            "@type": "Person",
+            "@id": "https://aogindia.com/#person-mohit",
+            "name": "Mohit Kashyap",
+            "jobTitle": "Co-Founder",
+            "worksFor": { "@id": "https://aogindia.com/#organization" },
+            "email": "mohit.kashyap@aogindia.com"
+          }
         ],
         "contactPoint": [
           {
@@ -317,6 +345,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#creators">Creators</a></li>
+        <li><a href="blog/">Blog</a></li>
         <li class="nav-dropdown" id="navDropdown">
           <button class="nav-dropdown-toggle" id="navDropdownToggle" aria-expanded="false" aria-haspopup="true">
             Work With Us <span class="dd-caret">&#9660;</span>
@@ -359,8 +388,8 @@
         <span class="hd-line1">ALLIANCE OF</span>
         <span class="hd-line2">GAMERS</span>
       </p>
-      <!-- SEO h1 — visually hidden for Google crawl, invisible to visitors -->
-      <h1 class="hero-seo-h1" data-aos="fade-up" data-aos-delay="420">Gaming Marketing Agency India &nbsp;|&nbsp; Gaming Influencer &amp; Media Agency</h1>
+      <!-- H1 — visible tagline, both human-readable and crawlable -->
+      <h1 class="hero-tagline" data-aos="fade-up" data-aos-delay="420">Gaming Marketing Agency India &nbsp;|&nbsp; Gaming Influencer &amp; Media Agency</h1>
       <div class="hero-sub-line" data-aos="fade-up" data-aos-delay="500">
         <span class="dash">—</span> <b>200+ CREATORS.</b> MOBILE &amp; PC GAMING, TECH &amp; GEN Z.
       </div>
@@ -395,13 +424,28 @@
         </div>
       </div>
 
-      <!-- Winding Connected Roadmap Component -->
-      <div class="roadmap-container" data-aos="fade-up" data-aos-delay="100">
-        <svg class="roadmap-svg-bg" viewBox="0 0 1000 140" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0,70 C150,10 350,130 500,70 C650,10 850,130 1000,70" stroke="#ff7a1a" stroke-width="4" stroke-dasharray="8 8" opacity="0.65"/>
+      <!-- Winding Connected Roadmap Component — GSAP animated -->
+      <div class="roadmap-container" id="roadmapSection">
+        <svg class="roadmap-svg-bg" id="roadmapSvg" viewBox="0 0 1000 160" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <!-- Glow duplicate -->
+          <path id="roadmapPathGlow" d="M0,80 C120,20 250,140 500,80 C750,20 880,140 1000,80"
+            stroke="#ff7a1a" stroke-width="8" stroke-linecap="round"
+            fill="none" opacity="0.18" filter="url(#roadGlow)"/>
+          <!-- Animated draw path -->
+          <path id="roadmapPath" d="M0,80 C120,20 250,140 500,80 C750,20 880,140 1000,80"
+            stroke="#ff7a1a" stroke-width="2.5" stroke-linecap="round"
+            stroke-dasharray="2200" stroke-dashoffset="2200"
+            fill="none" opacity="0.9"/>
+          <defs>
+            <filter id="roadGlow" x="-20%" y="-80%" width="140%" height="260%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
         </svg>
-        <div class="roadmap-grid">
-          
+
+        <div class="roadmap-grid" id="roadmapGrid">
+
           <div class="roadmap-step">
             <div class="roadmap-card">
               <h4>Creator Content</h4>
@@ -436,6 +480,7 @@
 
         </div>
       </div>
+
 
       <!-- ========== EXPANDING OPERATIONS: TITLE SPONSORSHIP OPPORTUNITY ========== -->
       <div class="title-sponsor-card" data-aos="fade-up">
@@ -778,6 +823,134 @@
     </div>
   </section>
 
+  <!-- ========== TEAM ========== -->
+  <section class="team" id="team" aria-label="AOG India Esports founding team">
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <h2>Meet the <span>Team</span></h2>
+        <p>The people behind AOG India Esports — building India's specialist gaming marketing agency.</p>
+      </div>
+      <div class="team-grid">
+
+        <!-- Mohammad Yusuf Khan — Founder -->
+        <div class="team-card founder" data-aos="fade-up" data-aos-delay="100">
+          <div class="team-avatar">
+            <picture>
+              <source srcset="images/team/yusuf.webp" type="image/webp">
+              <img src="images/team/yusuf.png" alt="Mohammad Yusuf Khan, Founder of AOG India Esports" width="110" height="110" loading="lazy">
+            </picture>
+          </div>
+          <div class="team-info">
+            <h3>Mohammad Yusuf Khan</h3>
+            <span class="team-role">Founder</span>
+            <a href="https://www.linkedin.com/in/m-y-k-/" target="_blank" rel="noopener" class="team-linkedin" aria-label="Mohammad Yusuf Khan on LinkedIn">
+              <i class='bx bxl-linkedin'></i> LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Aarti Chauhan — Co-Founder -->
+        <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="team-avatar">
+            <picture>
+              <source srcset="images/team/aarti.webp" type="image/webp">
+              <img src="images/team/aarti.webp" alt="Aarti Chauhan, Co-Founder of AOG India Esports" width="110" height="110" loading="lazy">
+            </picture>
+          </div>
+          <div class="team-info">
+            <h3>Aarti Chauhan</h3>
+            <span class="team-role">Co-Founder</span>
+            <a href="https://www.linkedin.com/in/aarti-chauhan-678734241/" target="_blank" rel="noopener" class="team-linkedin" aria-label="Aarti Chauhan on LinkedIn">
+              <i class='bx bxl-linkedin'></i> LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Mohit Kashyap — Co-Founder -->
+        <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="team-avatar">
+            <picture>
+              <source srcset="images/team/mohit.webp" type="image/webp">
+              <img src="images/team/mohit.jfif" alt="Mohit Kashyap, Co-Founder of AOG India Esports" width="110" height="110" loading="lazy">
+            </picture>
+          </div>
+          <div class="team-info">
+            <h3>Mohit Kashyap</h3>
+            <span class="team-role">Co-Founder</span>
+            <a href="https://www.linkedin.com/in/mohit-kashyap-aa6572312/" target="_blank" rel="noopener" class="team-linkedin" aria-label="Mohit Kashyap on LinkedIn">
+              <i class='bx bxl-linkedin'></i> LinkedIn
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOG PREVIEW ========== -->
+  <section class="blog-section" id="blog" aria-label="AOG India Esports Gaming Marketing Blog">
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <h2>Gaming Marketing <span>Insights</span></h2>
+        <p>Guides, strategies, and pricing breakdowns for brands exploring gaming creator campaigns in India.</p>
+      </div>
+      <div class="blog-grid">
+
+        <a href="blog/bgmi-creator-campaign-guide.html" class="blog-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="blog-card-badge">Guide</div>
+          <div class="blog-card-body">
+            <h3>How to Run a BGMI Creator Campaign in India</h3>
+            <p>A complete brand guide to BGMI influencer marketing — creator tiers, pricing, content formats, and campaign execution from brief to report.</p>
+          </div>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">Sep 2026</span>
+            <span class="blog-card-read">8 min read <i class='bx bx-right-arrow-alt'></i></span>
+          </div>
+        </a>
+
+        <a href="blog/minecraft-creator-marketing-india.html" class="blog-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="blog-card-badge">Strategy</div>
+          <div class="blog-card-body">
+            <h3>Minecraft Creator Marketing for Brands in India</h3>
+            <p>Why Minecraft is India's fastest growing gaming niche for brand campaigns, and how to reach its highly engaged Gen Z creator audience.</p>
+          </div>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">Sep 2026</span>
+            <span class="blog-card-read">7 min read <i class='bx bx-right-arrow-alt'></i></span>
+          </div>
+        </a>
+
+        <a href="blog/gaming-influencer-pricing-india.html" class="blog-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="blog-card-badge">Pricing</div>
+          <div class="blog-card-body">
+            <h3>Gaming Influencer Campaign Pricing India 2026</h3>
+            <p>What brands actually pay for gaming creator campaigns in India — broken down by creator tier, content format, and campaign type.</p>
+          </div>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">Sep 2026</span>
+            <span class="blog-card-read">6 min read <i class='bx bx-right-arrow-alt'></i></span>
+          </div>
+        </a>
+
+        <a href="blog/gaming-product-seeding-guide.html" class="blog-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="blog-card-badge">How-To</div>
+          <div class="blog-card-body">
+            <h3>Gaming Product Seeding: How Indian Brands Do It</h3>
+            <p>What product seeding is, how gaming brands use it to build reviews and awareness, and a step-by-step execution guide for India.</p>
+          </div>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">Sep 2026</span>
+            <span class="blog-card-read">6 min read <i class='bx bx-right-arrow-alt'></i></span>
+          </div>
+        </a>
+
+      </div>
+      <div style="text-align:center; margin-top: 36px;" data-aos="fade-up">
+        <a href="blog/" class="hero-cta" style="display:inline-flex; align-items:center; gap:8px;">VIEW ALL ARTICLES <i class='bx bx-right-arrow-alt'></i></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== FAQ ========== -->
   <section class="faq" id="faq" aria-label="Frequently asked questions about gaming influencer marketing with AOG India Esports">
     <div class="container">
@@ -1110,7 +1283,86 @@
 
   <!-- AOS Script -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- GSAP + ScrollTrigger for roadmap animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <!-- Main Script -->
   <script src="js/main.min.js" defer></script>
+
+  <script>
+    /* ── Roadmap GSAP ScrollTrigger animation ── */
+    (function () {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const path   = document.getElementById('roadmapPath');
+      const pins   = document.querySelectorAll('#roadmapGrid .roadmap-pin');
+      const cards  = document.querySelectorAll('#roadmapGrid .roadmap-card');
+      const section = document.getElementById('roadmapSection');
+
+      if (!path || !section) return;
+
+      /* ── 1. SVG path draw-on-scroll ── */
+      const pathLen = path.getTotalLength ? path.getTotalLength() : 2200;
+      gsap.set(path, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
+
+      gsap.to(path, {
+        strokeDashoffset: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          end: 'bottom 60%',
+          scrub: 1.2,
+        }
+      });
+
+      /* ── 2. Pins pop in with stagger ── */
+      gsap.set(pins, { scale: 0, opacity: 0 });
+      gsap.to(pins, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.55,
+        ease: 'back.out(2)',
+        stagger: 0.18,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 68%',
+          toggleActions: 'play none none reverse',
+        }
+      });
+
+      /* ── 3. Cards fade + slide up, staggered ── */
+      gsap.set(cards, { y: 24, opacity: 0 });
+      gsap.to(cards, {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 65%',
+          toggleActions: 'play none none reverse',
+        }
+      });
+
+      /* ── 4. Continuous pin pulse glow after reveal ── */
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 60%',
+        onEnter: () => {
+          gsap.to(pins, {
+            boxShadow: '0 0 28px rgba(255,122,26,0.75)',
+            duration: 0.9,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+            stagger: { each: 0.25, repeat: -1 }
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
