@@ -369,9 +369,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // 5. Fire Google Sheets webhook (non-blocking, best-effort)
       const botcheck = contactForm.querySelector('[name="botcheck"]');
       if (!botcheck || !botcheck.checked) {
+        const fd = new FormData(contactForm);
+        fd.set('from_url', 'index.html'); // source page identifier
         fetch(SHEET_WEBHOOK_URL, {
           method: 'POST',
-          body: new URLSearchParams(new FormData(contactForm)),
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(fd).toString(),
           keepalive: true
         }).catch(() => {});
       }

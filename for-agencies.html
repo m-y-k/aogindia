@@ -785,9 +785,21 @@
           }
           const botcheck = agForm.querySelector('[name="botcheck"]');
           if (!botcheck || !botcheck.checked) {
+            const fd = new FormData(agForm);
+            const payload = new URLSearchParams({
+              from_url:    'for-agencies.html',
+              name:        fd.get('name')        || '',
+              email:       fd.get('email')       || '',
+              user_type:   'Agency',
+              agency_name: fd.get('agency_name') || '',
+              agency_type: fd.get('agency_type') || '',
+              message:     fd.get('message')     || '',
+            });
             fetch('https://script.google.com/macros/s/AKfycbw2K2bgwPlz1ZZcNhoowRYn2YN4dkE9gqGRABfEJQALZdnqoD64okgoBFn7p1EI2A_qRA/exec', {
               method: 'POST',
-              body: new URLSearchParams(new FormData(agForm)),
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: payload.toString(),
               keepalive: true
             }).catch(() => {});
           }

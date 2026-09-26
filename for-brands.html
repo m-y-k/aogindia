@@ -721,9 +721,23 @@
           }
           const botcheck = brForm.querySelector('[name="botcheck"]');
           if (!botcheck || !botcheck.checked) {
+            const fd = new FormData(brForm);
+            const payload = new URLSearchParams({
+              from_url:         'for-brands.html',
+              name:             fd.get('name')          || '',
+              email:            fd.get('email')         || '',
+              user_type:        'Brand',
+              company_name:     fd.get('brand_name')    || '',
+              company_website:  '',
+              brand_query_type: fd.get('campaign_type') || '',
+              brand_budget:     fd.get('budget')        || '',
+              message:          fd.get('message')       || '',
+            });
             fetch('https://script.google.com/macros/s/AKfycbw2K2bgwPlz1ZZcNhoowRYn2YN4dkE9gqGRABfEJQALZdnqoD64okgoBFn7p1EI2A_qRA/exec', {
               method: 'POST',
-              body: new URLSearchParams(new FormData(brForm)),
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: payload.toString(),
               keepalive: true
             }).catch(() => {});
           }
