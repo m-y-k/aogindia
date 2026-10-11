@@ -191,6 +191,28 @@
   <div class="bg-smoke s2"></div>
   <div class="bg-smoke s3"></div>
 
+  <!-- ========== STRATEGIC ANNOUNCEMENT: TITLE SPONSORSHIP TICKER ========== -->
+  <aside class="broadcast-ticker" id="broadcastTicker" role="region" aria-label="Title Sponsorship Announcement">
+    <div class="broadcast-ticker-container">
+      <div class="broadcast-badge">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span class="badge-text"><i class='bx bx-crown'></i> 2026/27 TITLE SPONSOR</span>
+      </div>
+      <div class="broadcast-content">
+        <span class="broadcast-tag-lead">STRATEGIC OPPORTUNITY:</span>
+        <span class="broadcast-message">AOG India is accepting inquiries for <strong>Exclusive Title Partnership</strong> &mdash; <strong>5M+ Monthly Views</strong> across Minecraft, Valorant, BGMI &amp; Free Fire</span>
+      </div>
+      <div class="broadcast-actions">
+        <a href="#title-sponsorship" class="broadcast-cta-btn">
+          <span>APPLY NOW</span> <i class='bx bx-right-arrow-alt'></i>
+        </a>
+        <button type="button" class="broadcast-close-btn" id="broadcastCloseBtn" aria-label="Dismiss Announcement">
+          <i class='bx bx-x'></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <div class="container">
@@ -317,6 +339,48 @@
             <h4>Influencer Agencies</h4>
             <p>Specialist gaming &amp; tech creator access to supplement your existing creator roster</p>
           </div>
+        </div>
+      </div>
+
+      <!-- ========== TITLE SPONSORSHIP OPPORTUNITY ========== -->
+      <div class="title-sponsor-card" id="title-sponsorship" data-aos="fade-up">
+        <div class="sponsor-card-top-row">
+          <div class="sponsor-card-badge">
+            <i class='bx bx-crown'></i> Title Partnership 2026/27
+          </div>
+          <div class="sponsor-card-status">
+            <span class="live-dot" aria-hidden="true"></span> 1 Exclusive Slot Open
+          </div>
+        </div>
+
+        <!-- Two-column split layout -->
+        <div class="sponsor-split">
+
+          <!-- LEFT: heading + compact points -->
+          <div class="sponsor-split-left">
+            <h3 class="sponsor-card-title">
+              Become The <span>Official Title Partner</span>
+            </h3>
+            <ul class="sponsor-points-list">
+              <li><i class='bx bx-broadcast'></i> <span><strong>360° Placement</strong> — Live streams, YouTube videos, Shorts &amp; Reels</span></li>
+              <li><i class='bx bx-joystick'></i> <span><strong>4 Game Titles</strong> — Minecraft, Valorant, BGMI &amp; Free Fire</span></li>
+              <li><i class='bx bx-shield-quarter'></i> <span><strong>Full Category Exclusivity</strong> — No competitors, period</span></li>
+              <li><i class='bx bx-line-chart'></i> <span><strong>5M+ Monthly Views</strong> — UTM attribution + monthly reports</span></li>
+            </ul>
+          </div>
+
+          <!-- RIGHT: stats + CTA -->
+          <div class="sponsor-split-right">
+            <div class="sponsor-stat-stack">
+              <div class="sponsor-stat-item"><span class="ssi-num">5M+</span><span class="ssi-label">Monthly Views</span></div>
+              <div class="sponsor-stat-item"><span class="ssi-num">360°</span><span class="ssi-label">Content Types</span></div>
+              <div class="sponsor-stat-item"><span class="ssi-num">200+</span><span class="ssi-label">Creators</span></div>
+            </div>
+            <a href="mailto:partnerships@aogindia.com?subject=Title%20Sponsorship%20Inquiry%20-%20AOG%20India" class="sponsor-primary-btn">
+              Apply for Title Sponsorship <i class='bx bx-right-arrow-alt'></i>
+            </a>
+          </div>
+
         </div>
       </div>
     </div>
@@ -672,6 +736,28 @@
     </div>
   </footer>
 
+  <!-- ========== FLOATING VIP TITLE SPONSOR PILL ========== -->
+  <aside class="sponsor-floating-pill" id="sponsorFloatingPill" aria-label="Title Sponsorship Opportunity">
+    <a href="#title-sponsorship" class="sfp-content">
+      <div class="sfp-icon-hex">
+        <i class='bx bx-crown'></i>
+      </div>
+      <div class="sfp-text-group">
+        <div class="sfp-status-row">
+          <span class="sfp-beacon" aria-hidden="true"></span>
+          <span class="sfp-status-label">1 EXCLUSIVE SLOT</span>
+        </div>
+        <div class="sfp-title">Title Sponsor 2026/27</div>
+      </div>
+      <div class="sfp-arrow">
+        <i class='bx bx-right-arrow-alt'></i>
+      </div>
+    </a>
+    <button type="button" class="sfp-dismiss-btn" id="sfpDismissBtn" aria-label="Close Title Sponsor Pill">
+      &times;
+    </button>
+  </aside>
+
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <script>
@@ -696,8 +782,78 @@
       const navOverlay = document.getElementById('navOverlay');
       const allNavAnchors = navLinks.querySelectorAll('a');
 
+      // Ticker & Floating Pill logic
+      const _bt = document.getElementById("broadcastTicker");
+      const _bc = document.getElementById("broadcastCloseBtn");
+      const _fp = document.getElementById("sponsorFloatingPill");
+      const _fc = document.getElementById("sfpDismissBtn");
+      let _td = false, _pd = false;
+      try {
+        _td = sessionStorage.getItem("aogTitleTickerDismissed") === "true";
+        _pd = sessionStorage.getItem("aogTitlePillDismissed") === "true";
+      } catch (e) {}
+
+      if (_bt) {
+        if (_td) {
+          _bt.classList.add("broadcast-hidden");
+          document.body.classList.remove("has-broadcast");
+        } else {
+          document.body.classList.add("has-broadcast");
+        }
+        if (_bc) {
+          _bc.addEventListener("click", () => {
+            _bt.classList.add("broadcast-hidden");
+            document.body.classList.remove("has-broadcast");
+            try { sessionStorage.setItem("aogTitleTickerDismissed", "true"); } catch (e) {}
+          });
+        }
+      }
+
+      if (_fp && _fc) {
+        _fc.addEventListener("click", (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          _fp.classList.remove("sfp-visible");
+          _pd = true;
+          try { sessionStorage.setItem("aogTitlePillDismissed", "true"); } catch (e) {}
+        });
+      }
+
+      // Smooth scroll & flash on all sponsor links
+      const scrollToSponsor = () => {
+        const targetCard = document.getElementById('title-sponsorship');
+        if (targetCard) {
+          const topPos = targetCard.getBoundingClientRect().top + window.pageYOffset - 90;
+          window.scrollTo({ top: topPos, behavior: 'smooth' });
+          targetCard.classList.remove('targeted-flash');
+          void targetCard.offsetWidth;
+          targetCard.classList.add('targeted-flash');
+          setTimeout(() => targetCard.classList.remove('targeted-flash'), 2500);
+        }
+      };
+
+      document.querySelectorAll('a[href="#title-sponsorship"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          scrollToSponsor();
+        });
+      });
+
+      // Deep-link landing from email
+      if (window.location.hash === '#title-sponsorship') {
+        setTimeout(scrollToSponsor, 350);
+        window.addEventListener('load', () => setTimeout(scrollToSponsor, 150));
+      }
+
       const handleScroll = () => {
         navbar.classList.toggle('scrolled', window.scrollY > 60);
+        if (_fp && !_pd) {
+          if (window.scrollY > 380) {
+            _fp.classList.add('sfp-visible');
+          } else {
+            _fp.classList.remove('sfp-visible');
+          }
+        }
       };
       window.addEventListener('scroll', handleScroll, { passive: true });
       handleScroll();

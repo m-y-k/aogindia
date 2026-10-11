@@ -4,12 +4,38 @@ implementation_plan.md
 implementation_plan_seo_rank.md
 implementation_new_updates
 AOG_India_SEO_Reference.md
+readme_outreach.md
 
-# Email outreach automation tools (local/internal only)
-scripts/sponsor_outreach_mailer.py
-scripts/find_brand_leads.py
-scripts/leads_template.csv
+# =============================================================================
+# PRIVATE DATA — NEVER COMMIT TO GITHUB (security)
+# =============================================================================
+
+# Credentials & API keys (Zoho, Apollo — MUST stay secret)
 scripts/outreach_config.json
-scripts/outreach_config.example.json
-scripts/README_OUTREACH.md
+*.env
+.env
+.env.*
+secrets.json
+
+# Leads database & contact list (private business data)
+scripts/leads_template.csv
+scripts/data/
+
+# Email logs & sent history (operational data)
 scripts/logs/
+logs/
+
+# Autopilot runtime state
+scripts/autopilot_state.json
+scripts/weekly_discovery.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

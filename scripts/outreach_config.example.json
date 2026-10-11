@@ -1,0 +1,18 @@
+{
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "use_tls": true,
+    "username": "partnerships@aogindia.com",
+    "password": "YOUR_GMAIL_OR_WORKSPACE_APP_PASSWORD",
+    "from_name": "Aarti Chauhan | AOG India",
+    "from_email": "partnerships@aogindia.com",
+    "reply_to": "partnerships@aogindia.com"
+  },
+  "sending_rules": {
+    "min_delay_seconds": 35,
+    "max_delay_seconds": 75,
+    "max_emails_per_session": 30,
+    "company_deck_url": "https://aogindia.com/for-brands.html#title-sponsorship"
+  }
+}
