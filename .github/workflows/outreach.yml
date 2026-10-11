@@ -1,0 +1,169 @@
+# =============================================================================
+# AOG India Esports - Automated Sponsor Outreach (GitHub Actions)
+# =============================================================================
+# Runs FREE on GitHub servers, automatically:
+#   - Daily emails:     Mon-Fri at 10:30 AM IST  (05:00 UTC)
+#   - Weekly discovery: Every Monday at 9:00 AM IST (03:30 UTC)
+#
+# NO DUPLICATE EMAILS: Sent-email history is saved as a GitHub Artifact
+# after every run and restored before the next — contacts are NEVER emailed
+# twice, even across separate workflow runs on different days.
+#
+# ONE-TIME SETUP in GitHub > Settings > Secrets and Variables > Actions:
+#   APOLLO_API_KEY  = your Apollo.io key
+#   ZOHO_PASSWORD   = your Zoho email app password
+# =============================================================================
+
+name: AOG India Sponsor Outreach Autopilot
+
+on:
+  schedule:
+    - cron: '0 5 * * 1-5'    # Daily emails: Mon-Fri 10:30 AM IST
+    - cron: '30 3 * * 1'     # Weekly discovery: Monday 9:00 AM IST
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Run mode
+        required: true
+        default: send
+        type: choice
+        options: [send, weekly, dry-run, fetch]
+
+jobs:
+  outreach:
+    name: Run Outreach Autopilot
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # --- RESTORE STATE: Download previous sent-email history ---
+      # This is what prevents duplicate emails across runs.
+      # If no artifact exists yet (first ever run), this step is skipped silently.
+      - name: Restore sent-email state
+        uses: actions/download-artifact@v4
+        with:
+          name: aog-outreach-state
+          path: scripts/
+        continue-on-error: true
+
+      - name: Restore data directory
+        uses: actions/download-artifact@v4
+        with:
+          name: aog-outreach-data
+          path: scripts/data/
+        continue-on-error: true
+
+      # --- BUILD CONFIG from encrypted GitHub Secrets ---
+      # Credentials never stored in repo — assembled fresh each run
+      - name: Build outreach_config.json from secrets
+        env:
+          APOLLO_API_KEY: ${{ secrets.APOLLO_API_KEY }}
+          ZOHO_PASSWORD: ${{ secrets.ZOHO_PASSWORD }}
+        run: |
+          mkdir -p scripts/data scripts/logs
+          cat > scripts/outreach_config.json << ENDOFCONFIG
+          {
+            "apollo": { "api_key": "$APOLLO_API_KEY" },
+            "smtp": {
+              "hosts": ["smtppro.zoho.in", "smtp.zoho.in", "smtppro.zoho.com"],
+              "username": "partnerships@aogindia.com",
+              "password": "$ZOHO_PASSWORD"
+            },
+            "sender": {
+              "name": "Mohammad Yusuf Khan",
+              "email": "partnerships@aogindia.com",
+              "deck_url": "https://aogindia.com/for-brands.html#title-sponsorship"
+            },
+            "autopilot": {
+              "daily_send_limit": 25,
+              "min_delay_seconds": 60,
+              "max_delay_seconds": 120,
+              "business_hours_start_ist": 10,
+              "business_hours_end_ist": 17,
+              "send_on_weekends": false
+            }
+          }
+          ENDOFCONFIG
+          echo "[OK] Config assembled from encrypted secrets"
+
+      # --- SHOW STATE: How many already sent (for run logs) ---
+      - name: Show current state summary
+        run: |
+          if [ -f scripts/data/autopilot_state.json ]; then
+            SENT=$(python3 -c "import json; d=json.load(open('scripts/data/autopilot_state.json')); print(len(d.get('sent_emails', {})))")
+            echo "[*] Already emailed (will skip): $SENT contacts"
+          else
+            echo "[*] First run - no previous state found"
+          fi
+          if [ -f scripts/leads_template.csv ]; then
+            PENDING=$(python3 -c "import csv; r=list(csv.DictReader(open('scripts/leads_template.csv'))); print(len([x for x in r if x.get('status')=='pending']))")
+            echo "[*] Leads ready to send: $PENDING"
+          fi
+
+      # --- EXECUTE: Run the correct mode ---
+      - name: Weekly brand discovery (Monday auto-schedule)
+        if: github.event_name == 'schedule' && github.event.schedule == '30 3 * * 1'
+        run: python3 scripts/autopilot_sponsor_outreach.py --weekly
+
+      - name: Daily email sending (auto-schedule)
+        if: github.event_name == 'schedule' && github.event.schedule == '0 5 * * 1-5'
+        run: python3 scripts/autopilot_sponsor_outreach.py --now
+
+      - name: Manual send
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'send'
+        run: python3 scripts/autopilot_sponsor_outreach.py --now
+
+      - name: Manual weekly discovery
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'weekly'
+        run: python3 scripts/autopilot_sponsor_outreach.py --weekly
+
+      - name: Manual dry run
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'dry-run'
+        run: python3 scripts/autopilot_sponsor_outreach.py --dry-run
+
+      - name: Manual Apollo fetch
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'fetch'
+        run: python3 scripts/autopilot_sponsor_outreach.py --fetch
+
+      # --- SAVE STATE: Upload sent history so next run skips these contacts ---
+      # Runs even if emails partially failed (always) to preserve partial progress.
+      - name: Save leads CSV state
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aog-outreach-state
+          path: scripts/leads_template.csv
+          retention-days: 90
+          overwrite: true
+
+      - name: Save data directory state
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aog-outreach-data
+          path: scripts/data/
+          retention-days: 90
+          overwrite: true
+
+      # --- SUMMARY ---
+      - name: Print run summary
+        if: always()
+        run: |
+          echo "======================================================"
+          echo "  AOG India Autopilot Run Complete"
+          echo "======================================================"
+          if [ -f scripts/data/autopilot_state.json ]; then
+            TOTAL=$(python3 -c "import json; d=json.load(open('scripts/data/autopilot_state.json')); print(len(d.get('sent_emails', {})))")
+            echo "  Total emails sent (all-time, no repeats): $TOTAL"
+          fi
+          echo "  State saved - next run will skip all $TOTAL contacts"
+          echo "  Next scheduled run: tomorrow 10:30 AM IST"
+          echo "======================================================"
