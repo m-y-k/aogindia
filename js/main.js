@@ -41,12 +41,81 @@ document.addEventListener('DOMContentLoaded', () => {
     if (promoBtn) promoBtn.addEventListener('click', hideToast);
   }
 
+  // ─── Concept 3: Broadcast Ticker & Floating Title Sponsor Pill ───
+  const broadcastTicker = document.getElementById('broadcastTicker');
+  const broadcastCloseBtn = document.getElementById('broadcastCloseBtn');
+  const sponsorFloatingPill = document.getElementById('sponsorFloatingPill');
+  const sfpDismissBtn = document.getElementById('sfpDismissBtn');
+
+  let tickerDismissed = false;
+  let pillDismissed = false;
+  try {
+    tickerDismissed = sessionStorage.getItem('aogTitleTickerDismissed') === 'true';
+    pillDismissed = sessionStorage.getItem('aogTitlePillDismissed') === 'true';
+  } catch (e) {}
+
+  if (broadcastTicker) {
+    if (tickerDismissed) {
+      broadcastTicker.classList.add('broadcast-hidden');
+      document.body.classList.remove('has-broadcast');
+    } else {
+      document.body.classList.add('has-broadcast');
+    }
+
+    if (broadcastCloseBtn) {
+      broadcastCloseBtn.addEventListener('click', () => {
+        broadcastTicker.classList.add('broadcast-hidden');
+        document.body.classList.remove('has-broadcast');
+        try {
+          sessionStorage.setItem('aogTitleTickerDismissed', 'true');
+        } catch (e) {}
+      });
+    }
+  }
+
+  if (sponsorFloatingPill && sfpDismissBtn) {
+    sfpDismissBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      sponsorFloatingPill.classList.remove('sfp-visible');
+      pillDismissed = true;
+      try {
+        sessionStorage.setItem('aogTitlePillDismissed', 'true');
+      } catch (e) {}
+    });
+  }
+
+  // Smooth scroll target highlight
+  const sponsorLinks = document.querySelectorAll('a[href="#title-sponsorship"]');
+  sponsorLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const targetCard = document.getElementById('title-sponsorship');
+      if (targetCard) {
+        targetCard.classList.remove('targeted-flash');
+        void targetCard.offsetWidth;
+        targetCard.classList.add('targeted-flash');
+        setTimeout(() => {
+          targetCard.classList.remove('targeted-flash');
+        }, 2500);
+      }
+    });
+  });
+
   // ─── Navbar Scroll Effect ───────────────
   const handleScroll = () => {
     if (window.scrollY > 60) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
+    }
+
+    // Toggle Floating Title Sponsor Pill on scroll
+    if (sponsorFloatingPill && !pillDismissed) {
+      if (window.scrollY > 380) {
+        sponsorFloatingPill.classList.add('sfp-visible');
+      } else {
+        sponsorFloatingPill.classList.remove('sfp-visible');
+      }
     }
 
     // Active link highlight
