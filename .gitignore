@@ -4,3 +4,12 @@ implementation_plan.md
 implementation_plan_seo_rank.md
 implementation_new_updates
 AOG_India_SEO_Reference.md
+
+# Email outreach automation tools (local/internal only)
+scripts/sponsor_outreach_mailer.py
+scripts/find_brand_leads.py
+scripts/leads_template.csv
+scripts/outreach_config.json
+scripts/outreach_config.example.json
+scripts/README_OUTREACH.md
+scripts/logs/

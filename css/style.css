@@ -4989,25 +4989,49 @@ body:not(.has-broadcast) .navbar {
 
 @media (max-width: 900px) {
   .broadcast-content {
-    font-size: 0.76rem;
+    display: none !important; /* Keep mobile bar clean and punchy with badge + CTA */
   }
 }
 
 @media (max-width: 768px) {
+  .broadcast-ticker {
+    height: var(--ticker-h, 32px) !important;
+    max-height: var(--ticker-h, 32px) !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
   .broadcast-ticker-container {
-    gap: 8px;
+    height: 100% !important;
+    max-height: 100% !important;
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+    justify-content: space-between !important;
+    padding: 0 10px !important;
+    box-sizing: border-box !important;
   }
   .broadcast-content {
-    display: none; /* Keep mobile bar clean and punchy with badge + CTA */
+    display: none !important; /* Strict enforcement: no text wrapping under any circumstance */
   }
   .broadcast-badge {
-    font-size: 0.62rem;
-    padding: 3px 8px;
-    letter-spacing: 0.8px;
+    font-size: 0.6rem !important;
+    padding: 2px 8px !important;
+    letter-spacing: 0.6px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+  .broadcast-actions {
+    flex-shrink: 0 !important;
+    gap: 6px !important;
   }
   .broadcast-cta-btn {
-    font-size: 0.65rem;
-    padding: 3px 9px;
+    font-size: 0.64rem !important;
+    padding: 3px 8px !important;
+    white-space: nowrap !important;
+  }
+  .broadcast-close-btn {
+    padding: 2px !important;
+    font-size: 1.1rem !important;
   }
 }
 
