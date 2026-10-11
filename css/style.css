@@ -2184,9 +2184,6 @@ body:not(.has-broadcast) .hero {
 
 
 
-  .agency-keyword-section {
-    display: none !important;
-  }
   .agency-kw-card {
     padding: 20px 16px;
   }
@@ -3901,8 +3898,7 @@ body:not(.has-broadcast) .hero {
     letter-spacing: 0.8px !important;
   }
 
-  /* 3-column tile grids for keywords and How It Works (3 cards per line) */
-  .page-brands .agency-kw-grid,
+  /* 3-column tile grid for How It Works on Agencies page */
   .page-agencies .agencies-steps {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
@@ -3918,7 +3914,6 @@ body:not(.has-broadcast) .hero {
 
   .page-brands .service-card,
   .page-agencies .service-card,
-  .page-brands .agency-kw-card,
   .page-agencies .about-highlight-card,
   .page-agencies .agency-step {
     padding: 6px 3px !important;
@@ -3936,7 +3931,6 @@ body:not(.has-broadcast) .hero {
 
   .page-brands .service-icon,
   .page-agencies .service-icon,
-  .page-brands .agency-kw-icon,
   .page-agencies .agency-step-num {
     font-size: 1rem !important;
     margin-bottom: 2px !important;
@@ -3957,7 +3951,6 @@ body:not(.has-broadcast) .hero {
 
   .page-brands .service-card h4,
   .page-agencies .service-card h4,
-  .page-brands .agency-kw-card h3,
   .page-agencies .about-highlight-card h4,
   .page-agencies .agency-step-content h4 {
     font-size: 0.54rem !important;
@@ -3976,7 +3969,6 @@ body:not(.has-broadcast) .hero {
   /* Hide verbose text on mobile for small clean cards (preserved in DOM for SEO) */
   .page-brands .service-card p,
   .page-agencies .service-card p,
-  .page-brands .agency-kw-card p,
   .page-agencies .about-highlight-card p,
   .page-agencies .agency-step-content p {
     display: none !important;
@@ -4434,6 +4426,9 @@ body:not(.has-broadcast) .hero {
    EXPANDING OPERATIONS: TITLE SPONSOR CARD
    ============================================ */
 .title-sponsor-card {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
   position: relative;
   background: linear-gradient(135deg, rgba(20, 24, 16, 0.95) 0%, rgba(10, 14, 8, 0.98) 100%);
   border: 1px solid rgba(255, 194, 58, 0.4);
@@ -4803,6 +4798,9 @@ body:not(.has-broadcast) .hero {
 #title-sponsorship {
   scroll-margin-top: 100px;
   transition: box-shadow 0.6s ease, border-color 0.6s ease;
+}
+body.has-broadcast #title-sponsorship {
+  scroll-margin-top: 125px;
 }
 
 #title-sponsorship:target,
@@ -5185,5 +5183,33 @@ body:not(.has-broadcast) .navbar {
   }
   .sfp-arrow {
     display: none;
+  }
+}
+
+/* ── Mobile: hide agency-keyword-section sections (SEO/content), but show title-sponsorship card only ── */
+@media (max-width: 768px) {
+  /* Restore original hide for both #gaming-marketing-agency-india (index) and #why-aog-brands (for-brands) */
+  .agency-keyword-section {
+    display: none !important;
+  }
+
+  /* Exception: show #why-aog-brands container so #title-sponsorship inside it can be visible */
+  #why-aog-brands {
+    display: block !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* Hide the "Why Brands Choose..." heading and the 4-card grid inside #why-aog-brands */
+  #why-aog-brands .section-heading,
+  #why-aog-brands .agency-kw-grid {
+    display: none !important;
+  }
+
+  /* Make the container inside #why-aog-brands have correct padding */
+  #why-aog-brands > .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 }

@@ -49,7 +49,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=2026.2">
+  <link rel="stylesheet" href="css/style.css?v=2026.3">
   <link rel="stylesheet" href="css/hero-mosaic.min.css">
 
   <!-- JSON-LD Structured Data -->
@@ -310,35 +310,9 @@
   <!-- ========== WHY AOG FOR BRANDS ========== -->
   <section class="agency-keyword-section" id="why-aog-brands" aria-label="Why brands choose AOG India Esports for gaming marketing">
     <div class="container">
-      <div class="section-heading" data-aos="fade-up">
-        <h2>Why Brands Choose <span>AOG India Esports</span></h2>
-        <p>India's gaming and Gen Z creator marketing specialist &mdash; from BGMI campaigns to mobile game launches and hardware reviews.</p>
-      </div>
-      <div class="agency-kw-grid" data-aos="fade-up" data-aos-delay="100">
-        <div class="agency-kw-card">
-          <div class="agency-kw-icon"><i class='bx bx-joystick'></i></div>
-          <h3>BGMI &amp; Mobile Gaming Campaigns</h3>
-          <p>Tap India's massive BGMI and mobile gaming community through sponsored gameplay, dedicated gameplay videos, and creator integrations with top-ranked BGMI creators.</p>
-        </div>
-        <div class="agency-kw-card">
-          <div class="agency-kw-icon"><i class='bx bx-rocket'></i></div>
-          <h3>Game Launch Marketing India</h3>
-          <p>Launch your mobile or PC game in India with a coordinated creator campaign &mdash; gameplay reveals, first-look videos, review seeding, and YouTube Shorts across our creator network.</p>
-        </div>
-        <div class="agency-kw-card">
-          <div class="agency-kw-icon"><i class='bx bx-devices'></i></div>
-          <h3>Gaming Hardware &amp; Tech Brand Promotions</h3>
-          <p>Drive product discovery for headsets, peripherals, gaming chairs, smartphones, and tech accessories through authentic creator reviews and unboxing content.</p>
-        </div>
-        <div class="agency-kw-card">
-          <div class="agency-kw-icon"><i class='bx bx-bar-chart-alt-2'></i></div>
-          <h3>Performance Reporting</h3>
-          <p>Every campaign includes detailed post-campaign reporting &mdash; views, reach, engagement, and platform-specific metrics &mdash; so you know exactly what your investment delivered.</p>
-        </div>
-      </div>
 
       <!-- ========== TITLE SPONSORSHIP OPPORTUNITY ========== -->
-      <div class="title-sponsor-card" id="title-sponsorship" data-aos="fade-up">
+      <div class="title-sponsor-card" id="title-sponsorship">
         <div class="sponsor-card-top-row">
           <div class="sponsor-card-badge">
             <i class='bx bx-crown'></i> Title Partnership 2026/27
@@ -376,6 +350,33 @@
             </a>
           </div>
 
+        </div>
+      </div>
+
+      <div class="section-heading" data-aos="fade-up" style="margin-top: 48px;">
+        <h2>Why Brands Choose <span>AOG India Esports</span></h2>
+        <p>India's gaming and Gen Z creator marketing specialist &mdash; from BGMI campaigns to mobile game launches and hardware reviews.</p>
+      </div>
+      <div class="agency-kw-grid" data-aos="fade-up" data-aos-delay="100">
+        <div class="agency-kw-card">
+          <div class="agency-kw-icon"><i class='bx bx-joystick'></i></div>
+          <h3>BGMI &amp; Mobile Gaming Campaigns</h3>
+          <p>Tap India's massive BGMI and mobile gaming community through sponsored gameplay, dedicated gameplay videos, and creator integrations with top-ranked BGMI creators.</p>
+        </div>
+        <div class="agency-kw-card">
+          <div class="agency-kw-icon"><i class='bx bx-rocket'></i></div>
+          <h3>Game Launch Marketing India</h3>
+          <p>Launch your mobile or PC game in India with a coordinated creator campaign &mdash; gameplay reveals, first-look videos, review seeding, and YouTube Shorts across our creator network.</p>
+        </div>
+        <div class="agency-kw-card">
+          <div class="agency-kw-icon"><i class='bx bx-devices'></i></div>
+          <h3>Gaming Hardware &amp; Tech Brand Promotions</h3>
+          <p>Drive product discovery for headsets, peripherals, gaming chairs, smartphones, and tech accessories through authentic creator reviews and unboxing content.</p>
+        </div>
+        <div class="agency-kw-card">
+          <div class="agency-kw-icon"><i class='bx bx-bar-chart-alt-2'></i></div>
+          <h3>Performance Reporting</h3>
+          <p>Every campaign includes detailed post-campaign reporting &mdash; views, reach, engagement, and platform-specific metrics &mdash; so you know exactly what your investment delivered.</p>
         </div>
       </div>
     </div>
@@ -724,8 +725,11 @@
       const scrollToSponsor = () => {
         const targetCard = document.getElementById('title-sponsorship');
         if (targetCard) {
-          const topPos = targetCard.getBoundingClientRect().top + window.pageYOffset - 90;
-          window.scrollTo({ top: topPos, behavior: 'smooth' });
+          const navH = document.getElementById('navbar')?.offsetHeight || 68;
+          const tickEl = document.getElementById('broadcastTicker');
+          const tickH = (document.body.classList.contains('has-broadcast') && tickEl) ? tickEl.offsetHeight : 0;
+          const topPos = targetCard.getBoundingClientRect().top + window.pageYOffset - (navH + tickH + 16);
+          window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
           targetCard.classList.remove('targeted-flash');
           void targetCard.offsetWidth;
           targetCard.classList.add('targeted-flash');

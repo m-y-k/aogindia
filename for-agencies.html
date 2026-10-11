@@ -49,7 +49,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=2026.2">
+  <link rel="stylesheet" href="css/style.css?v=2026.3">
   <link rel="stylesheet" href="css/hero-mosaic.min.css">
 
   <!-- JSON-LD Structured Data -->
@@ -823,8 +823,11 @@
       const scrollToSponsor = () => {
         const targetCard = document.getElementById('title-sponsorship');
         if (targetCard) {
-          const topPos = targetCard.getBoundingClientRect().top + window.pageYOffset - 90;
-          window.scrollTo({ top: topPos, behavior: 'smooth' });
+          const navH = document.getElementById('navbar')?.offsetHeight || 68;
+          const tickEl = document.getElementById('broadcastTicker');
+          const tickH = (document.body.classList.contains('has-broadcast') && tickEl) ? tickEl.offsetHeight : 0;
+          const topPos = targetCard.getBoundingClientRect().top + window.pageYOffset - (navH + tickH + 16);
+          window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
           targetCard.classList.remove('targeted-flash');
           void targetCard.offsetWidth;
           targetCard.classList.add('targeted-flash');
