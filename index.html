@@ -35,36 +35,36 @@
   <link rel="shortcut icon" type="image/png" href="images/favicon-64.png">
   <link rel="apple-touch-icon" href="images/favicon-64.png">
 
-  <!-- Fonts: Bebas Neue removed (unused). Chakra Petch weights trimmed to those actually used -->
+  <!-- DNS prefetch: resolve external origins early, zero blocking cost -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Fonts: preconnect + preload the CSS so text paints immediately -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Icons: Boxicons -->
+  <!-- Icons: Boxicons — preloaded so icons don't flash in after CSS -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" onload="this.rel='stylesheet'">
+  <noscript><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></noscript>
 
-  <!-- AOS: Animate on Scroll -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- AOS CSS: non-blocking -->
+  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.4/dist/aos.css" onload="this.rel='stylesheet'">
+  <noscript><link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"></noscript>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=2026.4">
-  <link rel="stylesheet" href="css/team-blog.css">
-  <script>
-    window.toggleSeeMore = function(btn) {
-      if (!btn) return;
-      var parent = btn.parentElement;
-      if (!parent) return;
-      var moreText = parent.querySelector('.more-text');
-      if (moreText) {
-        var isExpanded = moreText.classList.toggle('expanded');
-        btn.textContent = isExpanded ? ' show less' : '...see more';
-        btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-      }
-    };
-  </script>
-  <link rel="stylesheet" href="css/hero-mosaic.min.css">
+  <!-- Styles: single minified bundle, non-blocking preload -->
+  <link rel="preload" as="style" href="css/aog.min.css?v=2026.5" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/aog.min.css?v=2026.5"></noscript>
+
+  <!-- Prefetch next likely navigation (blog hub) -->
+  <link rel="prefetch" href="blog/">
+  <!-- hero-mosaic styles: non-blocking preload -->
+  <link rel="preload" as="style" href="css/hero-mosaic.min.css" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/hero-mosaic.min.css"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -393,11 +393,11 @@
 
     <!-- Creator Background Collage -->
     <div class="hero-bg-collage" aria-hidden="true">
-      <div class="hbg-photo"><img src="images/kaur.webp" alt="" width="720" height="960" decoding="async"></div>
-      <div class="hbg-photo"><img src="images/fizzer.webp" alt="" width="800" height="800" decoding="async"></div>
-      <div class="hbg-photo"><img src="images/faceme.webp" alt="" width="720" height="1278" decoding="async"></div>
-      <div class="hbg-photo"><img src="images/samar.webp" alt="" width="800" height="806" decoding="async"></div>
-      <div class="hbg-photo"><img src="images/miss-amy.webp" alt="" width="800" height="786" decoding="async"></div>
+      <div class="hbg-photo"><img src="images/kaur.webp" alt="" width="720" height="960" decoding="async" loading="lazy"></div>
+      <div class="hbg-photo"><img src="images/fizzer.webp" alt="" width="800" height="800" decoding="async" loading="lazy"></div>
+      <div class="hbg-photo"><img src="images/faceme.webp" alt="" width="720" height="1278" decoding="async" loading="lazy"></div>
+      <div class="hbg-photo"><img src="images/samar.webp" alt="" width="800" height="806" decoding="async" loading="lazy"></div>
+      <div class="hbg-photo"><img src="images/miss-amy.webp" alt="" width="800" height="786" decoding="async" loading="lazy"></div>
     </div>
     
     <!-- Smooth gradient overlays to make text readable -->
@@ -1383,16 +1383,31 @@
     </button>
   </aside>
 
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <!-- GSAP + ScrollTrigger for roadmap animation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- AOS, GSAP, ScrollTrigger: all deferred — loads after HTML parsed, doesn't block paint -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <!-- Main Script -->
-  <script src="js/main.js?v=2026.4" defer></script>
+  <script src="js/main.js?v=2026.5" defer></script>
+
+  <!-- toggleSeeMore: tiny click handler, deferred to keep <head> clean -->
+  <script defer>
+    window.toggleSeeMore = function(btn) {
+      if (!btn) return;
+      var parent = btn.parentElement;
+      if (!parent) return;
+      var moreText = parent.querySelector('.more-text');
+      if (moreText) {
+        var isExpanded = moreText.classList.toggle('expanded');
+        btn.textContent = isExpanded ? ' show less' : '...see more';
+        btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      }
+    };
+  </script>
 
   <script>
-    /* ── Roadmap GSAP ScrollTrigger animation ── */
+    /* ── Roadmap GSAP ScrollTrigger animation ── runs after deferred scripts load ── */
+    window.addEventListener('load', function () {
     (function () {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
       gsap.registerPlugin(ScrollTrigger);
@@ -1465,6 +1480,7 @@
         }
       });
     })();
+    }); // end window load
   </script>
 </body>
 </html>

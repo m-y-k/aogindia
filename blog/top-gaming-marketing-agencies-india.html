@@ -31,15 +31,25 @@
   <link rel="shortcut icon" type="image/png" href="../images/favicon-64.png">
   <link rel="apple-touch-icon" href="../images/favicon-64.png">
 
-  <!-- Fonts & Icons -->
+  <!-- DNS prefetch: resolve CDN origins early -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+
+  <!-- Fonts & Icons: non-blocking preload, weights trimmed to 400 & 600 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=2026.4">
-  <link rel="stylesheet" href="../css/team-blog.css">
+  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" onload="this.rel='stylesheet'">
+  <noscript><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.4/dist/aos.css" onload="this.rel='stylesheet'">
+  <noscript><link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"></noscript>
+
+  <!-- Styles: single minified bundle, non-blocking -->
+  <link rel="preload" as="style" href="../css/aog.min.css?v=2026.5" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="../css/aog.min.css?v=2026.5"></noscript>
 
   <!-- Structured Data: BlogPosting + FAQPage + BreadcrumbList -->
   <script type="application/ld+json">

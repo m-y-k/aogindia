@@ -35,22 +35,30 @@
   <link rel="shortcut icon" type="image/png" href="images/favicon-64.png">
   <link rel="apple-touch-icon" href="images/favicon-64.png">
 
-  <!-- Fonts: Bebas Neue removed (unused) -->
+  <!-- DNS prefetch: resolve CDN origins before they're needed -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Fonts: non-blocking preload, weights trimmed to 400 & 600 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Icons: Boxicons -->
+  <!-- Icons: Boxicons non-blocking -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" onload="this.rel='stylesheet'">
+  <noscript><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></noscript>
 
-  <!-- AOS: Animate on Scroll -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- AOS CSS: non-blocking -->
+  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.4/dist/aos.css" onload="this.rel='stylesheet'">
+  <noscript><link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"></noscript>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=2026.3">
-  <link rel="stylesheet" href="css/hero-mosaic.min.css">
+  <!-- Styles: single minified bundle, non-blocking -->
+  <link rel="preload" as="style" href="css/aog.min.css?v=2026.5" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/aog.min.css?v=2026.5"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
