@@ -49,7 +49,7 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=2026.3">
+  <link rel="stylesheet" href="css/style.css?v=2026.4">
   <link rel="stylesheet" href="css/team-blog.css">
   <script>
     window.toggleSeeMore = function(btn) {
@@ -1156,8 +1156,138 @@
             <div class="form-group-dynamic" id="group-creator-channel">
               <div class="form-group-dynamic-content">
                 <div class="form-group">
-                  <label for="channelName">Channel / Creator Name</label>
+                  <label for="channelName" class="required-label">Channel / Creator Name</label>
                   <input type="text" id="channelName" name="channel_name" placeholder="e.g. Dynamo Gaming">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-creator-link">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="channelLink" class="required-label">YouTube / Social Profile Link</label>
+                  <input type="url" id="channelLink" name="channel_link" placeholder="e.g. https://youtube.com/@channel">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-dynamic" id="group-creator-subs">
+              <div class="form-group-dynamic-content">
+                <div class="rate-card-grid">
+                  <div class="form-group">
+                    <label for="creatorSubs" class="required-label">Subscribers / Followers</label>
+                    <input type="text" id="creatorSubs" name="creator_subs" placeholder="e.g. 250K+">
+                  </div>
+                  <div class="form-group">
+                    <label for="creatorAvgViews">Average Views per Content</label>
+                    <input type="text" id="creatorAvgViews" name="creator_avg_views" placeholder="e.g. 20K - 50K views">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 1. Content Category (Gaming / Tech / Other) -->
+            <div class="form-group-dynamic" id="group-creator-category">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="creatorCategory" class="required-label">What is your Content Category?</label>
+                  <select id="creatorCategory" name="creator_category">
+                    <option value="" disabled selected>Select category (Gaming / Tech / Other)</option>
+                    <option value="Gaming">Gaming (Mobile &amp; PC Games)</option>
+                    <option value="Tech">Tech (Smartphones, PC Hardware, Gadgets)</option>
+                    <option value="Other">Other (Entertainment, Vlogs, Lifestyle)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Creator Niche Field -->
+            <div class="form-group-dynamic" id="group-creator-niche">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label for="creatorNiche">Primary Game / Tech Focus</label>
+                  <select id="creatorNiche" name="creator_niche">
+                    <option value="" disabled selected>Select your focus</option>
+                    <optgroup label="Gaming (Mobile)">
+                      <option value="BGMI / PUBG Mobile">BGMI / PUBG Mobile</option>
+                      <option value="Free Fire MAX">Free Fire MAX</option>
+                      <option value="Call of Duty Mobile">Call of Duty Mobile</option>
+                      <option value="Other Mobile Game">Other Mobile Game</option>
+                    </optgroup>
+                    <optgroup label="Gaming (PC &amp; Console)">
+                      <option value="Valorant">Valorant</option>
+                      <option value="CS2 / CS:GO">CS2 / Counter-Strike</option>
+                      <option value="Minecraft">Minecraft / GTA V</option>
+                      <option value="Other PC Game">Other PC Game</option>
+                    </optgroup>
+                    <optgroup label="Tech &amp; Hardware">
+                      <option value="Smartphones &amp; Reviews">Smartphones &amp; Mobile Tech</option>
+                      <option value="PC Building &amp; Components">PC Building &amp; GPUs/CPUs</option>
+                      <option value="Peripherals &amp; Audio">Gaming Peripherals &amp; Audio</option>
+                      <option value="Consumer Gadgets">Consumer Gadgets &amp; Unboxing</option>
+                    </optgroup>
+                    <option value="Other / Multi-genre">Other / Multi-genre</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Content Type / Formats (Live-stream / Shorts / Long-form) -->
+            <div class="form-group-dynamic" id="group-creator-content-types">
+              <div class="form-group-dynamic-content">
+                <div class="form-group">
+                  <label class="required-label">What Content Types Do You Create? (Select all that apply)</label>
+                  <div class="creator-format-checkboxes">
+                    <label class="format-chip">
+                      <input type="checkbox" id="formatLivestream" name="format_livestream" value="Live-stream">
+                      <span class="chip-label"><i class='bx bx-broadcast'></i> Live-stream</span>
+                    </label>
+                    <label class="format-chip">
+                      <input type="checkbox" id="formatShorts" name="format_shorts" value="Shorts/Reels">
+                      <span class="chip-label"><i class='bx bx-mobile-vibration'></i> Shorts / Reels</span>
+                    </label>
+                    <label class="format-chip">
+                      <input type="checkbox" id="formatLongform" name="format_longform" value="Long-form">
+                      <span class="chip-label"><i class='bx bx-video'></i> Long-form Video</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Rates per Content Type -->
+            <!-- Live-Stream Rate -->
+            <div class="form-group-dynamic" id="group-rate-livestream">
+              <div class="form-group-dynamic-content">
+                <div class="form-group rate-card-group">
+                  <label for="rateLivestream"><i class='bx bx-broadcast'></i> Live-Stream Rate (INR)</label>
+                  <input type="text" id="rateLivestream" name="rate_livestream" placeholder="e.g. ₹5,000 / stream or ₹2,000 / hour">
+                </div>
+              </div>
+            </div>
+
+            <!-- Shorts / Reel Rate -->
+            <div class="form-group-dynamic" id="group-rate-shorts">
+              <div class="form-group-dynamic-content">
+                <div class="form-group rate-card-group">
+                  <label for="rateShorts"><i class='bx bx-mobile-vibration'></i> Shorts / Reel Rate (INR)</label>
+                  <input type="text" id="rateShorts" name="rate_shorts" placeholder="e.g. ₹3,500 per short">
+                </div>
+              </div>
+            </div>
+
+            <!-- Long-form Rates -->
+            <div class="form-group-dynamic" id="group-rate-longform">
+              <div class="form-group-dynamic-content">
+                <div class="rate-card-grid">
+                  <div class="form-group rate-card-group">
+                    <label for="rateLongformIntegrated"><i class='bx bx-video'></i> Long-form 60-90s Integration (INR)</label>
+                    <input type="text" id="rateLongformIntegrated" name="rate_longform_integrated" placeholder="e.g. ₹7,500">
+                  </div>
+                  <div class="form-group rate-card-group">
+                    <label for="rateLongformDedicated"><i class='bx bx-movie-play'></i> Long-form Dedicated Video (INR)</label>
+                    <input type="text" id="rateLongformDedicated" name="rate_longform_dedicated" placeholder="e.g. ₹18,000">
+                  </div>
                 </div>
               </div>
             </div>
@@ -1172,85 +1302,6 @@
                     <option value="Sponsorship Support">Brand Sponsorship Support</option>
                     <option value="Channel Optimization">Channel Optimization / Growth</option>
                     <option value="Other">Other Inquiry</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group-dynamic" id="group-creator-link">
-              <div class="form-group-dynamic-content">
-                <div class="form-group">
-                  <label for="channelLink">YouTube / Social Link</label>
-                  <input type="url" id="channelLink" name="channel_link" placeholder="e.g. https://youtube.com/@DynamoGaming">
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group-dynamic" id="group-creator-subs">
-              <div class="form-group-dynamic-content">
-                <div class="form-group">
-                  <label for="creatorSubs">Subscriber / Follower Count</label>
-                  <input type="text" id="creatorSubs" name="creator_subs" placeholder="e.g. 500K+">
-                </div>
-              </div>
-            </div>
-
-            <!-- Creator Platform Field -->
-            <div class="form-group-dynamic" id="group-creator-platform">
-              <div class="form-group-dynamic-content">
-                <div class="form-group">
-                  <label for="creatorPlatform">Primary Platform</label>
-                  <select id="creatorPlatform" name="creator_platform">
-                    <option value="" disabled selected>Select your platform</option>
-                    <option value="YouTube">YouTube</option>
-                    <option value="Instagram">Instagram</option>
-                    <option value="Both YouTube and Instagram">Both YouTube and Instagram</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Creator Gaming Type Field -->
-            <div class="form-group-dynamic" id="group-creator-gaming-type">
-              <div class="form-group-dynamic-content">
-                <div class="form-group">
-                  <label for="creatorGamingType">PC or Mobile Gaming?</label>
-                  <select id="creatorGamingType" name="creator_gaming_type">
-                    <option value="" disabled selected>Select type</option>
-                    <option value="Mobile Gaming">Mobile Gaming</option>
-                    <option value="PC Gaming">PC Gaming</option>
-                    <option value="Both PC and Mobile">Both PC and Mobile</option>
-                    <option value="Tech / Not Gaming">Tech / Not Gaming</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Creator Niche Field -->
-            <div class="form-group-dynamic" id="group-creator-niche">
-              <div class="form-group-dynamic-content">
-                <div class="form-group">
-                  <label for="creatorNiche">Primary Game or Tech Niche</label>
-                  <select id="creatorNiche" name="creator_niche">
-                    <option value="" disabled selected>Select your niche</option>
-                    <optgroup label="Mobile Games">
-                      <option value="BGMI / PUBG Mobile">BGMI / PUBG Mobile</option>
-                      <option value="Free Fire">Free Fire</option>
-                      <option value="Call of Duty Mobile">Call of Duty Mobile</option>
-                      <option value="Other Mobile Game">Other Mobile Game</option>
-                    </optgroup>
-                    <optgroup label="PC Games">
-                      <option value="Valorant">Valorant</option>
-                      <option value="CS2 / CS:GO">CS2 / CS:GO</option>
-                      <option value="Minecraft">Minecraft</option>
-                      <option value="Other PC Game">Other PC Game</option>
-                    </optgroup>
-                    <optgroup label="Tech">
-                      <option value="Smartphones / Reviews">Smartphones / Reviews</option>
-                      <option value="Gadgets / Unboxing">Gadgets / Unboxing</option>
-                      <option value="Gaming Peripherals / Gear">Gaming Peripherals / Gear</option>
-                    </optgroup>
-                    <option value="Other">Other</option>
                   </select>
                 </div>
               </div>
@@ -1338,7 +1389,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <!-- Main Script -->
-  <script src="js/main.min.js" defer></script>
+  <script src="js/main.js?v=2026.4" defer></script>
 
   <script>
     /* ── Roadmap GSAP ScrollTrigger animation ── */

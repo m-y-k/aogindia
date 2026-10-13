@@ -630,17 +630,35 @@ def run_autopilot_cycle(config: dict, force: bool = False, dry_run: bool = False
         print("[!] Outside prime sending window. Run with '--now' to send anyway, or '--daemon' to wait.")
         return
 
-    # 2. Check if we have curated pending leads in leads_template.csv first
+    # 2. Pull latest leads from Google Sheet to capture any rows added in the sheet
+    try:
+        from sync_to_google_sheet import pull_leads_from_google_sheet
+        pull_leads_from_google_sheet()
+    except Exception:
+        pass
+
+    # 3. Check for pending leads in leads_template.csv (with duplicate & sent safeguards)
+    sent_map = state.get("sent_emails", {})
+    unsubs = set(state.get("unsubscribed", []))
     existing_csv_leads = []
     if CSV_FILE.exists():
         with open(CSV_FILE, "r", encoding="utf-8-sig") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                if row.get("status", "").lower() in ["pending", ""] and row.get("email"):
+                em = row.get("email", "").lower().strip()
+                st = row.get("status", "").lower().strip()
+                if em and st in ["pending", ""]:
+                    # Safeguard: never email anyone who was already contacted
+                    if em in sent_map:
+                        print(f"    [SKIP - ALREADY SENT] {row.get('company_name')}: {em} (emailed on {sent_map[em]})")
+                        continue
+                    if em in unsubs:
+                        print(f"    [SKIP - UNSUBSCRIBED] {row.get('company_name')}: {em}")
+                        continue
                     existing_csv_leads.append(row)
 
     if existing_csv_leads:
-        print(f"[*] Found {len(existing_csv_leads)} real decision-maker leads in {CSV_FILE.name}")
+        print(f"[*] Found {len(existing_csv_leads)} fresh pending lead(s) ready for outreach")
         daily_limit = config.get("autopilot", {}).get("daily_send_limit", 25)
         batch_leads = existing_csv_leads[:daily_limit]
     else:
@@ -742,6 +760,9 @@ def run_autopilot_cycle(config: dict, force: bool = False, dry_run: bool = False
 
     sent_count = 0
     all_csv_rows = []
+    if CSV_FILE.exists():
+        with open(CSV_FILE, "r", encoding="utf-8-sig") as f:
+            all_csv_rows = list(csv.DictReader(f))
 
     for idx, lead in enumerate(batch_leads, start=1):
         to_email = lead["email"]
@@ -795,19 +816,29 @@ def run_autopilot_cycle(config: dict, force: bool = False, dry_run: bool = False
             if lead.get("domain") and lead["domain"] not in state["brands_contacted"]:
                 state["brands_contacted"].append(lead["domain"])
 
-            all_csv_rows.append({
-                "company_name": company,
-                "contact_name": contact_name,
-                "designation": lead.get("title", lead.get("designation", "Marketing")),
-                "email": to_email,
-                "category": lead.get("category", "Gaming"),
-                "custom_compliment": lead.get("custom_compliment", ""),
-                "deck_angle": "title_sponsor",
-                "verification_status": lead.get("verification_status", "unverified"),
-                "status": "sent",
-                "sent_at": now_str,
-                "notes": f"Autopilot sent via Zoho ({lead.get('title', lead.get('designation', 'Marketing'))})",
-            })
+            # Update or append in all_csv_rows preserving all existing leads
+            found = False
+            for r in all_csv_rows:
+                if r.get("email", "").lower().strip() == to_email.lower().strip():
+                    r["status"] = "sent"
+                    r["sent_at"] = now_str
+                    r["notes"] = f"Autopilot sent via Zoho ({lead.get('title', lead.get('designation', 'Marketing'))})"
+                    found = True
+                    break
+            if not found:
+                all_csv_rows.append({
+                    "company_name": company,
+                    "contact_name": contact_name,
+                    "designation": lead.get("title", lead.get("designation", "Marketing")),
+                    "email": to_email,
+                    "category": lead.get("category", "Gaming"),
+                    "custom_compliment": lead.get("custom_compliment", ""),
+                    "deck_angle": "title_sponsor",
+                    "verification_status": lead.get("verification_status", "unverified"),
+                    "status": "sent",
+                    "sent_at": now_str,
+                    "notes": f"Autopilot sent via Zoho ({lead.get('title', lead.get('designation', 'Marketing'))})",
+                })
 
             save_state(state)
             sync_to_csv(all_csv_rows)
@@ -1316,6 +1347,14 @@ def run_weekly_discovery(config: dict):
             writer.writeheader()
             writer.writerows(all_rows)
         print(f"\n[OK] Weekly discovery done: {len(new_leads)} new leads added (total: {len(all_rows)}).")
+
+        # Automatically sync updated leads to Google Sheet
+        try:
+            from sync_to_google_sheet import push_to_google_sheet_webhook
+            push_to_google_sheet_webhook()
+        except Exception:
+            pass
+
         log_msg = f"{timestamp} | Added {len(new_leads)} new leads (total: {len(all_rows)})\n"
     else:
         print("\n[OK] Weekly discovery done: No new leads found this cycle.")

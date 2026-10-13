@@ -273,9 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGroup('group-brand-query', true, true);
 
         toggleGroup('group-creator-channel', false);
-        toggleGroup('group-creator-query', false);
         toggleGroup('group-creator-link', false);
         toggleGroup('group-creator-subs', false);
+        toggleGroup('group-creator-category', false);
+        toggleGroup('group-creator-niche', false);
+        toggleGroup('group-creator-content-types', false);
+        toggleGroup('group-rate-livestream', false);
+        toggleGroup('group-rate-shorts', false);
+        toggleGroup('group-rate-longform', false);
+        toggleGroup('group-creator-query', false);
 
         // Budget is required for Campaigns and Sponsorships
         const needsBudget = (brandQueryType === 'Campaign Collaboration' || brandQueryType === 'Long-term Sponsorship');
@@ -290,15 +296,25 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGroup('group-brand-budget', false);
 
         toggleGroup('group-creator-channel', true, true);
-        toggleGroup('group-creator-query', true, true);
-        toggleGroup('group-creator-link', true, true); // Channel Link is now mandatory for Creators
-        toggleGroup('group-creator-subs', true, true); // Subscriber Count is now mandatory for Creators
-        toggleGroup('group-creator-platform', true, false);
-        toggleGroup('group-creator-gaming-type', true, false);
+        toggleGroup('group-creator-link', true, true); // Channel Link is mandatory for Creators
+        toggleGroup('group-creator-subs', true, true); // Subscriber Count is mandatory for Creators
+        toggleGroup('group-creator-category', true, true); // Content Category is mandatory
         toggleGroup('group-creator-niche', true, false);
+        toggleGroup('group-creator-content-types', true, false);
 
-        if (messageLabel) messageLabel.textContent = 'Channel & Growth Details';
-        if (messageInput) messageInput.placeholder = 'Tell us about your audience, your primary games, and what you hope to achieve with AOG...';
+        // Dynamic rates reveal according to checked content types
+        const hasLivestream = !!document.getElementById('formatLivestream')?.checked;
+        const hasShorts = !!document.getElementById('formatShorts')?.checked;
+        const hasLongform = !!document.getElementById('formatLongform')?.checked;
+
+        toggleGroup('group-rate-livestream', hasLivestream, false);
+        toggleGroup('group-rate-shorts', hasShorts, false);
+        toggleGroup('group-rate-longform', hasLongform, false);
+
+        toggleGroup('group-creator-query', true, false);
+
+        if (messageLabel) messageLabel.textContent = 'Creator Pitch & Bio';
+        if (messageInput) messageInput.placeholder = 'Tell us about your audience, current sponsorship experience, and what you hope to achieve with AOG...';
       } else {
         // Hide all conditional groups
         toggleGroup('group-brand-name', false);
@@ -307,12 +323,15 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGroup('group-brand-budget', false);
         
         toggleGroup('group-creator-channel', false);
-        toggleGroup('group-creator-query', false);
         toggleGroup('group-creator-link', false);
         toggleGroup('group-creator-subs', false);
-        toggleGroup('group-creator-platform', false);
-        toggleGroup('group-creator-gaming-type', false);
+        toggleGroup('group-creator-category', false);
         toggleGroup('group-creator-niche', false);
+        toggleGroup('group-creator-content-types', false);
+        toggleGroup('group-rate-livestream', false);
+        toggleGroup('group-rate-shorts', false);
+        toggleGroup('group-rate-longform', false);
+        toggleGroup('group-creator-query', false);
 
         if (messageLabel) messageLabel.textContent = 'Your Message';
         if (messageInput) messageInput.placeholder = 'Tell us about your campaign...';
@@ -389,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Attach selectors change listeners
     const selectors = ['userType', 'brandQueryType', 'creatorQueryType', 'discovery',
-      'creatorPlatform', 'creatorGamingType', 'creatorNiche'];
+      'creatorCategory', 'creatorNiche', 'formatLivestream', 'formatShorts', 'formatLongform'];
     selectors.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('change', updateFormFields);
@@ -440,6 +459,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!botcheck || !botcheck.checked) {
         const fd = new FormData(contactForm);
         fd.set('from_url', 'index.html'); // source page identifier
+
+        // Consolidate creator content types into a clean readable string
+        const formats = [];
+        if (document.getElementById('formatLivestream')?.checked) formats.push('Live-stream');
+        if (document.getElementById('formatShorts')?.checked) formats.push('Shorts/Reels');
+        if (document.getElementById('formatLongform')?.checked) formats.push('Long-form Video');
+        if (formats.length > 0) {
+          fd.set('creator_content_types', formats.join(', '));
+        }
+
         fetch(SHEET_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',

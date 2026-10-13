@@ -43,8 +43,9 @@ CONFIG_FILE = BASE_DIR / "outreach_config.json"
 
 APPS_SCRIPT_CODE = '''// =====================================================================
 // AOG India - Unified Webhook Handler
-// 1. Existing Website Contact Forms -> 'aogindia_form_leads' (Untouched)
-// 2. Python Sponsor Outreach List   -> GID 1842660684 (Outreach Tab)
+// 1. Python Sponsor Outreach List   -> GID 1842660684 (Outreach Tab - Replaced sync)
+// 2. Creator Rates & Roster Form    -> 'aogindia_creator_rates' (Appended)
+// 3. Website Contact Leads          -> 'aogindia_form_leads' (Appended)
 // =====================================================================
 
 function doPost(e) {
@@ -104,9 +105,71 @@ function doPost(e) {
   }
 
   // -------------------------------------------------------------------
-  // BRANCH 2: WEBSITE FORM SUBMISSIONS (Existing behavior - 100% untouched)
+  // BRANCH 2: CREATOR RATES & ROSTER FORM (-> Dedicated Tab 'aogindia_creator_rates')
+  // New creator submissions append after the last line!
   // -------------------------------------------------------------------
-  var sheet = ss.getSheetByName('aogindia_form_leads') || ss.getSheets()[25];
+  if (d.user_type === 'creator' || d.creator_category || d.rate_livestream || d.rate_shorts || d.rate_longform_integrated) {
+    var creatorSheet = ss.getSheetByName('aogindia_creator_rates');
+    if (!creatorSheet) {
+      creatorSheet = ss.insertSheet('aogindia_creator_rates');
+    }
+    var creatorHeaders = [
+      'Timestamp',
+      'Channel / Creator Name',
+      'Full Name',
+      'Email',
+      'Channel / Social Link',
+      'Category',
+      'Primary Niche / Game',
+      'Content Formats Produced',
+      'Live-Stream Rate (INR)',
+      'Shorts / Reel Rate (INR)',
+      'Long-form Integrated Rate (INR)',
+      'Long-form Dedicated Rate (INR)',
+      'Subscriber / Follower Count',
+      'Average Views',
+      'Inquiry Type',
+      'Message / Pitch',
+      'Status'
+    ];
+    if (creatorSheet.getLastRow() === 0) {
+      creatorSheet.appendRow(creatorHeaders);
+      var hRange = creatorSheet.getRange(1, 1, 1, creatorHeaders.length);
+      hRange.setFontWeight('bold');
+      hRange.setBackground('#0d100c');
+      hRange.setFontColor('#ff7a1a');
+    }
+
+    creatorSheet.appendRow([
+      new Date(),
+      d.channel_name || '',
+      d.name || '',
+      d.email || '',
+      d.channel_link || '',
+      d.creator_category || '',
+      d.creator_niche || '',
+      d.creator_content_types || '',
+      d.rate_livestream || 'N/A',
+      d.rate_shorts || 'N/A',
+      d.rate_longform_integrated || 'N/A',
+      d.rate_longform_dedicated || 'N/A',
+      d.creator_subs || '',
+      d.creator_avg_views || '',
+      d.creator_query_type || '',
+      d.message || '',
+      'New Creator'
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok', type: 'creator_rates' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // -------------------------------------------------------------------
+  // BRANCH 3: WEBSITE CONTACT FORMS (Brands / Agencies / General Inquiries)
+  // Appends after the last line!
+  // -------------------------------------------------------------------
+  var sheet = ss.getSheetByName('aogindia_form_leads') || ss.getSheets()[0];
   var headers = ['Timestamp','Source Page','Full Name','Email','Profile / Lead Type','Company / Brand Name','Company Website','Brand Inquiry Type','Budget Range','Channel / Creator Name','Creator Inquiry Type','Channel / Social Link','Follower / Sub Count','Agency Name','Agency Type','Discovery Source','Discovery Other','Message','Status','Assigned To','Follow-up Date','Notes'];
   if (sheet.getLastRow() === 0) sheet.appendRow(headers);
 
@@ -124,6 +187,37 @@ function doPost(e) {
     'New', '', '', ''
   ]);
   return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
+}
+
+// -------------------------------------------------------------------
+// PULL LEADS: Allows python script to read live entries from Google Sheet
+// -------------------------------------------------------------------
+function doGet(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var outreachSheet = null;
+  var allSheets = ss.getSheets();
+  for (var s = 0; s < allSheets.length; s++) {
+    if (allSheets[s].getSheetId() == 1842660684) {
+      outreachSheet = allSheets[s];
+      break;
+    }
+  }
+  if (!outreachSheet) {
+    outreachSheet = ss.getSheetByName('aog_title_sponsor_brand_outreach_list_by_py_script') || ss.getActiveSheet();
+  }
+
+  var data = outreachSheet.getDataRange().getValues();
+  if (data.length <= 1) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok', count: 0, headers: [], rows: [] }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  var headers = data[0];
+  var rows = data.slice(1);
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', count: rows.length, headers: headers, rows: rows }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 '''
 
@@ -263,10 +357,70 @@ def set_webhook_url(url: str):
     push_to_google_sheet_webhook(url.strip())
 
 
+def pull_leads_from_google_sheet():
+    """
+    Pulls live leads directly from Yusuf's Google Sheet and updates scripts/leads_template.csv.
+    Enables managing and adding leads in Google Sheets as your primary command center.
+    """
+    print("[*] Pulling latest leads from Google Sheet...")
+    cfg = {}
+    if CONFIG_FILE.exists():
+        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+            cfg = json.load(f)
+
+    webhook_url = cfg.get("google_sheet", {}).get("webhook_url", "").strip()
+    sheet_id = cfg.get("google_sheet", {}).get("spreadsheet_id", "10sTTE7wII1sC90_MUyPskaNo6aBDQ2wlNv4YDT-TA-s")
+    gid = cfg.get("google_sheet", {}).get("gid", "1842660684")
+
+    headers, rows = [], []
+
+    # Method 1: Webhook doGet
+    if webhook_url:
+        try:
+            req = urllib.request.Request(webhook_url, headers={"User-Agent": "AOGIndia-Outreach/1.0"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                if data.get("status") == "ok" and data.get("rows"):
+                    headers = data.get("headers", [])
+                    rows = data.get("rows", [])
+                    print(f"[✔] Fetched {len(rows)} leads via Google Apps Script Webhook.")
+        except Exception:
+            pass
+
+    # Method 2: Direct CSV Export URL
+    if not rows and sheet_id:
+        try:
+            export_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid={gid}"
+            req = urllib.request.Request(export_url, headers={"User-Agent": "AOGIndia-Outreach/1.0"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                csv_text = resp.read().decode("utf-8-sig")
+                reader = csv.reader(csv_text.splitlines())
+                parsed = list(reader)
+                if len(parsed) > 1:
+                    headers = parsed[0]
+                    rows = parsed[1:]
+                    print(f"[✔] Fetched {len(rows)} leads via Google Sheets Export URL.")
+        except Exception as e:
+            print(f"[!] Could not pull directly via CSV export: {e}")
+
+    if headers and rows:
+        # Write back to local CSV
+        with open(CSV_FILE, "w", encoding="utf-8", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)
+            writer.writerows(rows)
+        print(f"[✔] Successfully synchronized {len(rows)} leads into {CSV_FILE.name}")
+        return headers, rows
+    else:
+        print("[!] Using local leads_template.csv (remote Google Sheet was empty or offline).")
+        return load_leads_from_csv()
+
+
 def main():
     parser = argparse.ArgumentParser(description="Sync AOG India sponsor leads to Google Sheets")
     parser.add_argument("--copy", action="store_true", help="Copy all leads into Windows clipboard as TSV for instant Ctrl+V into Google Sheets")
     parser.add_argument("--push", action="store_true", help="Push leads directly to Google Sheet Webhook URL")
+    parser.add_argument("--pull", action="store_true", help="Pull latest leads from Google Sheet down into scripts/leads_template.csv")
     parser.add_argument("--set-webhook", type=str, metavar="URL", help="Save Apps Script Webhook URL in outreach_config.json and push")
     parser.add_argument("--setup-code", action="store_true", help="Print the 20-line Apps Script code to paste into Google Sheet")
 
@@ -274,6 +428,8 @@ def main():
 
     if args.copy:
         copy_to_windows_clipboard()
+    elif args.pull:
+        pull_leads_from_google_sheet()
     elif args.set_webhook:
         set_webhook_url(args.set_webhook)
     elif args.push:

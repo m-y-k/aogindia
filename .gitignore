@@ -5,6 +5,7 @@ implementation_plan_seo_rank.md
 implementation_new_updates
 AOG_India_SEO_Reference.md
 readme_outreach.md
+readme_seo.md
 
 # =============================================================================
 # PRIVATE DATA — NEVER COMMIT TO GITHUB (security)
@@ -38,4 +39,4 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
-desktop.ini
+desktop.ini

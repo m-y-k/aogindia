@@ -1758,6 +1758,101 @@ body:not(.has-broadcast) .hero {
   text-transform: uppercase;
 }
 
+/* Creator Format Chips & Rate Card Grid */
+.creator-format-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.format-chip {
+  display: block;
+  cursor: pointer;
+  margin-bottom: 0 !important;
+}
+
+.format-chip input {
+  display: none !important;
+}
+
+.format-chip .chip-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 10px;
+  background: rgba(7, 8, 6, 0.7);
+  border: 1px solid var(--border-color);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+  user-select: none;
+  text-align: center;
+}
+
+.format-chip .chip-label i {
+  font-size: 1.15rem;
+  color: var(--accent);
+  transition: transform var(--transition-fast);
+}
+
+.format-chip input:checked + .chip-label {
+  background: rgba(255, 122, 26, 0.14);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(255, 122, 26, 0.25);
+}
+
+.format-chip input:checked + .chip-label i {
+  color: var(--accent-2);
+  transform: scale(1.15);
+}
+
+.format-chip:hover .chip-label {
+  border-color: rgba(255, 122, 26, 0.5);
+  color: var(--text-primary);
+}
+
+.rate-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.rate-card-group {
+  background: rgba(255, 122, 26, 0.03);
+  border: 1px solid rgba(255, 122, 26, 0.15);
+  padding: 12px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 0;
+}
+
+.rate-card-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-2) !important;
+  font-size: 0.7rem !important;
+}
+
+.rate-card-group label i {
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .creator-format-checkboxes {
+    grid-template-columns: 1fr;
+  }
+  .rate-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .form-submit {
   width: 100%;
   padding: 14px;

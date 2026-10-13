@@ -95,6 +95,11 @@ jobs:
               "business_hours_start_ist": 10,
               "business_hours_end_ist": 17,
               "send_on_weekends": false
+            },
+            "google_sheet": {
+              "name": "aog_title_sponsor_brand_outreach_list_by_py_script",
+              "sheet_url": "https://docs.google.com/spreadsheets/d/10sTTE7wII1sC90_MUyPskaNo6aBDQ2wlNv4YDT-TA-s/edit?pli=1&gid=1842660684#gid=1842660684",
+              "webhook_url": "https://script.google.com/macros/s/AKfycbw2K2bgwPlz1ZZcNhoowRYn2YN4dkE9gqGRABfEJQALZdnqoD64okgoBFn7p1EI2A_qRA/exec"
             }
           }
           ENDOFCONFIG
@@ -161,6 +166,12 @@ jobs:
           path: scripts/data/
           retention-days: 90
           overwrite: true
+
+      # --- SYNC LEADS TO GOOGLE SHEET ---
+      # Automatically pushes all discovered leads & updated statuses to your Google Sheet!
+      - name: Sync updated leads to Google Sheet
+        if: always()
+        run: python3 scripts/sync_to_google_sheet.py --push
 
       # --- SUMMARY ---
       - name: Print run summary
