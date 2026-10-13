@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AOG India — Sponsor Leads & Outreach Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top App Navigation -->
+  <header>
+    <div class="brand-wrapper">
+      <div class="brand-logo-badge">AOG</div>
+      <div class="brand-text">
+        <h1>Sponsor Lead Intelligence & Sheet Inspector</h1>
+        <p>AOG India Esports Title Sponsorship 2026/27</p>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div id="systemStatusPill" class="pause-pill is-paused">
+        <span class="pulse-dot"></span>
+        <span id="systemStatusText">OUTREACH PAUSED</span>
+      </div>
+
+      <button id="btnTogglePause" class="btn btn-secondary btn-sm" onclick="toggleSystemPause()">
+        <span id="btnTogglePauseIcon">▶</span>
+        <span id="btnTogglePauseText">Resume Outreach</span>
+      </button>
+
+      <button id="btnRefreshData" class="btn btn-outline btn-sm" onclick="loadDashboardData()" title="Reload leads from CSV">
+        🔄 Refresh
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Safety Alert Banner -->
+    <div id="safetyBanner" class="alert-banner">
+      <div class="alert-content">
+        <span class="alert-icon">🛡️</span>
+        <div class="alert-text">
+          <h3>Email Outreach is Currently PAUSED (Zero Emails Sent)</h3>
+          <p id="safetyBannerReason">You can safely review contacts, edit information, inspect Apollo API discoveries, and preview pitches without sending any emails.</p>
+        </div>
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="openApolloModal()">
+        🔍 Inspect Apollo Lead Fetch
+      </button>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card" style="--card-accent: var(--accent-blue);">
+        <div class="kpi-title">Total Sheet Leads</div>
+        <div class="kpi-val" id="kpiTotalLeads">0</div>
+        <div class="kpi-sub">In leads_template.csv</div>
+      </div>
+
+      <div class="kpi-card" style="--card-accent: var(--accent-rose);">
+        <div class="kpi-title">On Hold / Paused</div>
+        <div class="kpi-val" id="kpiPausedLeads">0</div>
+        <div class="kpi-sub">Safe &amp; will not receive emails</div>
+      </div>
+
+      <div class="kpi-card" style="--card-accent: var(--accent-emerald);">
+        <div class="kpi-title">Verified Contacts</div>
+        <div class="kpi-val" id="kpiVerifiedLeads">0</div>
+        <div class="kpi-sub">Confirmed business emails</div>
+      </div>
+
+      <div class="kpi-card" style="--card-accent: var(--accent-indigo);">
+        <div class="kpi-title">Catalog Brands</div>
+        <div class="kpi-val" id="kpiTotalBrands">50+</div>
+        <div class="kpi-sub">Indian gaming &amp; youth sponsors</div>
+      </div>
+    </div>
+
+    <!-- Search & Action Toolbar -->
+    <div class="control-bar">
+      <div class="search-filter-group">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search by brand, person name, email, or role..." oninput="handleSearchFilter()">
+        </div>
+
+        <select id="categoryFilter" class="select-filter" onchange="handleSearchFilter()">
+          <option value="">All Categories</option>
+        </select>
+
+        <select id="statusFilter" class="select-filter" onchange="handleSearchFilter()">
+          <option value="">All Statuses</option>
+          <option value="paused">Paused / Hold</option>
+          <option value="pending">Pending</option>
+          <option value="sent">Sent</option>
+          <option value="skip">Skipped</option>
+        </select>
+      </div>
+
+      <div class="action-buttons-group">
+        <button class="btn btn-primary" onclick="openApolloModal()">
+          <span>⚡</span> Discover via Apollo API
+        </button>
+        <button class="btn btn-secondary" onclick="openAddLeadModal()">
+          <span>➕</span> Add Lead
+        </button>
+        <button class="btn btn-outline" onclick="copyForGoogleSheets()" title="Copy TSV for 1-click paste into Google Sheets">
+          <span>📋</span> Copy to Google Sheets
+        </button>
+        <button class="btn btn-outline" onclick="exportCSV()" title="Download current leads as CSV">
+          <span>📥</span> Export CSV
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Leads Table -->
+    <div class="table-container-card">
+      <div class="table-header-meta">
+        <h2>Leads &amp; Contacts Sheet (<span id="visibleRowCount">0</span> leads shown)</h2>
+        <div>
+          <button id="btnSaveLeads" class="btn btn-success btn-sm" onclick="saveAllChangesToServer()">
+            💾 Save Changes to CSV
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table id="leadsTable">
+          <thead>
+            <tr>
+              <th style="width: 45px;">#</th>
+              <th>Brand / Company</th>
+              <th>Contact Decision Maker</th>
+              <th>Email Address</th>
+              <th>Category</th>
+              <th>Custom Compliment / Pitch Hook</th>
+              <th style="width: 120px;">Status</th>
+              <th style="width: 140px; text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="leadsTableBody">
+            <!-- Dynamic Rows Generated by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal: Preview Email Pitch -->
+  <div id="previewModal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="previewModalTitle">Email Pitch Preview</h3>
+        <button class="modal-close" onclick="closeModal('previewModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.25rem;">
+          <div><strong style="color: var(--text-muted);">To:</strong> <span id="previewToEmail" style="font-family: monospace; color: var(--accent-blue);"></span></div>
+          <div><strong style="color: var(--text-muted);">Subject:</strong> <span id="previewSubject" style="font-weight: 600;"></span></div>
+        </div>
+
+        <div class="tab-nav">
+          <button class="tab-btn is-active" onclick="switchPreviewTab('html')">HTML Email (Inbox Rendering)</button>
+          <button class="tab-btn" onclick="switchPreviewTab('text')">Plain Text Format</button>
+        </div>
+
+        <div id="previewTabHtml" class="preview-rendered-box"></div>
+        <div id="previewTabText" class="preview-text-box" style="display: none;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('previewModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Discover / Inspect Apollo API Leads -->
+  <div id="apolloModal" class="modal-backdrop">
+    <div class="modal-dialog" style="max-width: 900px;">
+      <div class="modal-header">
+        <h3>🔍 Live Apollo API Discovery &amp; Inspection</h3>
+        <button class="modal-close" onclick="closeModal('apolloModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
+          Query Apollo.io's live B2B database using your configured API key. You can inspect the real data, names, job titles, and verified emails Apollo returns <strong>before</strong> adding them to the outreach sheet.
+        </p>
+
+        <div style="display: flex; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <input type="text" id="apolloDomainInput" class="form-input" placeholder="Enter company domain (e.g. asus.com, redbull.com, boat-lifestyle.com)..." style="flex: 2;">
+          <button class="btn btn-primary" onclick="queryApolloLive()">
+            Fetch From Apollo
+          </button>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.775rem; text-transform: uppercase; color: var(--text-dim); font-weight: 600; display: block; margin-bottom: 0.5rem;">Or Pick from Curated Catalog:</label>
+          <div id="apolloBrandChips" class="brands-grid" style="max-height: 140px;">
+            <!-- Brand chips generated dynamically -->
+          </div>
+        </div>
+
+        <div id="apolloLoading" style="display: none; text-align: center; padding: 2rem; color: var(--accent-blue);">
+          <div>⏳ Querying Apollo.io B2B database in India...</div>
+        </div>
+
+        <div id="apolloResultsSection" style="display: none;">
+          <h4 style="margin-bottom: 0.5rem; font-size: 0.95rem;">Apollo Discovered Contacts: (<span id="apolloResultsCount">0</span> found)</h4>
+          <div class="table-responsive" style="max-height: 260px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Title / Role</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="apolloResultsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('apolloModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Lead -->
+  <div id="leadModal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="leadModalTitle">Add New Sponsor Prospect</h3>
+        <button class="modal-close" onclick="closeModal('leadModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editLeadIndex" value="-1">
+
+        <div class="form-group">
+          <label for="leadCompany">Company / Brand Name</label>
+          <input type="text" id="leadCompany" class="form-input" placeholder="e.g. Acer Predator India">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="leadContact">Contact Name</label>
+            <input type="text" id="leadContact" class="form-input" placeholder="e.g. Sooraj Balakrishnan">
+          </div>
+          <div class="form-group">
+            <label for="leadTitle">Designation / Role</label>
+            <input type="text" id="leadTitle" class="form-input" placeholder="e.g. Head of Marketing">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="leadEmail">Business Email</label>
+            <input type="email" id="leadEmail" class="form-input" placeholder="e.g. sooraj.b@acer.com">
+          </div>
+          <div class="form-group">
+            <label for="leadCategory">Industry Category</label>
+            <input type="text" id="leadCategory" class="form-input" placeholder="e.g. Gaming Hardware">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="leadCompliment">Personalized Pitch Hook / Compliment</label>
+          <textarea id="leadCompliment" class="form-textarea" placeholder="e.g. loved your Predator Gaming League activations and continuous community engagement"></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="leadStatus">Status</label>
+            <select id="leadStatus" class="form-select">
+              <option value="paused">Paused (Safe)</option>
+              <option value="pending">Pending</option>
+              <option value="sent">Sent</option>
+              <option value="skip">Skip</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="leadVerification">Verification Status</label>
+            <select id="leadVerification" class="form-select">
+              <option value="verified">Verified</option>
+              <option value="unverified">Unverified</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('leadModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="saveLeadFromModal()">Save Lead</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

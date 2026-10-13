@@ -17,17 +17,21 @@
 name: AOG India Sponsor Outreach Autopilot
 
 on:
-  schedule:
-    - cron: '0 5 * * 1-5'    # Daily emails: Mon-Fri 10:30 AM IST
-    - cron: '30 3 * * 1'     # Weekly discovery: Monday 9:00 AM IST
+  # ===========================================================================
+  # SCHEDULE PAUSED by user request - emails will NOT send automatically.
+  # To resume in future, uncomment the schedule block below.
+  # ===========================================================================
+  # schedule:
+  #   - cron: '0 5 * * 1-5'    # Daily emails: Mon-Fri 10:30 AM IST
+  #   - cron: '30 3 * * 1'     # Weekly discovery: Monday 9:00 AM IST
   workflow_dispatch:
     inputs:
       mode:
-        description: Run mode
+        description: 'Run mode (Note: live send is paused)'
         required: true
-        default: send
+        default: dry-run
         type: choice
-        options: [send, weekly, dry-run, fetch]
+        options: [dry-run, weekly, fetch, send]
 
 jobs:
   outreach:
@@ -82,7 +86,9 @@ jobs:
               "email": "partnerships@aogindia.com",
               "deck_url": "https://aogindia.com/for-brands.html#title-sponsorship"
             },
+            "paused": true,
             "autopilot": {
+              "paused": true,
               "daily_send_limit": 25,
               "min_delay_seconds": 60,
               "max_delay_seconds": 120,
@@ -92,7 +98,7 @@ jobs:
             }
           }
           ENDOFCONFIG
-          echo "[OK] Config assembled from encrypted secrets"
+          echo "[OK] Config assembled from encrypted secrets (outreach is PAUSED)"
 
       # --- SHOW STATE: How many already sent (for run logs) ---
       - name: Show current state summary
@@ -113,13 +119,16 @@ jobs:
         if: github.event_name == 'schedule' && github.event.schedule == '30 3 * * 1'
         run: python3 scripts/autopilot_sponsor_outreach.py --weekly
 
-      - name: Daily email sending (auto-schedule)
-        if: github.event_name == 'schedule' && github.event.schedule == '0 5 * * 1-5'
+      - name: Daily email sending (auto-schedule) [PAUSED]
+        if: false # PAUSED by user request
         run: python3 scripts/autopilot_sponsor_outreach.py --now
 
-      - name: Manual send
+      - name: Manual send [PAUSED]
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'send'
-        run: python3 scripts/autopilot_sponsor_outreach.py --now
+        run: |
+          echo "[PAUSED] Direct email sending is paused by user request."
+          echo "Please unpause in outreach_config.json before sending."
+          exit 1
 
       - name: Manual weekly discovery
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'weekly'

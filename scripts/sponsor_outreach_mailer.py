@@ -424,6 +424,15 @@ def send_test_email(test_recipient: str, leads: list, config: dict):
 
 def run_live_outreach(leads_path: Path, leads: list, config: dict, limit: int = None):
     """Executes live outreach batch with safety throttling and state tracking."""
+    if config.get("paused", False) or os.environ.get("AOG_OUTREACH_PAUSED", "").lower() in ("1", "true", "yes"):
+        print("\n" + "!" * 70)
+        print("  [STOP] EMAIL OUTREACH IS CURRENTLY PAUSED BY USER REQUEST")
+        print("  Reason: Reviewing lead sheet & email appropriateness.")
+        print("  Zero emails were sent. Safety guard active.")
+        print("  To resume, set 'paused': false in scripts/outreach_config.json")
+        print("!" * 70 + "\n")
+        return
+
     smtp_cfg = config.get("smtp", {})
     rules_cfg = config.get("sending_rules", {})
 
@@ -436,11 +445,11 @@ def run_live_outreach(leads_path: Path, leads: list, config: dict, limit: int = 
 
     pending_leads = [
         (idx, lead) for idx, lead in enumerate(leads)
-        if lead.get("status", "").lower() not in ["sent", "skip"]
+        if lead.get("status", "").lower() in ["pending", ""]
     ]
 
     if not pending_leads:
-        print("[!] No pending leads found in CSV. All are marked as 'sent' or 'skip'.")
+        print("[!] No pending leads found in CSV. (Leads marked 'paused', 'sent', or 'skip' are skipped).")
         return
 
     batch_to_send = pending_leads[:max_batch]

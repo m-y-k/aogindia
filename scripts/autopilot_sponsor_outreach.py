@@ -332,6 +332,13 @@ def sync_to_csv(leads: list):
         writer.writeheader()
         writer.writerows(leads)
 
+    # Automatically sync to Google Sheet if webhook is configured
+    try:
+        from sync_to_google_sheet import push_to_google_sheet_webhook
+        push_to_google_sheet_webhook()
+    except Exception:
+        pass
+
 
 # ---------------------------------------------------------------------------
 # Apollo.io API Automated Prospector
@@ -506,6 +513,88 @@ def is_prime_b2b_sending_window(config: dict) -> tuple:
     return True, "Within optimal B2B window (10:00 AM - 5:00 PM IST)."
 
 
+def is_outreach_paused(config: dict) -> tuple[bool, str]:
+    """Checks whether email outreach is paused via config, env var, or kill switch."""
+    if os.environ.get("AOG_OUTREACH_PAUSED", "").lower() in ("1", "true", "yes"):
+        return True, "Paused via environment variable AOG_OUTREACH_PAUSED=1"
+    if config.get("paused", False):
+        reason = config.get("pause_reason", "Paused via outreach_config.json ('paused': true)")
+        return True, reason
+    if config.get("autopilot", {}).get("paused", False):
+        return True, "Paused via outreach_config.json ('autopilot.paused': true)"
+    return False, ""
+
+
+def pause_outreach(reason: str = "Email outreach paused by user request - reviewing contacts and templates"):
+    """Sets paused = true in outreach_config.json."""
+    if not CONFIG_FILE.exists():
+        print(f"[X] Config file not found at: {CONFIG_FILE}")
+        return
+    with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+        config = json.load(f)
+    config["paused"] = True
+    config["pause_reason"] = reason
+    if "autopilot" not in config or not isinstance(config["autopilot"], dict):
+        config["autopilot"] = {}
+    config["autopilot"]["paused"] = True
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump(config, f, indent=2)
+    print("=" * 72)
+    print("  [OK] EMAIL OUTREACH HAS BEEN PAUSED")
+    print("=" * 72)
+    print(f"  Status: PAUSED")
+    print(f"  Reason: {reason}")
+    print(f"  Config updated: {CONFIG_FILE.name}")
+    print("  Zero emails will be sent by any automated or manual triggers.")
+    print("=" * 72)
+
+
+def resume_outreach():
+    """Sets paused = false in outreach_config.json."""
+    if not CONFIG_FILE.exists():
+        print(f"[X] Config file not found at: {CONFIG_FILE}")
+        return
+    with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+        config = json.load(f)
+    config["paused"] = False
+    config.pop("pause_reason", None)
+    if "autopilot" in config and isinstance(config["autopilot"], dict):
+        config["autopilot"]["paused"] = False
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump(config, f, indent=2)
+    print("=" * 72)
+    print("  [OK] EMAIL OUTREACH HAS BEEN RESUMED")
+    print("=" * 72)
+    print(f"  Status: ACTIVE")
+    print(f"  Config updated: {CONFIG_FILE.name}")
+    print("=" * 72)
+
+
+def print_outreach_status(config: dict):
+    """Displays current outreach status and lead counts."""
+    paused, reason = is_outreach_paused(config)
+    print("=" * 72)
+    print("  AOG INDIA — EMAIL OUTREACH STATUS")
+    print("=" * 72)
+    if paused:
+        print(f"  Status: [PAUSED - NO EMAILS WILL BE SENT]")
+        print(f"  Reason: {reason}")
+    else:
+        print(f"  Status: [ACTIVE - Scheduled sends will execute]")
+    if CSV_FILE.exists():
+        with open(CSV_FILE, "r", encoding="utf-8-sig") as f:
+            reader = list(csv.DictReader(f))
+            pending = len([r for r in reader if r.get("status", "").lower() in ["pending", ""]])
+            on_hold = len([r for r in reader if r.get("status", "").lower() in ["paused", "on_hold", "hold"]])
+            sent = len([r for r in reader if r.get("status", "").lower() == "sent"])
+            print(f"  Leads in {CSV_FILE.name}:")
+            print(f"    - Pending: {pending}")
+            print(f"    - Paused/On Hold: {on_hold}")
+            print(f"    - Sent: {sent}")
+            print(f"    - Total rows: {len(reader)}")
+    print("=" * 72)
+
+
 # ---------------------------------------------------------------------------
 # Autopilot Execution Engine
 # ---------------------------------------------------------------------------
@@ -518,6 +607,21 @@ def run_autopilot_cycle(config: dict, force: bool = False, dry_run: bool = False
     print("  AOG INDIA ESPORTS — AUTOPILOT BRAND SPONSORSHIP ENGINE")
     print("  Sender: Mohammad Yusuf Khan <partnerships@aogindia.com>")
     print("=" * 72)
+
+    # 0. Safety Pause Check
+    paused, pause_reason = is_outreach_paused(config)
+    if paused and not dry_run:
+        print("\n" + "!" * 72)
+        print("  [STOP] EMAIL OUTREACH IS CURRENTLY PAUSED")
+        print(f"  Reason: {pause_reason}")
+        print("  Zero emails were sent. Safety guard active.")
+        print("  To preview without sending, use: python scripts/autopilot_sponsor_outreach.py --dry-run")
+        print("  To resume later, run: python scripts/autopilot_sponsor_outreach.py --resume")
+        print("!" * 72 + "\n")
+        return
+
+    if paused and dry_run:
+        print("\n[NOTE] Live email sending is currently PAUSED. Running dry-run preview only.\n")
 
     # 1. Timing check
     is_ok, reason = is_prime_b2b_sending_window(config)
@@ -1081,6 +1185,20 @@ def run_daemon_loop(config: dict):
     """Runs a continuous background loop that triggers every morning at 10:15 AM IST."""
     print("[*] Starting Autopilot Daemon. Listening for morning B2B windows...")
     while True:
+        # Reload config to pick up any runtime pause/unpause changes
+        if CONFIG_FILE.exists():
+            try:
+                with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                    config = json.load(f)
+            except Exception:
+                pass
+
+        paused, pause_reason = is_outreach_paused(config)
+        if paused:
+            print(f"[*] Autopilot is PAUSED ({pause_reason}). Sleeping for 30 minutes without sending...")
+            time.sleep(1800)
+            continue
+
         is_ok, reason = is_prime_b2b_sending_window(config)
         if is_ok:
             run_autopilot_cycle(config)
@@ -1304,17 +1422,21 @@ def setup_github_actions():
 name: AOG India Sponsor Outreach Autopilot
 
 on:
-  schedule:
-    - cron: \'0 5 * * 1-5\'    # Daily emails: Mon-Fri 10:30 AM IST
-    - cron: \'30 3 * * 1\'     # Weekly discovery: Monday 9:00 AM IST
+  # ===========================================================================
+  # SCHEDULE PAUSED by user request - emails will NOT send automatically.
+  # To resume in future, uncomment the schedule block below.
+  # ===========================================================================
+  # schedule:
+  #   - cron: \'0 5 * * 1-5\'    # Daily emails: Mon-Fri 10:30 AM IST
+  #   - cron: \'30 3 * * 1\'     # Weekly discovery: Monday 9:00 AM IST
   workflow_dispatch:
     inputs:
       mode:
-        description: Run mode
+        description: Run mode (Note: live send is paused)
         required: true
-        default: send
+        default: dry-run
         type: choice
-        options: [send, weekly, dry-run, fetch]
+        options: [dry-run, weekly, fetch, send]
 
 jobs:
   outreach:
@@ -1369,7 +1491,9 @@ jobs:
               "email": "partnerships@aogindia.com",
               "deck_url": "https://aogindia.com/for-brands.html#title-sponsorship"
             },
+            "paused": true,
             "autopilot": {
+              "paused": true,
               "daily_send_limit": 25,
               "min_delay_seconds": 60,
               "max_delay_seconds": 120,
@@ -1379,7 +1503,7 @@ jobs:
             }
           }
           ENDOFCONFIG
-          echo "[OK] Config assembled from encrypted secrets"
+          echo "[OK] Config assembled from encrypted secrets (outreach is PAUSED)"
 
       # --- SHOW STATE: How many already sent (for run logs) ---
       - name: Show current state summary
@@ -1400,13 +1524,16 @@ jobs:
         if: github.event_name == \'schedule\' && github.event.schedule == \'30 3 * * 1\'
         run: python3 scripts/autopilot_sponsor_outreach.py --weekly
 
-      - name: Daily email sending (auto-schedule)
-        if: github.event_name == \'schedule\' && github.event.schedule == \'0 5 * * 1-5\'
+      - name: Daily email sending (auto-schedule) [PAUSED]
+        if: false # PAUSED by user request
         run: python3 scripts/autopilot_sponsor_outreach.py --now
 
-      - name: Manual send
+      - name: Manual send [PAUSED]
         if: github.event_name == \'workflow_dispatch\' && github.event.inputs.mode == \'send\'
-        run: python3 scripts/autopilot_sponsor_outreach.py --now
+        run: |
+          echo "[PAUSED] Direct email sending is paused by user request."
+          echo "Please unpause in outreach_config.json before sending."
+          exit 1
 
       - name: Manual weekly discovery
         if: github.event_name == \'workflow_dispatch\' && github.event.inputs.mode == \'weekly\'
@@ -1485,6 +1612,9 @@ def main():
     parser = argparse.ArgumentParser(
         description="AOG India Esports - Autopilot Brand Sponsor Outreach Engine"
     )
+    parser.add_argument("--pause", action="store_true", help="Pause automated and manual live email sending")
+    parser.add_argument("--resume", action="store_true", help="Resume live email sending")
+    parser.add_argument("--status", action="store_true", help="Check current outreach status and lead counts")
     parser.add_argument("--fetch", action="store_true", help="Fetch real marketing decision-makers from Apollo for target brands and save to CSV")
     parser.add_argument("--count", type=int, default=10, help="Number of brands to fetch leads for (default: 10)")
     parser.add_argument("--dry-run", action="store_true", help="Preview leads and emails without sending")
@@ -1499,6 +1629,14 @@ def main():
 
     args = parser.parse_args()
 
+    if args.pause:
+        pause_outreach()
+        return
+
+    if args.resume:
+        resume_outreach()
+        return
+
     no_config_needed = args.setup or args.setup_github
     if not CONFIG_FILE.exists() and not no_config_needed:
         print(f"[X] Config file not found at: {CONFIG_FILE}")
@@ -1510,7 +1648,9 @@ def main():
     else:
         config = {}
 
-    if args.setup_github:
+    if args.status:
+        print_outreach_status(config)
+    elif args.setup_github:
         setup_github_actions()
     elif args.setup:
         setup_windows_scheduler()
@@ -1533,6 +1673,10 @@ def main():
     else:
         parser.print_help()
         print("\nTips:")
+        print("  --status        Check current outreach status (PAUSED vs ACTIVE)")
+        print("  --pause         Pause email sending immediately")
+        print("  --resume        Resume email sending")
+        print("  --dry-run       Preview leads without sending")
         print("  --setup-github  Generate GitHub Actions workflow (free, no server needed)")
         print("  --setup         Generate Windows Task Scheduler script")
         print("  --test-batch EMAIL  Send one preview email per category to your inbox")
