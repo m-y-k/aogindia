@@ -277,32 +277,48 @@
 /* KPI pills inside featured card */
 .blog-card-kpis {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .blog-kpi {
   font-family: var(--font-mono, monospace);
-  font-size: 0.68rem;
-  color: var(--text-muted, #888);
-  background: rgba(255,122,26,0.08);
-  border: 1px solid rgba(255,122,26,0.2);
-  padding: 4px 10px;
-  white-space: nowrap;
-}
-.blog-kpi strong {
-  color: var(--accent, #ff7a1a);
+  font-size: 0.62rem;
   font-weight: 700;
+  color: var(--accent, #ff7a1a);
+  background: rgba(255, 122, 26, 0.1);
+  border: 1px solid rgba(255, 122, 26, 0.3);
+  padding: 3px 9px;
+  border-radius: 3px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 8px rgba(255, 122, 26, 0.08);
+}
+.blog-kpi i {
+  font-size: 0.72rem;
+  color: #ffc23a;
 }
 
-/* Case study badge variant */
+/* Case study badge variant - YELLOW icon and distinct styling */
 .blog-card-badge--case {
-  background: rgba(255,122,26,0.18) !important;
-  color: var(--accent, #ff7a1a) !important;
-  border: 1px solid rgba(255,122,26,0.3) !important;
-  display: flex;
+  background: rgba(255, 194, 58, 0.12) !important;
+  color: #ffc23a !important;
+  border: 1px solid rgba(255, 194, 58, 0.45) !important;
+  box-shadow: 0 0 12px rgba(255, 194, 58, 0.12) !important;
+  display: inline-flex;
   align-items: center;
   gap: 5px;
+}
+.blog-card-badge--case i {
+  color: #ffd700 !important;
+  font-size: 0.9rem;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.7));
+  line-height: 1;
 }
 
 .blog-card::before {

@@ -35,6 +35,24 @@
   <link rel="shortcut icon" type="image/png" href="images/favicon-64.png">
   <link rel="apple-touch-icon" href="images/favicon-64.png">
 
+  <!-- Immediate critical dark styling to prevent any FOUC -->
+  <style id="aog-critical">
+    :root {
+      --bg-0: #070806;
+      --bg-1: #0d100c;
+      --bg-primary: #070806;
+      --text-primary: #f4ead4;
+      --accent: #ff7a1a;
+      --accent-2: #ffc23a;
+    }
+    html, body {
+      background-color: #070806 !important;
+      color: #f4ead4 !important;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
   <!-- DNS prefetch: resolve CDN origins before they're needed -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -47,18 +65,13 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Icons: Boxicons non-blocking -->
+  <!-- Icons: Boxicons & AOS -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" onload="this.rel='stylesheet'">
-  <noscript><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
-  <!-- AOS CSS: non-blocking -->
-  <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.4/dist/aos.css" onload="this.rel='stylesheet'">
-  <noscript><link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"></noscript>
-
-  <!-- Styles: single minified bundle, non-blocking -->
-  <link rel="preload" as="style" href="css/aog.min.css?v=2026.5" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="css/aog.min.css?v=2026.5"></noscript>
+  <!-- Styles: single minified bundle -->
+  <link rel="stylesheet" href="css/aog.min.css?v=2026.8">
 
   <!-- Hero split mosaic layout styles (blocking — 5KB critical CSS) -->
   <link rel="stylesheet" href="css/hero-mosaic.min.css">
@@ -123,7 +136,7 @@
             "name": "How much does a gaming influencer campaign cost in India?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Gaming influencer campaign costs in India vary by creator tier, content format, and scope. Product seeding campaigns with micro-creators start from Rs.50,000. Mid-tier BGMI or YouTube gaming campaigns range Rs.2,00,000-Rs.5,00,000. Multi-creator brand campaigns exceed Rs.10,00,000. AOG India Esports provides custom proposals based on your goals and budget."
+              "text": "Gaming influencer campaign costs in India vary by creator tier, content format, and scope. Product seeding campaigns with micro-creators start from ₹50,000. Mid-tier BGMI or YouTube gaming campaigns range ₹2,00,000-₹5,00,000. Multi-creator brand campaigns exceed ₹10,00,000. AOG India Esports provides custom proposals based on your goals and budget."
             }
           },
           {
