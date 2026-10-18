@@ -158,26 +158,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── Partners Dropdown ──────────────────
-  const navDropdown = document.getElementById('navDropdown');
-  const navDropdownToggle = document.getElementById('navDropdownToggle');
-  if (navDropdown && navDropdownToggle) {
-    // Toggle on click (keyboard / touch friendly)
-    navDropdownToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = navDropdown.classList.toggle('open');
-      navDropdownToggle.setAttribute('aria-expanded', isOpen);
-    });
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navDropdown.contains(e.target)) {
-        navDropdown.classList.remove('open');
-        navDropdownToggle.setAttribute('aria-expanded', 'false');
+  // ─── Partners / Work With Us Dropdown ──────────────────
+  const allDropdowns = document.querySelectorAll('.nav-dropdown');
+  allDropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.nav-dropdown-toggle') || document.getElementById('navDropdownToggle');
+    if (toggle && !toggle.dataset.dropdownBound) {
+      toggle.dataset.dropdownBound = 'true';
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    allDropdowns.forEach(dropdown => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
       }
     });
-    // Close dropdown when mobile menu closes
+  });
+
+  // Close dropdowns when mobile menu overlay closes
+  if (navOverlay) {
     navOverlay.addEventListener('click', () => {
-      navDropdown.classList.remove('open');
+      allDropdowns.forEach(dropdown => {
+        dropdown.classList.remove('open');
+      });
     });
   }
 
