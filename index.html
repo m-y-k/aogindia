@@ -71,7 +71,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
   <!-- Styles: single minified bundle -->
-  <link rel="stylesheet" href="css/aog.min.css?v=2026.8">
+  <link rel="stylesheet" href="css/aog.min.css?v=2026.9">
   <link rel="stylesheet" href="css/hero-mosaic.min.css">
 
   <!-- Prefetch next likely navigation (blog hub) -->
@@ -359,8 +359,132 @@
       });
     })();
   </script>
+<style id="news-styles">
+
+/* ── GAMING NEWS TEASER (homepage — 3 cards) ── */
+.news-teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+@media (max-width: 768px) {
+  .news-teaser-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+}
+
+/* ── GAMING NEWS SECTION ── */
+.news-section {
+  padding: 100px 0;
+  border-top: 1px solid rgba(255, 122, 26, 0.1);
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.news-card {
+  background: rgba(13,16,12,.88);
+  border: 1px solid rgba(255,122,26,.14);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: border-color .22s, transform .22s, box-shadow .22s;
+  position: relative;
+}
+.news-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 16px; height: 16px;
+  border-top: 2px solid var(--accent, #ff7a1a);
+  border-left: 2px solid var(--accent, #ff7a1a);
+}
+.news-card:hover {
+  border-color: rgba(255,122,26,.45);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(255,122,26,.1);
+}
+.news-card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  background: #0d100c;
+}
+.news-card-body {
+  padding: 16px 18px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.news-card-source {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent, #ff7a1a);
+  margin-bottom: 8px;
+}
+.news-card-title {
+  font-family: var(--font-heading, 'Black Ops One', sans-serif);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #f4ead4;
+  line-height: 1.4;
+  flex: 1;
+  margin-bottom: 12px;
+}
+.news-card-date {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  color: #6a6258;
+}
+.news-card-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: #6a6258;
+  padding: 40px 0;
+  animation: news-blink 1.2s ease-in-out infinite;
+}
+@keyframes news-blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+.news-view-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  font-family: var(--font-heading, 'Black Ops One', sans-serif);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent, #ff7a1a);
+  border: 1px solid rgba(255,122,26,.35);
+  background: rgba(255,122,26,.06);
+  padding: 12px 24px;
+  text-decoration: none;
+  clip-path: polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);
+  transition: all .2s ease;
+}
+.news-view-more:hover {
+  background: rgba(255,122,26,.14);
+  border-color: var(--accent);
+}
+/* Mobile news */
+@media (max-width: 768px) {
+  .news-section { padding: 60px 0; }
+  .news-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+  .news-card-img { height: 120px; }
+  .news-card-body { padding: 12px 14px 14px; }
+  .news-card-title { font-size: 0.75rem; }
+}
+</style>
 </head>
-<body class="has-broadcast">
+<body>
 
   <!-- ========== BACKGROUND EFFECTS ========== -->
   <div class="bg-hex"></div>
@@ -370,27 +494,7 @@
   <div class="bg-smoke s2"></div>
   <div class="bg-smoke s3"></div>
 
-  <!-- ========== STRATEGIC ANNOUNCEMENT: TITLE SPONSORSHIP TICKER ========== -->
-  <aside class="broadcast-ticker" id="broadcastTicker" role="region" aria-label="Title Sponsorship Announcement">
-    <div class="broadcast-ticker-container">
-      <div class="broadcast-badge">
-        <span class="live-dot" aria-hidden="true"></span>
-        <span class="badge-text"><i class='bx bx-crown'></i> 2026/27 TITLE SPONSOR</span>
-      </div>
-      <div class="broadcast-content">
-        <span class="broadcast-tag-lead">STRATEGIC OPPORTUNITY:</span>
-        <span class="broadcast-message">AOG India is accepting inquiries for <strong>Exclusive Title Partnership</strong> &mdash; <strong>5M+ Monthly Views</strong> across Minecraft, Valorant, BGMI &amp; Free Fire</span>
-      </div>
-      <div class="broadcast-actions">
-        <a href="#title-sponsorship" class="broadcast-cta-btn">
-          <span>APPLY NOW</span> <i class='bx bx-right-arrow-alt'></i>
-        </a>
-        <button type="button" class="broadcast-close-btn" id="broadcastCloseBtn" aria-label="Dismiss Announcement">
-          <i class='bx bx-x'></i>
-        </button>
-      </div>
-    </div>
-  </aside>
+  <!-- Broadcast ticker removed — see /title-sponsor.html for the dedicated Title Sponsorship page -->
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
@@ -544,48 +648,6 @@
         </div>
       </div>
 
-
-      <!-- ========== TITLE SPONSORSHIP OPPORTUNITY ========== -->
-      <div class="title-sponsor-card" id="title-sponsorship" data-aos="fade-up">
-        <div class="sponsor-card-top-row">
-          <div class="sponsor-card-badge">
-            <i class='bx bx-crown'></i> Title Partnership 2026/27
-          </div>
-          <div class="sponsor-card-status">
-            <span class="live-dot" aria-hidden="true"></span> 1 Exclusive Slot Open
-          </div>
-        </div>
-
-        <!-- Two-column split layout -->
-        <div class="sponsor-split">
-
-          <!-- LEFT: heading + compact points -->
-          <div class="sponsor-split-left">
-            <h3 class="sponsor-card-title">
-              Become The <span>Official Title Partner</span>
-            </h3>
-            <ul class="sponsor-points-list">
-              <li><i class='bx bx-broadcast'></i> <span><strong>360° Placement</strong> — Live streams, YouTube videos, Shorts &amp; Reels</span></li>
-              <li><i class='bx bx-joystick'></i> <span><strong>4 Game Titles</strong> — Minecraft, Valorant, BGMI &amp; Free Fire</span></li>
-              <li><i class='bx bx-shield-quarter'></i> <span><strong>Full Category Exclusivity</strong> — No competitors, period</span></li>
-              <li><i class='bx bx-line-chart'></i> <span><strong>5M+ Monthly Views</strong> — UTM attribution + monthly reports</span></li>
-            </ul>
-          </div>
-
-          <!-- RIGHT: stats + CTA -->
-          <div class="sponsor-split-right">
-            <div class="sponsor-stat-stack">
-              <div class="sponsor-stat-item"><span class="ssi-num">5M+</span><span class="ssi-label">Monthly Views</span></div>
-              <div class="sponsor-stat-item"><span class="ssi-num">360°</span><span class="ssi-label">Content Types</span></div>
-              <div class="sponsor-stat-item"><span class="ssi-num">200+</span><span class="ssi-label">Creators</span></div>
-            </div>
-            <a href="mailto:partnerships@aogindia.com?subject=Title%20Sponsorship%20Inquiry%20-%20AOG%20India" class="sponsor-primary-btn">
-              Apply for Title Sponsorship <i class='bx bx-right-arrow-alt'></i>
-            </a>
-          </div>
-
-        </div>
-      </div>
 
     </div>
   </section>
@@ -1159,63 +1221,33 @@
     </div>
   </section>
 
-  <!-- ========== FAQ ========== -->
-  <section class="faq" id="faq" aria-label="Frequently asked questions about gaming influencer marketing with AOG India Esports">
+  
+
+  <!-- GAMING NEWS PAUSED — remove these comment tags to re-enable when RSS feed is ready -->
+  <!--
+  <section class="news-section" id="gaming-news" aria-label="Gaming News">
     <div class="container">
-      <div class="section-heading" data-aos="fade-up">
-        <h2>Frequently Asked <span>Questions</span></h2>
-        <p>Common questions from brands exploring gaming creator campaigns with AOG India Esports.</p>
+      <div class="section-header" data-aos="fade-up">
+        <div class="section-tag"><i class='bx bx-news'></i> Hot Topics</div>
+        <h2 class="section-heading">
+          Gaming <span class="text-accent">News Today</span>
+        </h2>
+        <p class="section-sub">
+          Stay updated with the hottest topics in Indian and global esports &mdash; BGMI, Valorant, Free Fire and more.
+        </p>
       </div>
-      <div class="faq-list">
-
-        <div class="faq-item" data-aos="fade-up">
-          <details class="faq-details">
-            <summary class="faq-question">What is AOG India Esports?</summary>
-            <div class="faq-answer">
-              <p>AOG India Esports (Alliance Of Gamers) is a gaming marketing agency, gaming influencer agency, and gaming media agency based in India. We connect brands and agencies with 200+ curated gaming, tech, and Gen Z creators on YouTube and Instagram.</p>
-            </div>
-          </details>
-        </div>
-
-        <div class="faq-item" data-aos="fade-up" data-aos-delay="50">
-          <details class="faq-details">
-            <summary class="faq-question">What types of brands can work with AOG?</summary>
-            <div class="faq-answer">
-              <p>Gaming hardware brands, mobile game publishers, consumer tech, D2C brands targeting Gen Z — and agencies needing specialist gaming creator access for client campaigns.</p>
-            </div>
-          </details>
-        </div>
-
-        <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-          <details class="faq-details">
-            <summary class="faq-question">How much does a gaming influencer campaign cost in India?</summary>
-            <div class="faq-answer">
-              <p>Product seeding from <strong>₹50,000–₹1,00,000</strong>. Mid-tier BGMI / YouTube creator campaigns <strong>₹2,00,000–₹5,00,000</strong>. Multi-creator campaigns exceed <strong>₹10,00,000</strong>. <a href="#contact">Contact us</a> for a tailored quote.</p>
-            </div>
-          </details>
-        </div>
-
-        <div class="faq-item" data-aos="fade-up" data-aos-delay="120">
-          <details class="faq-details">
-            <summary class="faq-question">Which are the top influencer marketing agencies in India for gaming &amp; tech creators?</summary>
-            <div class="faq-answer">
-              <p>AOG India Esports is India's specialist gaming influencer marketing agency, featuring 200+ curated creators across BGMI, Valorant, Minecraft, Free Fire, and Tech. Other prominent general influencer marketing platforms and agencies in India include Grynow Media, Chtrbox, Monk Entertainment, CultureX, and One Impression.</p>
-            </div>
-          </details>
-        </div>
-
-        <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
-          <details class="faq-details">
-            <summary class="faq-question">How do I get started?</summary>
-            <div class="faq-answer">
-              <p>Fill in the contact form below or email <a href="mailto:partnerships@aogindia.com">partnerships@aogindia.com</a>. We respond within 1–2 business days with a tailored proposal.</p>
-            </div>
-          </details>
-        </div>
-
+      <div class="news-teaser-grid" id="newsTeaserGrid" data-aos="fade-up" data-aos-delay="100">
+        <div class="news-card-loading"><i class='bx bx-loader-alt bx-spin'></i>&nbsp; Loading&hellip;</div>
+      </div>
+      <div style="text-align:center;margin-top:32px" data-aos="fade-up" data-aos-delay="120">
+        <a href="gaming-news.html" class="news-view-more">
+          <i class='bx bx-news'></i> All Gaming News <i class='bx bx-right-arrow-alt'></i>
+        </a>
       </div>
     </div>
   </section>
+  -->
+
 
   <!-- ========== CONTACT ========== -->
   <section class="contact" id="contact">
@@ -1251,6 +1283,17 @@
             </div>
             <a href="mailto:mohit.kashyap@aogindia.com" class="contact-send-btn" title="Send Email to Creator Operations"><i class='bx bx-paper-plane'></i></a>
           </div>
+
+          <!-- Featured: Become Title Sponsor -->
+          <a href="title-sponsor.html" class="contact-item contact-item-title-sponsor" title="Become AOG India Title Sponsor">
+            <div class="contact-icon contact-icon-crown"><i class='bx bxs-crown'></i></div>
+            <div class="contact-detail">
+              <div class="contact-sponsor-tag"><span class="sponsor-pulse-dot"></span> 1 Slot Open &bull; 2026/27</div>
+              <h4>Become Our Title Sponsor</h4>
+              <p>5M+ monthly impressions &bull; On-stream logo &bull; Full category exclusivity</p>
+            </div>
+            <div class="contact-send-btn contact-sponsor-btn" title="Explore Title Sponsorship"><i class='bx bx-right-arrow-alt'></i></div>
+          </a>
         </div>
 
         <div class="contact-form" data-aos="fade-left">
@@ -1540,9 +1583,9 @@
     </div>
   </footer>
 
-  <!-- ========== FLOATING VIP TITLE SPONSOR PILL (CONCEPT 3) ========== -->
+  <!-- ========== FLOATING VIP TITLE SPONSOR PILL ========== -->
   <aside class="sponsor-floating-pill" id="sponsorFloatingPill" aria-label="Title Sponsorship Opportunity">
-    <a href="#title-sponsorship" class="sfp-content">
+    <a href="title-sponsor.html" class="sfp-content">
       <div class="sfp-icon-hex">
         <i class='bx bx-crown'></i>
       </div>
@@ -1720,5 +1763,8 @@
     })();
     }); // end window load
   </script>
+
+  <!-- Gaming News Section & Fetch script paused per user request -->
+
 </body>
 </html>
