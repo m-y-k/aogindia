@@ -552,6 +552,18 @@ details[open] .ts-faq-q::after{content:'-'}
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
         <li><a href="/#about">About</a></li>
+        <li class="nav-dropdown" id="navServicesDropdown">
+          <button class="nav-dropdown-toggle" id="navServicesDropdownToggle" aria-expanded="false" aria-haspopup="true">
+            Services <span class="dd-caret">&#9660;</span>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="influencer-marketing-agency-india.html" role="menuitem"><i class='bx bx-user-voice'></i> Influencer Marketing</a>
+            <a href="youtube-marketing-agency-india.html" role="menuitem"><i class='bx bxl-youtube'></i> YouTube Marketing</a>
+            <a href="social-media-marketing-agency-india.html" role="menuitem"><i class='bx bx-share-alt'></i> Social Media Agency</a>
+            <a href="marketing-strategy-for-youth-brands.html" role="menuitem"><i class='bx bx-bulb'></i> Youth Brand Strategy</a>
+            <a href="gaming-marketing-company-india.html" role="menuitem"><i class='bx bx-joystick'></i> Gaming Marketing Firm</a>
+          </div>
+        </li>
         <li><a href="/#creators">Creators</a></li>
         <li><a href="blog/">Blog</a></li>
         <li><a href="/#contact">Contact</a></li>
@@ -1229,6 +1241,22 @@ details[open] .ts-faq-q::after{content:'-'}
         ham.addEventListener('click', toggle);
         nv.addEventListener('click', toggle);
         nl.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { if (nl.classList.contains('open')) toggle(); }); });
+      }
+
+      var sdd = document.getElementById('navServicesDropdown');
+      var sbtn = document.getElementById('navServicesDropdownToggle');
+      if (sdd && sbtn) {
+        sbtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = sdd.classList.toggle('open');
+          sbtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        document.addEventListener('click', function(e) {
+          if (!sdd.contains(e.target)) {
+            sdd.classList.remove('open');
+            sbtn.setAttribute('aria-expanded', 'false');
+          }
+        });
       }
     });
   </script>

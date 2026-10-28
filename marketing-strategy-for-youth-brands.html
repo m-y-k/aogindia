@@ -118,8 +118,19 @@
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+        <li class="nav-dropdown" id="navServicesDropdown">
+          <button class="nav-dropdown-toggle" id="navServicesDropdownToggle" aria-expanded="false" aria-haspopup="true">
+            Services <span class="dd-caret">&#9660;</span>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="influencer-marketing-agency-india.html" role="menuitem"><i class='bx bx-user-voice'></i> Influencer Marketing</a>
+            <a href="youtube-marketing-agency-india.html" role="menuitem"><i class='bx bxl-youtube'></i> YouTube Marketing</a>
+            <a href="social-media-marketing-agency-india.html" role="menuitem"><i class='bx bx-share-alt'></i> Social Media Agency</a>
+            <a href="marketing-strategy-for-youth-brands.html" role="menuitem"><i class='bx bx-bulb'></i> Youth Brand Strategy</a>
+            <a href="gaming-marketing-company-india.html" role="menuitem"><i class='bx bx-joystick'></i> Gaming Marketing Firm</a>
+          </div>
+        </li>
         <li><a href="index.html#creators">Creators</a></li>
         <li class="nav-dropdown" id="navDropdown">
           <button class="nav-dropdown-toggle" id="navDropdownToggle" aria-expanded="false" aria-haspopup="true">Work With Us <span class="dd-caret">&#9660;</span></button>
@@ -324,40 +335,50 @@
     </div>
   </section>
 
+    <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-top">
         <div class="footer-brand">
-          <a href="index.html" class="footer-logo-link"><img src="images/aog-logo.webp" alt="AOG India Esports" width="56" height="56" loading="lazy"><span class="footer-logo-text"><span>AOG</span> India Esports</span></a>
-          <p class="footer-tagline">India's specialist gaming & Gen Z marketing strategy agency.</p>
-          <div class="footer-social">
-            <a href="https://www.linkedin.com/company/117914370" aria-label="LinkedIn" target="_blank" rel="noopener"><i class='bx bxl-linkedin'></i></a>
-            <a href="mailto:partnerships@aogindia.com" aria-label="Email"><i class='bx bx-envelope'></i></a>
+          <a href="index.html" class="footer-logo-link">
+            <img src="images/aog-logo.webp" alt="AOG India Esports Logo" class="footer-logo-img" width="48" height="48" loading="lazy">
+            <span class="footer-logo-text"><span>AOG</span> India Esports</span>
+          </a>
+          <p>
+            India's dedicated gaming &amp; youth creator marketing agency. Connecting leading brands and agencies with 200+ curated creators across YouTube, Instagram, and live streaming.
+          </p>
+          <div class="footer-socials">
+            <a href="mailto:partnerships@aogindia.com" title="Email AOG India Esports at partnerships@aogindia.com"><i class='bx bx-envelope'></i></a>
+            <a href="https://www.linkedin.com/company/117914370" target="_blank" rel="noopener" title="AOG India Esports on LinkedIn"><i class='bx bxl-linkedin'></i></a>
           </div>
         </div>
-        <div class="footer-links-col">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="influencer-marketing-agency-india.html">Influencer Marketing</a></li>
-            <li><a href="youtube-marketing-agency-india.html">YouTube Marketing</a></li>
-            <li><a href="social-media-marketing-agency-india.html">Social Media Marketing</a></li>
-            <li><a href="for-brands.html">For Brands</a></li>
-            <li><a href="for-agencies.html">For Agencies</a></li>
-          </ul>
-        </div>
-        <div class="footer-links-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="index.html#about">About AOG</a></li>
-            <li><a href="index.html#creators">Our Creators</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-            <li><a href="title-sponsor.html">Title Sponsorship</a></li>
-          </ul>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Solutions &amp; Strategy</h4>
+            <ul>
+              <li><a href="influencer-marketing-agency-india.html">Influencer Marketing Agency</a></li>
+              <li><a href="youtube-marketing-agency-india.html">YouTube Marketing Agency</a></li>
+              <li><a href="social-media-marketing-agency-india.html">Social Media Marketing Agency</a></li>
+              <li><a href="marketing-strategy-for-youth-brands.html">Marketing Strategy for Youth Brands</a></li>
+              <li><a href="gaming-marketing-company-india.html">Gaming Marketing Company</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Work With Us</h4>
+            <ul>
+              <li><a href="for-brands.html">For Brands &amp; Publishers</a></li>
+              <li><a href="for-agencies.html">For Marketing Agencies</a></li>
+              <li><a href="title-sponsor.html">Title Sponsor 2026/27</a></li>
+              <li><a href="blog/">Blog &amp; Case Studies</a></li>
+              <li><a href="index.html#contact">Contact &amp; Proposal</a></li>
+            </ul>
+          </div>
         </div>
       </div>
+
       <div class="footer-bottom">
-        <p>&copy; 2026 AOG India Esports. All rights reserved.</p>
-        <p><a href="mailto:partnerships@aogindia.com">partnerships@aogindia.com</a></p>
+        <span>&copy; 2026 AOG India Esports (Alliance Of Gamers). All rights reserved.</span>
       </div>
     </div>
   </footer>
@@ -376,12 +397,26 @@
       navHamburger.addEventListener('click', toggleMenu);
       navOverlay.addEventListener('click', toggleMenu);
       document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => { if (navLinks.classList.contains('open')) toggleMenu(); }));
-      const navDropdown = document.getElementById('navDropdown');
-      const navDropdownToggle = document.getElementById('navDropdownToggle');
-      if (navDropdown && navDropdownToggle) {
-        navDropdownToggle.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = navDropdown.classList.toggle('open'); navDropdownToggle.setAttribute('aria-expanded', isOpen); });
-        document.addEventListener('click', (e) => { if (!navDropdown.contains(e.target)) { navDropdown.classList.remove('open'); navDropdownToggle.setAttribute('aria-expanded', 'false'); } });
-      }
+            // Universal dropdown handler
+      document.querySelectorAll('.nav-dropdown').forEach(dd => {
+        const toggle = dd.querySelector('.nav-dropdown-toggle');
+        if (toggle) {
+          toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = dd.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', isOpen);
+          });
+        }
+      });
+      document.addEventListener('click', (e) => {
+        document.querySelectorAll('.nav-dropdown').forEach(dd => {
+          if (!dd.contains(e.target)) {
+            dd.classList.remove('open');
+            const toggle = dd.querySelector('.nav-dropdown-toggle');
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
     });
   </script>
 </body>

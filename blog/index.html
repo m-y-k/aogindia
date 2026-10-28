@@ -157,6 +157,18 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="../">Home</a></li>
         <li><a href="../#about">About</a></li>
+        <li class="nav-dropdown" id="navServicesDropdown">
+          <button class="nav-dropdown-toggle" id="navServicesDropdownToggle" data-dropdown-bound="true" onclick="window.toggleNavServicesDropdown(event)" aria-expanded="false" aria-haspopup="true">
+            Services <span class="dd-caret">&#9660;</span>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="../influencer-marketing-agency-india.html" role="menuitem"><i class='bx bx-user-voice'></i> Influencer Marketing</a>
+            <a href="../youtube-marketing-agency-india.html" role="menuitem"><i class='bx bxl-youtube'></i> YouTube Marketing</a>
+            <a href="../social-media-marketing-agency-india.html" role="menuitem"><i class='bx bx-share-alt'></i> Social Media Agency</a>
+            <a href="../marketing-strategy-for-youth-brands.html" role="menuitem"><i class='bx bx-bulb'></i> Youth Brand Strategy</a>
+            <a href="../gaming-marketing-company-india.html" role="menuitem"><i class='bx bx-joystick'></i> Gaming Marketing Firm</a>
+          </div>
+        </li>
         <li><a href="../#creators">Creators</a></li>
         <li><a href="./" class="active">Blog</a></li>
         <li class="nav-dropdown" id="navDropdown">
@@ -174,7 +186,7 @@
   <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- BLOG HERO -->
-  <section class="blog-article-hero" style="padding-bottom: 80px;">
+  <section class="blog-article-hero" style="padding-bottom: 50px;">
     <div class="container">
       <div class="breadcrumb">
         <a href="../">AOG India</a> <span>/</span> <span>Blog</span>
@@ -186,6 +198,63 @@
       <p style="font-family:var(--font-body); font-size:1.05rem; color:var(--text-muted); max-width:620px; line-height:1.7;">
         Practical guides, pricing breakdowns, and creator marketing strategies for brands and agencies in India.
       </p>
+    </div>
+  </section>
+
+  <!-- MARKETING SERVICES & SOLUTIONS -->
+  <section class="services-hub-section" style="padding: 20px 0 60px;">
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up" style="margin-bottom: 20px; text-align: left;">
+        <h2 style="font-size: clamp(1.3rem, 2.5vw, 1.8rem);">Our Core <span>Marketing Services</span></h2>
+        <p style="margin-left: 0; text-align: left;">High-impact agency execution, creator partnerships, and strategy frameworks.</p>
+      </div>
+      <div class="services-hub-grid" data-aos="fade-up" data-aos-delay="80">
+        <a href="../influencer-marketing-agency-india.html" class="shub-card">
+          <div class="shub-card-top">
+            <div class="shub-icon"><i class='bx bx-user-voice'></i></div>
+            <span class="shub-badge">CORE SERVICE</span>
+          </div>
+          <h3>Influencer Marketing Agency</h3>
+          <p>Curated gaming, tech, and Gen Z creator campaigns across YouTube &amp; Instagram with 200+ roster creators.</p>
+          <div class="shub-link"><span>Explore Agency</span><i class='bx bx-right-arrow-alt'></i></div>
+        </a>
+        <a href="../youtube-marketing-agency-india.html" class="shub-card">
+          <div class="shub-card-top">
+            <div class="shub-icon"><i class='bx bxl-youtube'></i></div>
+            <span class="shub-badge">HIGH ENGAGEMENT</span>
+          </div>
+          <h3>YouTube Marketing Agency</h3>
+          <p>Dedicated video sponsorships, mid-rolls, and YouTube Shorts activations for game launches and tech brands.</p>
+          <div class="shub-link"><span>View YouTube Solutions</span><i class='bx bx-right-arrow-alt'></i></div>
+        </a>
+        <a href="../social-media-marketing-agency-india.html" class="shub-card">
+          <div class="shub-card-top">
+            <div class="shub-icon"><i class='bx bx-share-alt'></i></div>
+            <span class="shub-badge">VIRAL REACH</span>
+          </div>
+          <h3>Social Media Marketing Agency</h3>
+          <p>Data-driven Instagram Reels, gaming UGC, and multi-channel social amplification for young audiences.</p>
+          <div class="shub-link"><span>See Social Campaigns</span><i class='bx bx-right-arrow-alt'></i></div>
+        </a>
+        <a href="../marketing-strategy-for-youth-brands.html" class="shub-card">
+          <div class="shub-card-top">
+            <div class="shub-icon"><i class='bx bx-bulb'></i></div>
+            <span class="shub-badge">STRATEGY</span>
+          </div>
+          <h3>Youth Brand Marketing Strategy</h3>
+          <p>Actionable go-to-market strategies for brands seeking genuine cultural relevance among Gen Z consumers.</p>
+          <div class="shub-link"><span>Discover Strategy</span><i class='bx bx-right-arrow-alt'></i></div>
+        </a>
+        <a href="../gaming-marketing-company-india.html" class="shub-card">
+          <div class="shub-card-top">
+            <div class="shub-icon"><i class='bx bx-joystick'></i></div>
+            <span class="shub-badge">ESPORTS &amp; GAMING</span>
+          </div>
+          <h3>Gaming Marketing Company</h3>
+          <p>End-to-end publisher support, BGMI promotions, collegiate esports IP partnerships, and creator seeding.</p>
+          <div class="shub-link"><span>Explore Programs</span><i class='bx bx-right-arrow-alt'></i></div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -297,13 +366,45 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo"><span class="logo-a">A</span><span class="logo-o">O</span><span class="logo-g">G</span> India Esports</div>
-        <div class="footer-socials">
-          <a href="mailto:partnerships@aogindia.com" title="Email AOG India Esports"><i class='bx bx-envelope'></i></a>
-          <a href="https://www.linkedin.com/company/117914370" target="_blank" rel="noopener" title="AOG India Esports on LinkedIn"><i class='bx bxl-linkedin'></i></a>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="../" class="footer-logo-link">
+            <img src="../images/aog-logo.webp" alt="AOG India Esports Logo" class="footer-logo-img" width="48" height="48" loading="lazy">
+            <span class="footer-logo-text"><span>AOG</span> India Esports</span>
+          </a>
+          <p>
+            India's dedicated gaming &amp; youth creator marketing agency. Connecting leading brands and agencies with 200+ curated creators across YouTube, Instagram, and live streaming.
+          </p>
+          <div class="footer-socials">
+            <a href="mailto:partnerships@aogindia.com" title="Email AOG India Esports"><i class='bx bx-envelope'></i></a>
+            <a href="https://www.linkedin.com/company/117914370" target="_blank" rel="noopener" title="AOG India Esports on LinkedIn"><i class='bx bxl-linkedin'></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Solutions &amp; Strategy</h4>
+            <ul>
+              <li><a href="../influencer-marketing-agency-india.html">Influencer Marketing Agency</a></li>
+              <li><a href="../youtube-marketing-agency-india.html">YouTube Marketing Agency</a></li>
+              <li><a href="../social-media-marketing-agency-india.html">Social Media Marketing Agency</a></li>
+              <li><a href="../marketing-strategy-for-youth-brands.html">Marketing Strategy for Youth Brands</a></li>
+              <li><a href="../gaming-marketing-company-india.html">Gaming Marketing Company</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Work With Us</h4>
+            <ul>
+              <li><a href="../for-brands.html">For Brands &amp; Publishers</a></li>
+              <li><a href="../for-agencies.html">For Marketing Agencies</a></li>
+              <li><a href="../title-sponsor.html">Title Sponsor 2026/27</a></li>
+              <li><a href="./">Blog &amp; Case Studies</a></li>
+              <li><a href="../#contact">Contact &amp; Proposal</a></li>
+            </ul>
+          </div>
         </div>
       </div>
+
       <div class="footer-bottom">
         <span>&copy; 2026 AOG India Esports (Alliance Of Gamers). All rights reserved.</span>
       </div>
@@ -323,12 +424,27 @@
         if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       }
     };
+    window.toggleNavServicesDropdown = function(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      var dd = document.getElementById('navServicesDropdown');
+      var btn = document.getElementById('navServicesDropdownToggle');
+      if (dd) {
+        var isOpen = dd.classList.toggle('open');
+        if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    };
     document.addEventListener('click', function(e) {
-      var dd = document.getElementById('navDropdown');
-      var btn = document.getElementById('navDropdownToggle');
-      if (dd && !dd.contains(e.target)) {
-        dd.classList.remove('open');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
+      var d1 = document.getElementById('navDropdown');
+      var b1 = document.getElementById('navDropdownToggle');
+      var d2 = document.getElementById('navServicesDropdown');
+      var b2 = document.getElementById('navServicesDropdownToggle');
+      if (d1 && !d1.contains(e.target)) {
+        d1.classList.remove('open');
+        if (b1) b1.setAttribute('aria-expanded', 'false');
+      }
+      if (d2 && !d2.contains(e.target)) {
+        d2.classList.remove('open');
+        if (b2) b2.setAttribute('aria-expanded', 'false');
       }
     });
   </script>
