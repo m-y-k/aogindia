@@ -171,31 +171,89 @@
 
   <!-- GEN Z INSIGHTS -->
   <section class="agency-keyword-section" id="genz-insights" style="padding:5rem 1rem;">
-    <div class="container" style="max-width:860px;margin:0 auto;">
+    <div class="container" style="max-width:1180px;margin:0 auto;">
       <div class="section-heading" data-aos="fade-up">
         <h2>Gen Z Marketing <span>Insights India 2025</span></h2>
         <p>Understanding Gen Z consumer behavior is the foundation of any effective youth brand marketing strategy in India.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3rem;" data-aos="fade-up" data-aos-delay="100">
-        <div class="agency-kw-card" style="text-align:center;">
-          <div style="font-size:2.8rem;font-family:'Black Ops One',sans-serif;color:var(--accent);margin-bottom:.5rem;">500M+</div>
-          <h3 style="font-size:1rem;margin-bottom:.5rem;">Indian YouTube Users</h3>
-          <p style="font-size:.88rem;">India is the world's largest YouTube market. Gen Z spends avg. 3+ hrs/day on YouTube, primarily in gaming, tech, and entertainment categories.</p>
+      <style>
+        .genz-insights-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+          margin-top: 2.5rem;
+        }
+        .genz-insights-grid .agency-kw-card {
+          padding: 24px 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          height: 100%;
+          box-sizing: border-box;
+          background: rgba(13, 16, 12, 0.85);
+          border: 1px solid rgba(255, 122, 26, 0.18);
+          border-radius: 6px;
+          transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .genz-insights-grid .agency-kw-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(255, 122, 26, 0.5);
+        }
+        .genz-stat-num {
+          font-size: clamp(1.9rem, 2.3vw, 2.4rem);
+          font-family: 'Black Ops One', sans-serif;
+          color: var(--accent, #ff7a1a);
+          line-height: 1.1;
+          margin-bottom: 0.6rem;
+        }
+        .genz-insights-grid h3 {
+          font-size: 0.92rem;
+          margin: 0 0 0.5rem;
+          line-height: 1.3;
+          font-family: var(--font-heading, sans-serif);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: var(--text-primary, #f4ead4);
+        }
+        .genz-insights-grid p {
+          font-size: 0.8rem;
+          line-height: 1.55;
+          color: var(--text-muted, #a8a08a);
+          margin: 0;
+        }
+        @media (max-width: 960px) {
+          .genz-insights-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+          }
+        }
+        @media (max-width: 520px) {
+          .genz-insights-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+      <div class="genz-insights-grid" data-aos="fade-up" data-aos-delay="100">
+        <div class="agency-kw-card">
+          <div class="genz-stat-num">500M+</div>
+          <h3>Indian YouTube Users</h3>
+          <p>India is the world's largest YouTube market. Gen Z spends avg. 3+ hrs/day on YouTube, primarily in gaming, tech, and entertainment categories.</p>
         </div>
-        <div class="agency-kw-card" style="text-align:center;">
-          <div style="font-size:2.8rem;font-family:'Black Ops One',sans-serif;color:var(--accent);margin-bottom:.5rem;">84%</div>
-          <h3 style="font-size:1rem;margin-bottom:.5rem;">Skip Traditional Ads</h3>
-          <p style="font-size:.88rem;">84% of Gen Z in India skip or ignore traditional digital display and pre-roll advertising. Creator-native content is the only reliable channel.</p>
+        <div class="agency-kw-card">
+          <div class="genz-stat-num">84%</div>
+          <h3>Skip Traditional Ads</h3>
+          <p>84% of Gen Z in India skip or ignore traditional digital display and pre-roll advertising. Creator-native content is the only reliable channel.</p>
         </div>
-        <div class="agency-kw-card" style="text-align:center;">
-          <div style="font-size:2.8rem;font-family:'Black Ops One',sans-serif;color:var(--accent);margin-bottom:.5rem;">4–6×</div>
-          <h3 style="font-size:1rem;margin-bottom:.5rem;">Higher UGC Engagement</h3>
-          <p style="font-size:.88rem;">Authentic creator content (UGC) generates 4–6× higher engagement among Indian Gen Z than polished brand advertising content.</p>
+        <div class="agency-kw-card">
+          <div class="genz-stat-num">4–6×</div>
+          <h3>Higher UGC Engagement</h3>
+          <p>Authentic creator content (UGC) generates 4–6× higher engagement among Indian Gen Z than polished brand advertising content.</p>
         </div>
-        <div class="agency-kw-card" style="text-align:center;">
-          <div style="font-size:2.8rem;font-family:'Black Ops One',sans-serif;color:var(--accent);margin-bottom:.5rem;">568M</div>
-          <h3 style="font-size:1rem;margin-bottom:.5rem;">Indian Gamers by 2025</h3>
-          <p style="font-size:.88rem;">India's gaming audience is the world's second largest and growing. Gaming creators are the most trusted influencers for the 15–28 demographic.</p>
+        <div class="agency-kw-card">
+          <div class="genz-stat-num">568M</div>
+          <h3>Indian Gamers by 2025</h3>
+          <p>India's gaming audience is the world's second largest and growing. Gaming creators are the most trusted influencers for the 15–28 demographic.</p>
         </div>
       </div>
     </div>
