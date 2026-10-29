@@ -599,11 +599,11 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   position: relative;
   overflow: hidden;
-  padding-top: calc(80px + var(--ticker-h, 36px) + 20px);
+  padding-top: 140px;
   padding-bottom: 50px;
   padding-left: 12px;
   padding-right: 12px;
@@ -616,7 +616,7 @@ img {
 }
 
 body:not(.has-broadcast) .hero {
-  padding-top: calc(80px + 20px);
+  padding-top: 140px;
 }
 
 /* Animated gradient orbs — now orange/olive */
@@ -678,6 +678,37 @@ body:not(.has-broadcast) .hero {
 .hero-content {
   position: relative;
   z-index: 2;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
+}
+
+/* ============================================
+   PILLAR PAGE HERO
+   ============================================ */
+.pillar-hero {
+  min-height: 70vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-top: 140px !important;
+  padding-bottom: 60px !important;
+  text-align: center !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+.pillar-hero > .container {
+  margin-top: auto;
+  margin-bottom: auto;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.pillar-hero .breadcrumb {
+  margin-bottom: 24px;
 }
 
 .hero-tag {
@@ -2377,7 +2408,7 @@ body:not(.has-broadcast) .hero {
     height: 68px !important;
   }
   .hero {
-    padding-top: calc(68px + var(--ticker-h, 32px) + 16px) !important;
+    padding-top: 96px !important;
     padding-bottom: 35px !important;
     padding-left: 14px !important;
     padding-right: 14px !important;
@@ -2385,7 +2416,12 @@ body:not(.has-broadcast) .hero {
     box-sizing: border-box;
   }
   body:not(.has-broadcast) .hero {
-    padding-top: calc(68px + 16px) !important;
+    padding-top: 96px !important;
+  }
+  .pillar-hero {
+    padding-top: 96px !important;
+    padding-bottom: 35px !important;
+    min-height: auto !important;
   }
   .hero-content { width: 100%; }
   .hero-tag {
