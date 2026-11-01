@@ -1699,24 +1699,29 @@ body:not(.has-broadcast) .hero {
 .form-header-flex h3 {
   margin-bottom: 0;
 }
+/* wa-privacy-badge (removed)
+  margin-bottom: 0;
+}
 
-.wa-privacy-badge {
+
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 700;
-  color: #25d366;
-  background: rgba(37, 211, 102, 0.1);
-  border: 1px solid rgba(37, 211, 102, 0.3);
-  padding: 4px 10px;
+
+
+
+
   border-radius: 4px;
 }
 
-.wa-privacy-badge i {
+
   font-size: 1rem;
 }
+
+*/
 
 /* Contact Form */
 .contact-form {
@@ -2883,6 +2888,7 @@ body:not(.has-broadcast) .hero {
 }
 
 .kw-tag {
+  padding: 4px 10px;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
@@ -2891,7 +2897,7 @@ body:not(.has-broadcast) .hero {
   color: var(--accent);
   background: rgba(255, 122, 26, 0.12);
   border: 1px solid rgba(255, 122, 26, 0.3);
-  padding: 4px 10px;
+
   border-radius: 4px;
 }
 
@@ -4933,9 +4939,10 @@ body:not(.has-broadcast) .hero {
     border-radius: 10px;
   }
   .sponsor-card-badge {
+    padding: 4px 10px;
     font-size: 0.62rem;
     letter-spacing: 1px;
-    padding: 4px 10px;
+  
     margin-bottom: 0;
   }
   .sponsor-card-top-row {

@@ -142,13 +142,13 @@
 
 /* testimonials moved — see brand carousel CSS */
 
-/* ===== WHATSAPP BUTTON =====*/
-.ts-wa-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-heading,'Black Ops One',sans-serif);font-size:.9rem;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:#25d366;padding:15px 28px;text-decoration:none;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);box-shadow:0 0 24px rgba(37,211,102,.3);transition:all .2s ease}
-.ts-wa-btn:hover{background:#1da851;box-shadow:0 6px 28px rgba(37,211,102,.5);transform:translateY(-2px);color:#fff}
-.ts-wa-float{position:fixed;bottom:90px;right:20px;z-index:9998;display:flex;flex-direction:column;align-items:center;gap:4px}
-.ts-wa-float-btn{width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.5);animation:wa-pop 2.5s ease-in-out infinite}
-.ts-wa-float-label{font-family:var(--font-mono,monospace);font-size:.55rem;letter-spacing:1px;text-transform:uppercase;color:#25d366;white-space:nowrap}
-@keyframes wa-pop{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5)}50%{box-shadow:0 4px 32px rgba(37,211,102,.8),0 0 0 8px rgba(37,211,102,.12)}}
+
+
+
+
+
+
+
 
 /* Mobile fixes for new sections */
 @media(max-width:640px){
@@ -156,8 +156,8 @@
   .ts-social-proof{padding:48px 18px}
   .ts-testimonial{padding:20px 18px}
   .ts-testimonial-text{font-size:.82rem}
-  .ts-wa-float{bottom:80px;right:14px}
-  .ts-wa-float-btn{width:46px;height:46px;font-size:1.4rem}
+
+
 }
 
 /* ===== REAL CREATOR MOSAIC WALL ===== */
@@ -445,7 +445,7 @@ details[open] .ts-faq-q::after{content:'-'}
 .ts-contact-inner p{font-size:.95rem;color:#a8a08a;line-height:1.75;margin-bottom:36px}
 .ts-cta-row-c{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 @media(max-width:640px){
-  .ts-wa-btn:not(.ts-wa-float .ts-wa-float-btn){display:none}
+
   /* ── Hero ── */
   .ts-hero{padding:90px 18px 48px;min-height:auto}
   .ts-h1{font-size:clamp(1.7rem,9vw,2.4rem)}
@@ -597,9 +597,9 @@ details[open] .ts-faq-q::after{content:'-'}
         <div class="ts-stat"><span class="ts-stat-num">&#8377;5L*</span><span class="ts-stat-lbl">Starting / Month</span></div>
       </div>
       <div class="ts-cta-row" data-aos="fade-up" data-aos-delay="400">
-        <a href="mailto:partnerships@aogindia.com?subject=Title%20Sponsorship%20Inquiry%20-%20AOG%20India%202026" class="ts-btn-primary">Apply Now <i class='bx bx-right-arrow-alt'></i></a>
+        <a href="#apply" class="ts-btn-primary">Apply Now <i class='bx bx-right-arrow-alt'></i></a>
         <a href="#packages" class="ts-btn-secondary">View Packages <i class='bx bx-chevron-down'></i></a>
-        <a href="https://wa.me/917037488868?text=Hi%20AOG%20India%2C%20I%20am%20interested%20in%20Title%20Sponsorship%20for%202026%2F27." target="_blank" rel="noopener" class="ts-wa-btn"><i class='bx bxl-whatsapp'></i> WhatsApp Us</a>
+
       </div>
     </div>
   </section>
@@ -1046,8 +1046,8 @@ details[open] .ts-faq-q::after{content:'-'}
           <li><i class='bx bx-star'></i> Exclusive to one brand per game title</li>
         </ul>
         <a href="mailto:partnerships@aogindia.com?subject=Esports%20Team%20Sponsorship%20Inquiry%20-%20AOG%20India" class="ts-btn-primary" style="display:inline-flex">
-          Inquire About Team Sponsorship <i class='bx bx-right-arrow-alt'></i>
-        </a>
+          Inquire About Team Sponsorship <i class='bx bx-right-arrow-alt'></i></a>
+      
       </div>
       <div class="ts-team-visual" data-aos="fade-left" data-aos-delay="100">
         <div class="ts-team-badge">
@@ -1166,7 +1166,7 @@ details[open] .ts-faq-q::after{content:'-'}
         <button type="button" class="ts-form-submit" id="apfSubmit" onclick="aogApplySubmit()">
           <i class='bx bx-send'></i> Open Email &amp; Send Application
         </button>
-        <div style="text-align:center;margin-top:10px;margin-bottom:4px"><a href="https://wa.me/917037488868?text=Hi%20AOG%20India%2C%20I%20am%20interested%20in%20Title%20Sponsorship.%20Brand%3A%20" target="_blank" rel="noopener" class="ts-wa-btn" style="display:inline-flex"><i class='bx bxl-whatsapp'></i> Or Chat on WhatsApp</a></div>
+
         <p class="ts-form-note">
           Clicking above opens your default email client with everything pre-filled.<br>
           All fields marked <span style="color:var(--accent)">*</span> are required. Your details go directly to
@@ -1186,6 +1186,7 @@ details[open] .ts-faq-q::after{content:'-'}
             <img src="images/aog-logo.webp" alt="AOG India Esports Logo" class="footer-logo-img" width="48" height="48" loading="lazy">
             <span class="footer-logo-text"><span>AOG</span> India Esports</span>
           </a>
+        
           <p>
             India's dedicated gaming &amp; youth creator marketing agency. Connecting leading brands and agencies with 200+ curated creators across YouTube, Instagram, and live streaming.
           </p>
@@ -1277,11 +1278,11 @@ details[open] .ts-faq-q::after{content:'-'}
     </div>
   </div>
 
-  <!-- WhatsApp Float Button -->
-  <a href="https://wa.me/917037488868?text=Hi%20AOG%20India%2C%20I%20am%20interested%20in%20Title%20Sponsorship%20for%202026%2F27.%20Can%20you%20share%20the%20media%20kit%3F" target="_blank" rel="noopener" class="ts-wa-float" id="tsWaFloat" aria-label="Chat on WhatsApp">
-    <div class="ts-wa-float-btn"><i class='bx bxl-whatsapp'></i></div>
-    <span class="ts-wa-float-label">WhatsApp</span>
-  </a>
+
+
+
+
+
 
   <script>
   var currentMailto = '';
