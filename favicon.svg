@@ -1,18 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#111410"/>
-      <stop offset="100%" stop-color="#0a0c08"/>
-    </radialGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ff7a1a"/>
-      <stop offset="100%" stop-color="#ffc23a"/>
-    </linearGradient>
-  </defs>
-  <!-- Outer glow ring -->
-  <circle cx="32" cy="32" r="31" fill="none" stroke="#ff7a1a" stroke-width="2" opacity="0.6"/>
-  <!-- Dark circle background -->
-  <circle cx="32" cy="32" r="29" fill="url(#bg)"/>
-  <!-- AOG text -->
-  <text x="32" y="38" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="18" fill="url(#accent)" letter-spacing="1">AOG</text>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#070806"/>
+  <image href="/images/favicon-64.png" xlink:href="/images/favicon-64.png" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
 </svg>
