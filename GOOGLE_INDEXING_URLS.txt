@@ -1,0 +1,72 @@
+=== AOG India Esports - All Pages for Google Indexing ===
+
+=== HOMEPAGE ===
+https://aogindia.com/
+
+=== SERVICE PAGES ===
+https://aogindia.com/influencer-marketing-agency-india.html
+https://aogindia.com/youtube-marketing-agency-india.html
+https://aogindia.com/social-media-marketing-agency-india.html
+https://aogindia.com/marketing-strategy-for-youth-brands.html
+https://aogindia.com/gaming-marketing-company-india.html
+
+=== BRAND/AGENCY PAGES ===
+https://aogindia.com/for-brands.html
+https://aogindia.com/for-agencies.html
+https://aogindia.com/title-sponsor.html
+
+=== BLOG PAGES ===
+https://aogindia.com/blog/
+https://aogindia.com/blog/rooter-bgmi-creator-campaign-case-study.html
+https://aogindia.com/blog/top-gaming-marketing-agencies-india.html
+https://aogindia.com/blog/services-offered-by-gaming-marketing-agencies-india.html
+https://aogindia.com/blog/affordable-gaming-marketing-firms-india.html
+https://aogindia.com/blog/how-to-do-marketing-for-product-gaming-india.html
+https://aogindia.com/blog/bgmi-creator-campaign-guide.html
+https://aogindia.com/blog/minecraft-creator-marketing-india.html
+https://aogindia.com/blog/gaming-influencer-pricing-india.html
+https://aogindia.com/blog/gaming-product-seeding-guide.html
+
+=== OTHER PAGES ===
+https://aogindia.com/gaming-news.html
+
+=== GOOGLE SEARCH CONSOLE ACTIONS ===
+
+1. Open Google Search Console (search.google.com/search-console)
+2. Add property: https://aogindia.com/
+3. Submit sitemap: https://aogindia.com/sitemap.xml
+4. Click "Request Indexing" for each important URL
+
+=== LOGO/FAVICON ISSUE EXPLANATION ===
+
+**Why logo appears on tab but not Google Search:**
+
+- **Browser Tab**: Shows `favicon-64.svg` ✅ (correctly configured)
+- **Google Search Results**: Uses JSON-LD `logo` property + `og:image`
+
+**Current Setup:**
+- JSON-LD `logo`: `https://aogindia.com/images/aog-logo.webp` (256x256) - Used by Google for search result logos
+- `og:image`: `https://aogindia.com/images/aog-og.jpg` (1200x630) - Used for social sharing (Facebook, Twitter, WhatsApp)
+
+**To fix logo appearing on Google Search:**
+
+1. Ensure Google has re-crawled your pages:
+   - In Google Search Console, click "Request Indexing" on your homepage
+   - Submit the sitemap at https://aogindia.com/sitemap.xml
+
+2. Verify structured data is valid:
+   - Use Google's Rich Results Test: https://search.google.com/test/rich-results
+   - Test URL: https://aogindia.com/
+
+3. Check that images are accessible:
+   - Visit: https://aogindia.com/images/aog-logo.webp
+   - Visit: https://aogindia.com/images/aog-og.jpg
+
+4. Recommended: Add explicit logo `og:image` for Google:
+   Consider adding this meta tag alongside existing og:image:
+   <meta property="og:image" content="https://aogindia.com/images/aog-logo.webp">
+   
+   Or ensure your aog-og.jpg contains your logo prominently at the left/right side.
+
+=== SITEMAP URLs ALREADY SUBMITTED ===
+The sitemap at https://aogindia.com/sitemap.xml already includes all 28 pages above with proper lastmod dates.
