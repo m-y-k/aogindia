@@ -63,8 +63,8 @@
   <!-- Fonts: preconnect + preload the CSS so text paints immediately -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- Icons: Boxicons & AOS -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
@@ -484,6 +484,289 @@
   .news-card-title { font-size: 0.75rem; }
 }
 </style>
+
+<!-- ══════════════════════════════════════════════════════════════
+     GAME BACKGROUNDS, SLIDABLE SOLUTIONS & COMPACT MOBILE POLISH
+══════════════════════════════════════════════════════════════ -->
+<style id="game-art-and-mobile-polish">
+
+/* ─── ABOUT SECTION ─── */
+.about {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(255, 122, 26, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #070806 0%, #0d100c 50%, #070806 100%);
+}
+
+/* Roadmap step numbering */
+.roadmap-card {
+  position: relative;
+  background: rgba(13, 16, 12, 0.88) !important;
+  border: 1px solid rgba(255, 122, 26, 0.22) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.roadmap-step-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent, #ff7a1a);
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+  display: block;
+  text-transform: uppercase;
+}
+
+/* ─── SPECIALIZED MARKETING SOLUTIONS — DESKTOP SLIDER ─── */
+.services-hub-section {
+  position: relative;
+  overflow: hidden;
+  padding: 85px 0 75px;
+  background-color: #070806;
+}
+.services-slider-wrap {
+  position: relative;
+  margin-top: 36px;
+}
+.services-hub-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 12px 4px 24px;
+  cursor: grab;
+  user-select: none;
+}
+.services-hub-grid::-webkit-scrollbar { display: none; }
+.services-hub-grid.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+.shub-card {
+  flex: 0 0 340px;
+  max-width: 360px;
+  scroll-snap-align: start;
+  position: relative;
+  background: rgba(13, 16, 12, 0.92);
+  border: 1px solid rgba(255, 122, 26, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 28px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+  border-radius: 2px;
+}
+.shub-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 18px; height: 18px;
+  border-top: 2px solid var(--accent, #ff7a1a);
+  border-left: 2px solid var(--accent, #ff7a1a);
+  pointer-events: none;
+}
+.shub-card:hover {
+  border-color: rgba(255, 122, 26, 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(255, 122, 26, 0.16);
+}
+.shub-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.shub-icon {
+  width: 44px; height: 44px;
+  background: rgba(255, 122, 26, 0.1);
+  border: 1px solid rgba(255, 122, 26, 0.32);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem;
+  color: var(--accent, #ff7a1a);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+.shub-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-2, #ffc23a);
+  background: rgba(255, 194, 58, 0.1);
+  border: 1px solid rgba(255, 194, 58, 0.28);
+  padding: 4px 9px;
+  border-radius: 2px;
+}
+.shub-card h3 {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-primary, #f4ead4);
+  line-height: 1.3;
+  margin: 0;
+}
+.shub-card p {
+  font-size: 0.86rem;
+  color: var(--text-muted, #a8a08a);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+.shub-link {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent, #ff7a1a);
+  margin-top: 8px;
+  transition: gap 0.2s ease;
+}
+.shub-card:hover .shub-link { gap: 12px; color: var(--accent-2, #ffc23a); }
+
+/* Slider nav */
+.services-slider-nav {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-top: 14px; padding: 0 4px;
+}
+.services-slider-hint {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 122, 26, 0.7);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.services-slider-hint i { font-size: 0.95rem; color: var(--accent-2, #ffc23a); animation: pulseArrow 1.6s infinite ease-in-out; }
+@keyframes pulseArrow {
+  0%, 100% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+.services-arrows { display: flex; align-items: center; gap: 10px; }
+.services-arrow-btn {
+  width: 38px; height: 38px;
+  background: rgba(255, 122, 26, 0.08);
+  border: 1px solid rgba(255, 122, 26, 0.35);
+  color: var(--accent, #ff7a1a);
+  font-size: 1.25rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+.services-arrow-btn:hover {
+  background: var(--accent, #ff7a1a);
+  color: #070806;
+  box-shadow: 0 0 18px rgba(255, 122, 26, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ─── DESIGN IMPACT ─── */
+body, html { overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+.section-heading h2 { font-weight: 400; letter-spacing: 2px; }
+.section-heading h2 span { color: var(--accent, #ff7a1a); text-shadow: 0 0 35px rgba(255,122,26,0.5), 0 0 70px rgba(255,122,26,0.18); }
+.hero-cta { letter-spacing: 2.5px; box-shadow: 0 0 35px rgba(255,122,26,0.45); }
+.hero-cta:hover { box-shadow: 0 0 55px rgba(255,122,26,0.7); }
+
+/* ─── MOBILE STYLES ─── */
+@media (max-width: 768px) {
+
+  /* Container */
+  .container { padding-left: 18px !important; padding-right: 18px !important; }
+
+  /* Section headings */
+  .section-heading { margin-bottom: 20px !important; }
+  .section-heading h2 { font-size: clamp(1.3rem, 6vw, 1.9rem) !important; letter-spacing: 1.5px !important; line-height: 1.2 !important; }
+  .section-heading p { font-size: 0.84rem !important; line-height: 1.6 !important; margin-top: 8px !important; }
+
+  /* About */
+  .about { padding: 38px 0 34px !important; }
+  .about-text { max-width: 100% !important; padding: 0 4px; margin-bottom: 14px !important; }
+  .about-text h2 { font-size: clamp(1.25rem, 5.5vw, 1.7rem) !important; letter-spacing: 1px !important; margin-bottom: 10px !important; line-height: 1.25 !important; }
+  .about-text p { font-size: 0.86rem !important; line-height: 1.6 !important; margin-bottom: 8px !important; color: var(--text-muted, #a8a08a); }
+
+  /* Roadmap compact 2x2 */
+  .roadmap-container { margin-top: 18px !important; padding: 14px 10px !important; border-radius: 6px !important; background: rgba(13,16,12,0.72) !important; border: 1px solid rgba(255,122,26,0.18) !important; }
+  .roadmap-svg-bg { display: none !important; }
+  .roadmap-grid::before { display: none !important; }
+  .roadmap-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; padding: 0 !important; }
+  .roadmap-step { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 0 !important; margin: 0 !important; padding: 0 !important; }
+  .roadmap-pin { display: none !important; }
+  .roadmap-card { padding: 10px !important; border-radius: 4px !important; text-align: left !important; height: 100% !important; box-sizing: border-box !important; }
+  .roadmap-card h4 { font-size: 0.76rem !important; margin-bottom: 3px !important; line-height: 1.25 !important; display: flex !important; align-items: center !important; gap: 5px !important; color: var(--accent-2, #ffc23a) !important; }
+  .roadmap-card h4 i { color: var(--accent, #ff7a1a) !important; font-size: 0.85rem !important; }
+  .roadmap-card p { font-size: 0.7rem !important; line-height: 1.35 !important; color: #9c9584 !important; }
+
+  /* ── Specialized Marketing Solutions — mobile horizontal slider ── */
+  .services-hub-section { padding: 44px 0 38px !important; }
+  .services-hub-section .section-heading { text-align: left; margin-bottom: 18px !important; }
+  .services-slider-wrap { margin-top: 18px; }
+  .services-hub-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 14px !important;
+    padding: 8px 20px 20px !important;
+    margin: 0 -20px !important;
+    grid-template-columns: unset !important;
+    cursor: grab;
+  }
+  .services-hub-grid::-webkit-scrollbar { display: none !important; }
+  .shub-card {
+    flex: 0 0 78vw !important;
+    max-width: 290px !important;
+    min-width: 230px !important;
+    scroll-snap-align: start !important;
+    padding: 22px 18px 18px !important;
+    clip-path: none !important;
+    border-radius: 4px !important;
+  }
+  .shub-card h3 { font-size: 0.9rem !important; }
+  .shub-card p { font-size: 0.8rem !important; }
+  .services-arrows { display: none !important; }
+  .services-slider-nav { justify-content: center !important; }
+
+  /* ── Meet the Team — 3-col centered ── */
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+    max-width: 420px !important;
+    margin: 20px auto 0 !important;
+  }
+  .team-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+    padding: 16px 8px 14px !important;
+  }
+  .team-avatar { width: 68px !important; height: 68px !important; margin-bottom: 2px !important; }
+  .team-info { align-items: center !important; gap: 6px !important; }
+  .team-info h3 { font-size: 0.65rem !important; letter-spacing: 0.8px !important; line-height: 1.25 !important; }
+  .team-role { font-size: 0.52rem !important; letter-spacing: 0.8px !important; padding: 3px 6px !important; }
+  .team-linkedin { font-size: 0.58rem !important; padding: 4px 8px !important; letter-spacing: 0.6px !important; margin-top: 2px !important; }
+  .team-linkedin i { font-size: 0.82rem !important; }
+
+  /* General */
+  .hero { min-height: 100svh; }
+  .bg-hex, .bg-scan, .bg-grain { overflow: hidden !important; }
+}
+
+</style>
 </head>
 <body>
 
@@ -548,6 +831,7 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero" id="hero">
+</div>
 
     <!-- Creator Background Collage -->
     <div class="hero-bg-collage" aria-hidden="true">
@@ -628,7 +912,8 @@
 
           <div class="roadmap-step">
             <div class="roadmap-card">
-              <h4>Creator Content</h4>
+              <span class="roadmap-step-num">Step 01</span>
+              <h4><i class='bx bx-video'></i> Creator Content</h4>
               <p>High-impact gaming &amp; tech content that drives brand awareness</p>
             </div>
             <div class="roadmap-pin" title="Creator Content"><i class='bx bx-video'></i></div>
@@ -637,14 +922,16 @@
           <div class="roadmap-step">
             <div class="roadmap-pin" title="Unique Link"><i class='bx bx-link'></i></div>
             <div class="roadmap-card">
-              <h4>Unique Link &amp; UTM</h4>
+              <span class="roadmap-step-num">Step 02</span>
+              <h4><i class='bx bx-link'></i> Unique Link &amp; UTM</h4>
               <p>UTM-tagged tracking links for accurate attribution</p>
             </div>
           </div>
 
           <div class="roadmap-step">
             <div class="roadmap-card">
-              <h4>Landing Page</h4>
+              <span class="roadmap-step-num">Step 03</span>
+              <h4><i class='bx bx-window-open'></i> Landing Page</h4>
               <p>Optimized destination page for high user intent</p>
             </div>
             <div class="roadmap-pin" title="Landing Page"><i class='bx bx-window-open'></i></div>
@@ -653,7 +940,8 @@
           <div class="roadmap-step">
             <div class="roadmap-pin" title="Download &amp; Conversion"><i class='bx bx-download'></i></div>
             <div class="roadmap-card">
-              <h4>Download / Action</h4>
+              <span class="roadmap-step-num">Step 04</span>
+              <h4><i class='bx bx-download'></i> Download / Action</h4>
               <p>User downloads the app or completes target conversion</p>
             </div>
           </div>
@@ -662,89 +950,103 @@
       </div>
 
 
+
+
     </div>
   </section>
 
   <!-- ========== MARKETING SERVICES & PILLAR SOLUTIONS ========== -->
   <section class="services-hub-section" id="services-grid" aria-label="AOG India Marketing Services and Solutions">
+
     <div class="container">
       <div class="section-heading" data-aos="fade-up">
         <h2>Specialized <span>Marketing Solutions</span></h2>
         <p>Full-funnel creator execution, game launch marketing, and high-ROI campaigns tailored for youth and gaming audiences in India.</p>
       </div>
 
-      <div class="services-hub-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="services-slider-wrap" id="servicesSliderWrap">
+        <div class="services-hub-grid" id="servicesHubGrid" data-aos="fade-up" data-aos-delay="100">
 
-        <!-- 1. Influencer Marketing Agency -->
-        <a href="influencer-marketing-agency-india.html" class="shub-card">
-          <div class="shub-card-top">
-            <div class="shub-icon"><i class='bx bx-user-voice'></i></div>
-            <span class="shub-badge">CORE SERVICE</span>
-          </div>
-          <h3>Influencer Marketing Agency</h3>
-          <p>Curated creator campaigns across BGMI, Free Fire, Valorant, and Tech with 200+ roster creators on YouTube &amp; Instagram.</p>
-          <div class="shub-link">
-            <span>Explore Agency Playbook</span>
-            <i class='bx bx-right-arrow-alt'></i>
-          </div>
-        </a>
+          <!-- 1. Influencer Marketing Agency -->
+          <a href="influencer-marketing-agency-india.html" class="shub-card">
+            <div class="shub-card-top">
+              <div class="shub-icon"><i class='bx bx-user-voice'></i></div>
+              <span class="shub-badge">CORE SERVICE</span>
+            </div>
+            <h3>Influencer Marketing Agency</h3>
+            <p>Curated creator campaigns across BGMI, Free Fire, Valorant, and Tech with 200+ roster creators on YouTube &amp; Instagram.</p>
+            <div class="shub-link">
+              <span>Explore Agency Playbook</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </div>
+          </a>
 
-        <!-- 2. YouTube Marketing Agency -->
-        <a href="youtube-marketing-agency-india.html" class="shub-card">
-          <div class="shub-card-top">
-            <div class="shub-icon"><i class='bx bxl-youtube'></i></div>
-            <span class="shub-badge">HIGH ENGAGEMENT</span>
-          </div>
-          <h3>YouTube Marketing Agency</h3>
-          <p>Dedicated video sponsorships, mid-rolls, and YouTube Shorts activations for game launches, tech peripherals, and consumer brands.</p>
-          <div class="shub-link">
-            <span>View YouTube Solutions</span>
-            <i class='bx bx-right-arrow-alt'></i>
-          </div>
-        </a>
+          <!-- 2. YouTube Marketing Agency -->
+          <a href="youtube-marketing-agency-india.html" class="shub-card">
+            <div class="shub-card-top">
+              <div class="shub-icon"><i class='bx bxl-youtube'></i></div>
+              <span class="shub-badge">HIGH ENGAGEMENT</span>
+            </div>
+            <h3>YouTube Marketing Agency</h3>
+            <p>Dedicated video sponsorships, mid-rolls, and YouTube Shorts activations for game launches, tech peripherals, and consumer brands.</p>
+            <div class="shub-link">
+              <span>View YouTube Solutions</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </div>
+          </a>
 
-        <!-- 3. Social Media Marketing Agency -->
-        <a href="social-media-marketing-agency-india.html" class="shub-card">
-          <div class="shub-card-top">
-            <div class="shub-icon"><i class='bx bx-share-alt'></i></div>
-            <span class="shub-badge">VIRAL REACH</span>
-          </div>
-          <h3>Social Media Marketing Agency</h3>
-          <p>Data-driven Instagram Reels, short-form gaming UGC, and multi-channel social amplification built specifically for young audiences.</p>
-          <div class="shub-link">
-            <span>See Social Campaigns</span>
-            <i class='bx bx-right-arrow-alt'></i>
-          </div>
-        </a>
+          <!-- 3. Social Media Marketing Agency -->
+          <a href="social-media-marketing-agency-india.html" class="shub-card">
+            <div class="shub-card-top">
+              <div class="shub-icon"><i class='bx bx-share-alt'></i></div>
+              <span class="shub-badge">VIRAL REACH</span>
+            </div>
+            <h3>Social Media Marketing Agency</h3>
+            <p>Data-driven Instagram Reels, short-form gaming UGC, and multi-channel social amplification built specifically for young audiences.</p>
+            <div class="shub-link">
+              <span>See Social Campaigns</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </div>
+          </a>
 
-        <!-- 4. Marketing Strategy for Youth Brands -->
-        <a href="marketing-strategy-for-youth-brands.html" class="shub-card">
-          <div class="shub-card-top">
-            <div class="shub-icon"><i class='bx bx-bulb'></i></div>
-            <span class="shub-badge">STRATEGY &amp; INSIGHTS</span>
-          </div>
-          <h3>Youth Brand Marketing Strategy</h3>
-          <p>Actionable go-to-market strategies for brands seeking genuine cultural relevance among Gen Z consumers and gamers in India.</p>
-          <div class="shub-link">
-            <span>Discover Strategy Framework</span>
-            <i class='bx bx-right-arrow-alt'></i>
-          </div>
-        </a>
+          <!-- 4. Marketing Strategy for Youth Brands -->
+          <a href="marketing-strategy-for-youth-brands.html" class="shub-card">
+            <div class="shub-card-top">
+              <div class="shub-icon"><i class='bx bx-bulb'></i></div>
+              <span class="shub-badge">STRATEGY &amp; INSIGHTS</span>
+            </div>
+            <h3>Youth Brand Marketing Strategy</h3>
+            <p>Actionable go-to-market strategies for brands seeking genuine cultural relevance among Gen Z consumers and gamers in India.</p>
+            <div class="shub-link">
+              <span>Discover Strategy Framework</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </div>
+          </a>
 
-        <!-- 5. Gaming Marketing Company -->
-        <a href="gaming-marketing-company-india.html" class="shub-card">
-          <div class="shub-card-top">
-            <div class="shub-icon"><i class='bx bx-joystick'></i></div>
-            <span class="shub-badge">ESPORTS &amp; GAMING</span>
-          </div>
-          <h3>Gaming Marketing Company</h3>
-          <p>End-to-end publisher support, BGMI &amp; PC title promotions, collegiate esports IP partnerships, tournament sponsorships, and creator seeding.</p>
-          <div class="shub-link">
-            <span>Explore Gaming Programs</span>
-            <i class='bx bx-right-arrow-alt'></i>
-          </div>
-        </a>
+          <!-- 5. Gaming Marketing Company -->
+          <a href="gaming-marketing-company-india.html" class="shub-card">
+            <div class="shub-card-top">
+              <div class="shub-icon"><i class='bx bx-joystick'></i></div>
+              <span class="shub-badge">ESPORTS &amp; GAMING</span>
+            </div>
+            <h3>Gaming Marketing Company</h3>
+            <p>End-to-end publisher support, BGMI &amp; PC title promotions, collegiate esports IP partnerships, tournament sponsorships, and creator seeding.</p>
+            <div class="shub-link">
+              <span>Explore Gaming Programs</span>
+              <i class='bx bx-right-arrow-alt'></i>
+            </div>
+          </a>
 
+        </div>
+
+        <!-- Slider Navigation & Swipe Hint -->
+        <div class="services-slider-nav" data-aos="fade-up">
+          <span class="services-slider-hint"><i class='bx bx-transfer-alt'></i> Drag or Swipe to Explore (1/5)</span>
+          <div class="services-arrows">
+            <button type="button" class="services-arrow-btn" id="servicesPrevBtn" aria-label="Previous service"><i class='bx bx-chevron-left'></i></button>
+            <button type="button" class="services-arrow-btn" id="servicesNextBtn" aria-label="Next service"><i class='bx bx-chevron-right'></i></button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1064,7 +1366,7 @@
           <div class="team-avatar">
             <picture>
               <source srcset="images/team/yusuf.webp" type="image/webp">
-              <img src="images/team/yusuf.png" alt="Mohammad Yusuf Khan, Founder of AOG India eSports" width="110" height="110" loading="lazy">
+              <img src="images/team/yusuf.webp" alt="Mohammad Yusuf Khan, Founder of AOG India eSports" width="110" height="110" loading="lazy">
             </picture>
           </div>
           <div class="team-info">
@@ -1770,6 +2072,84 @@
     });
   })();
 
+  /* Services Hub Drag-to-Scroll & Slider Controls */
+  (function () {
+    var grid = document.getElementById('servicesHubGrid');
+    var wrap = document.getElementById('servicesSliderWrap');
+    var prevBtn = document.getElementById('servicesPrevBtn');
+    var nextBtn = document.getElementById('servicesNextBtn');
+    var hint = document.querySelector('.services-slider-hint');
+    if (!grid) return;
+
+    var isDown = false, startX, scrollLeft;
+    var moved = false;
+
+    grid.addEventListener('mousedown', function (e) {
+      isDown = true;
+      moved = false;
+      grid.classList.add('is-dragging');
+      startX = e.pageX - grid.offsetLeft;
+      scrollLeft = grid.scrollLeft;
+    });
+
+    document.addEventListener('mouseup', function () {
+      if (!isDown) return;
+      isDown = false;
+      grid.classList.remove('is-dragging');
+    });
+
+    grid.addEventListener('mouseleave', function () {
+      if (!isDown) return;
+      isDown = false;
+      grid.classList.remove('is-dragging');
+    });
+
+    grid.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - grid.offsetLeft;
+      var walk = (x - startX) * 1.35;
+      if (Math.abs(walk) > 5) moved = true;
+      grid.scrollLeft = scrollLeft - walk;
+    });
+
+    grid.addEventListener('click', function (e) {
+      if (moved) {
+        e.preventDefault();
+        moved = false;
+      }
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        var card = grid.querySelector('.shub-card');
+        var step = card ? card.offsetWidth + 20 : 340;
+        grid.scrollBy({ left: -step, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        var card = grid.querySelector('.shub-card');
+        var step = card ? card.offsetWidth + 20 : 340;
+        grid.scrollBy({ left: step, behavior: 'smooth' });
+      });
+    }
+
+    /* Update current index indicator on scroll */
+    if (hint) {
+      var cards = grid.querySelectorAll('.shub-card');
+      var total = cards.length;
+      grid.addEventListener('scroll', function () {
+        var card = cards[0];
+        if (!card) return;
+        var step = card.offsetWidth + 20;
+        var idx = Math.min(total, Math.max(1, Math.round(grid.scrollLeft / step) + 1));
+        hint.innerHTML = "<i class='bx bx-transfer-alt'></i> Drag or Swipe to Explore (" + idx + "/" + total + ")";
+      }, { passive: true });
+    }
+  })();
+
   /* Blog Read More Toggle */
   (function () {
     var moreBtn = document.getElementById('blogMoreBtn');
@@ -1815,14 +2195,22 @@
     window.addEventListener('load', function () {
     (function () {
       if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-      gsap.registerPlugin(ScrollTrigger);
 
       const path   = document.getElementById('roadmapPath');
       const pins   = document.querySelectorAll('#roadmapGrid .roadmap-pin');
       const cards  = document.querySelectorAll('#roadmapGrid .roadmap-card');
       const section = document.getElementById('roadmapSection');
 
-      if (!path || !section) return;
+      if (!section) return;
+
+      /* On mobile view, keep cards immediately visible without scroll-delay */
+      if (window.innerWidth <= 768) {
+        gsap.set(cards, { opacity: 1, y: 0 });
+        return;
+      }
+
+      if (!path) return;
+      gsap.registerPlugin(ScrollTrigger);
 
       /* ── 1. SVG path draw-on-scroll ── */
       const pathLen = path.getTotalLength ? path.getTotalLength() : 2200;
