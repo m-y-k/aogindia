@@ -740,26 +740,88 @@ body, html { overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-fon
   .services-slider-nav { justify-content: center !important; }
 
   /* ── Meet the Team — 3-col centered ── */
+  .team {
+    padding: 40px 0 35px !important;
+    overflow: hidden !important;
+  }
+  .team .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
   .team-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 10px !important;
-    max-width: 420px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 360px !important;
     margin: 20px auto 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+    transform: translateX(-2px) !important; /* shifted slightly left and centered */
   }
   .team-card {
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 8px !important;
-    padding: 16px 8px 14px !important;
+    gap: 6px !important;
+    padding: 14px 4px 12px !important;
+    border-radius: 4px !important;
   }
-  .team-avatar { width: 68px !important; height: 68px !important; margin-bottom: 2px !important; }
-  .team-info { align-items: center !important; gap: 6px !important; }
-  .team-info h3 { font-size: 0.65rem !important; letter-spacing: 0.8px !important; line-height: 1.25 !important; }
-  .team-role { font-size: 0.52rem !important; letter-spacing: 0.8px !important; padding: 3px 6px !important; }
-  .team-linkedin { font-size: 0.58rem !important; padding: 4px 8px !important; letter-spacing: 0.6px !important; margin-top: 2px !important; }
-  .team-linkedin i { font-size: 0.82rem !important; }
+  .team-avatar {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 2px !important;
+    flex-shrink: 0 !important;
+  }
+  .team-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    box-sizing: border-box !important;
+  }
+  .team-info h3 {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+  .team-role {
+    font-size: 0.5rem !important;
+    letter-spacing: 0.6px !important;
+    padding: 2px 6px !important;
+    white-space: nowrap !important;
+  }
+  .team-linkedin {
+    font-size: 0.55rem !important;
+    padding: 3px 6px !important;
+    letter-spacing: 0.5px !important;
+    margin-top: 2px !important;
+    white-space: nowrap !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .team-linkedin i {
+    font-size: 0.78rem !important;
+  }
 
   /* General */
   .hero { min-height: 100svh; }
@@ -1722,12 +1784,12 @@ body, html { overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-fon
               </select>
             </div>
 
-            <!-- Brand-Specific Fields -->
+            <!-- Brand & Agency Specific Fields -->
             <div class="form-group-dynamic" id="group-brand-name">
               <div class="form-group-dynamic-content">
                 <div class="form-group">
-                  <label for="companyName">Company / Brand Name</label>
-                  <input type="text" id="companyName" name="company_name" placeholder="e.g. HyperX India">
+                  <label for="companyName">Company / Brand / Agency Name</label>
+                  <input type="text" id="companyName" name="company_name" placeholder="e.g. HyperX India or XYZ Agency">
                 </div>
               </div>
             </div>
@@ -1792,121 +1854,9 @@ body, html { overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-fon
 
             <div class="form-group-dynamic" id="group-creator-subs">
               <div class="form-group-dynamic-content">
-                <div class="rate-card-grid">
-                  <div class="form-group">
-                    <label for="creatorSubs" class="required-label">Subscribers / Followers</label>
-                    <input type="text" id="creatorSubs" name="creator_subs" placeholder="e.g. 250K+">
-                  </div>
-                  <div class="form-group">
-                    <label for="creatorAvgViews">Average Views per Content</label>
-                    <input type="text" id="creatorAvgViews" name="creator_avg_views" placeholder="e.g. 20K - 50K views">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 1. Content Category (Gaming / Tech / Other) -->
-            <div class="form-group-dynamic" id="group-creator-category">
-              <div class="form-group-dynamic-content">
                 <div class="form-group">
-                  <label for="creatorCategory" class="required-label">What is your Content Category?</label>
-                  <select id="creatorCategory" name="creator_category">
-                    <option value="" disabled selected>Select category (Gaming / Tech / Other)</option>
-                    <option value="Gaming">Gaming (Mobile &amp; PC Games)</option>
-                    <option value="Tech">Tech (Smartphones, PC Hardware, Gadgets)</option>
-                    <option value="Other">Other (Entertainment, Vlogs, Lifestyle)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Creator Niche Field -->
-            <div class="form-group-dynamic" id="group-creator-niche">
-              <div class="form-group-dynamic-content">
-                <div class="form-group">
-                  <label for="creatorNiche">Primary Game / Tech Focus</label>
-                  <select id="creatorNiche" name="creator_niche">
-                    <option value="" disabled selected>Select your focus</option>
-                    <optgroup label="Gaming (Mobile)">
-                      <option value="BGMI / PUBG Mobile">BGMI / PUBG Mobile</option>
-                      <option value="Free Fire MAX">Free Fire MAX</option>
-                      <option value="Call of Duty Mobile">Call of Duty Mobile</option>
-                      <option value="Other Mobile Game">Other Mobile Game</option>
-                    </optgroup>
-                    <optgroup label="Gaming (PC &amp; Console)">
-                      <option value="Valorant">Valorant</option>
-                      <option value="CS2 / CS:GO">CS2 / Counter-Strike</option>
-                      <option value="Minecraft">Minecraft / GTA V</option>
-                      <option value="Other PC Game">Other PC Game</option>
-                    </optgroup>
-                    <optgroup label="Tech &amp; Hardware">
-                      <option value="Smartphones &amp; Reviews">Smartphones &amp; Mobile Tech</option>
-                      <option value="PC Building &amp; Components">PC Building &amp; GPUs/CPUs</option>
-                      <option value="Peripherals &amp; Audio">Gaming Peripherals &amp; Audio</option>
-                      <option value="Consumer Gadgets">Consumer Gadgets &amp; Unboxing</option>
-                    </optgroup>
-                    <option value="Other / Multi-genre">Other / Multi-genre</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2. Content Type / Formats (Live-stream / Shorts / Long-form) -->
-            <div class="form-group-dynamic" id="group-creator-content-types">
-              <div class="form-group-dynamic-content">
-                <div class="form-group">
-                  <label class="required-label">What Content Types Do You Create? (Select all that apply)</label>
-                  <div class="creator-format-checkboxes">
-                    <label class="format-chip">
-                      <input type="checkbox" id="formatLivestream" name="format_livestream" value="Live-stream">
-                      <span class="chip-label"><i class='bx bx-broadcast'></i> Live-stream</span>
-                    </label>
-                    <label class="format-chip">
-                      <input type="checkbox" id="formatShorts" name="format_shorts" value="Shorts/Reels">
-                      <span class="chip-label"><i class='bx bx-mobile-vibration'></i> Shorts / Reels</span>
-                    </label>
-                    <label class="format-chip">
-                      <input type="checkbox" id="formatLongform" name="format_longform" value="Long-form">
-                      <span class="chip-label"><i class='bx bx-video'></i> Long-form Video</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. Rates per Content Type -->
-            <!-- Live-Stream Rate -->
-            <div class="form-group-dynamic" id="group-rate-livestream">
-              <div class="form-group-dynamic-content">
-                <div class="form-group rate-card-group">
-                  <label for="rateLivestream"><i class='bx bx-broadcast'></i> Live-Stream Rate (INR)</label>
-                  <input type="text" id="rateLivestream" name="rate_livestream" placeholder="e.g. ₹5,000 / stream or ₹2,000 / hour">
-                </div>
-              </div>
-            </div>
-
-            <!-- Shorts / Reel Rate -->
-            <div class="form-group-dynamic" id="group-rate-shorts">
-              <div class="form-group-dynamic-content">
-                <div class="form-group rate-card-group">
-                  <label for="rateShorts"><i class='bx bx-mobile-vibration'></i> Shorts / Reel Rate (INR)</label>
-                  <input type="text" id="rateShorts" name="rate_shorts" placeholder="e.g. ₹3,500 per short">
-                </div>
-              </div>
-            </div>
-
-            <!-- Long-form Rates -->
-            <div class="form-group-dynamic" id="group-rate-longform">
-              <div class="form-group-dynamic-content">
-                <div class="rate-card-grid">
-                  <div class="form-group rate-card-group">
-                    <label for="rateLongformIntegrated"><i class='bx bx-video'></i> Long-form 60-90s Integration (INR)</label>
-                    <input type="text" id="rateLongformIntegrated" name="rate_longform_integrated" placeholder="e.g. ₹7,500">
-                  </div>
-                  <div class="form-group rate-card-group">
-                    <label for="rateLongformDedicated"><i class='bx bx-movie-play'></i> Long-form Dedicated Video (INR)</label>
-                    <input type="text" id="rateLongformDedicated" name="rate_longform_dedicated" placeholder="e.g. ₹18,000">
-                  </div>
+                  <label for="creatorSubs" class="required-label">Subscribers / Followers</label>
+                  <input type="text" id="creatorSubs" name="creator_subs" placeholder="e.g. 250K+">
                 </div>
               </div>
             </div>

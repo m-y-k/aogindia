@@ -277,29 +277,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const messageLabel = document.getElementById('messageLabel');
       const messageInput = document.getElementById('message');
 
-      // 1. Brand vs Creator toggling
-      if (userType === 'brand') {
+      // 1. Brand vs Agency vs Creator toggling
+      if (userType === 'brand' || userType === 'agency') {
         toggleGroup('group-brand-name', true, true);
-        toggleGroup('group-brand-website', true, true); // Website URL is now mandatory for Brands
+        toggleGroup('group-brand-website', true, false);
         toggleGroup('group-brand-query', true, true);
 
         toggleGroup('group-creator-channel', false);
         toggleGroup('group-creator-link', false);
         toggleGroup('group-creator-subs', false);
-        toggleGroup('group-creator-category', false);
-        toggleGroup('group-creator-niche', false);
-        toggleGroup('group-creator-content-types', false);
-        toggleGroup('group-rate-livestream', false);
-        toggleGroup('group-rate-shorts', false);
-        toggleGroup('group-rate-longform', false);
         toggleGroup('group-creator-query', false);
 
-        // Budget is required for Campaigns and Sponsorships
-        const needsBudget = (brandQueryType === 'Campaign Collaboration' || brandQueryType === 'Long-term Sponsorship');
-        toggleGroup('group-brand-budget', needsBudget, needsBudget);
+        // Budget is optional or required for campaign inquiries
+        const needsBudget = (brandQueryType === 'Campaign Collaboration' || brandQueryType === 'Long-term Sponsorship' || brandQueryType === 'Dedicated Marketing Campaign');
+        toggleGroup('group-brand-budget', needsBudget, false);
 
-        if (messageLabel) messageLabel.textContent = 'Campaign Details & Goals';
-        if (messageInput) messageInput.placeholder = 'Tell us about your brand goals, target audience, timelines, and deliverables...';
+        if (messageLabel) messageLabel.textContent = userType === 'agency' ? 'Agency Partnership Details' : 'Campaign Details & Goals';
+        if (messageInput) messageInput.placeholder = userType === 'agency'
+          ? 'Tell us about your agency, client requirements, creator needs, and campaign scope...'
+          : 'Tell us about your brand goals, target audience, timelines, and deliverables...';
       } else if (userType === 'creator') {
         toggleGroup('group-brand-name', false);
         toggleGroup('group-brand-website', false);
@@ -309,23 +305,10 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGroup('group-creator-channel', true, true);
         toggleGroup('group-creator-link', true, true); // Channel Link is mandatory for Creators
         toggleGroup('group-creator-subs', true, true); // Subscriber Count is mandatory for Creators
-        toggleGroup('group-creator-category', true, true); // Content Category is mandatory
-        toggleGroup('group-creator-niche', true, false);
-        toggleGroup('group-creator-content-types', true, false);
-
-        // Dynamic rates reveal according to checked content types
-        const hasLivestream = !!document.getElementById('formatLivestream')?.checked;
-        const hasShorts = !!document.getElementById('formatShorts')?.checked;
-        const hasLongform = !!document.getElementById('formatLongform')?.checked;
-
-        toggleGroup('group-rate-livestream', hasLivestream, false);
-        toggleGroup('group-rate-shorts', hasShorts, false);
-        toggleGroup('group-rate-longform', hasLongform, false);
-
-        toggleGroup('group-creator-query', true, false);
+        toggleGroup('group-creator-query', true, true);
 
         if (messageLabel) messageLabel.textContent = 'Creator Pitch & Bio';
-        if (messageInput) messageInput.placeholder = 'Tell us about your audience, current sponsorship experience, and what you hope to achieve with AOG...';
+        if (messageInput) messageInput.placeholder = 'Tell us about your content, audience, and what brand collaborations you are interested in...';
       } else {
         // Hide all conditional groups
         toggleGroup('group-brand-name', false);
@@ -336,12 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGroup('group-creator-channel', false);
         toggleGroup('group-creator-link', false);
         toggleGroup('group-creator-subs', false);
-        toggleGroup('group-creator-category', false);
-        toggleGroup('group-creator-niche', false);
-        toggleGroup('group-creator-content-types', false);
-        toggleGroup('group-rate-livestream', false);
-        toggleGroup('group-rate-shorts', false);
-        toggleGroup('group-rate-longform', false);
         toggleGroup('group-creator-query', false);
 
         if (messageLabel) messageLabel.textContent = 'Your Message';
@@ -418,8 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, true);
 
     // Attach selectors change listeners
-    const selectors = ['userType', 'brandQueryType', 'creatorQueryType', 'discovery',
-      'creatorCategory', 'creatorNiche', 'formatLivestream', 'formatShorts', 'formatLongform'];
+    const selectors = ['userType', 'brandQueryType', 'creatorQueryType', 'discovery'];
     selectors.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.addEventListener('change', updateFormFields);
@@ -470,15 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!botcheck || !botcheck.checked) {
         const fd = new FormData(contactForm);
         fd.set('from_url', 'index.html'); // source page identifier
-
-        // Consolidate creator content types into a clean readable string
-        const formats = [];
-        if (document.getElementById('formatLivestream')?.checked) formats.push('Live-stream');
-        if (document.getElementById('formatShorts')?.checked) formats.push('Shorts/Reels');
-        if (document.getElementById('formatLongform')?.checked) formats.push('Long-form Video');
-        if (formats.length > 0) {
-          fd.set('creator_content_types', formats.join(', '));
-        }
 
         fetch(SHEET_WEBHOOK_URL, {
           method: 'POST',

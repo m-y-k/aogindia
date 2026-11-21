@@ -150,16 +150,36 @@
   function timeAgo(d){var n=new Date(),diff=Math.floor((n-new Date(d))/60000);if(diff<60)return diff+'m ago';if(diff<1440)return Math.floor(diff/60)+'h ago';return Math.floor(diff/1440)+'d ago';}
   function trunc(s,n){if(!s)return'';s=s.replace(/<[^>]+>/g,'').replace(/&[^;]+;/g,'');return s.length>n?s.slice(0,n)+'…':s;}
 
-  function renderCard(item){
-    var img=(item.thumbnail&&item.thumbnail.startsWith('http'))?item.thumbnail:'';
-    return '<a href="'+item.link+'" target="_blank" rel="noopener nofollow" class="gn-card">'
-      +(img?'<img src="'+img+'" alt="" class="gn-card-img" loading="lazy" onerror="this.style.display='none'">':'')
-      +'<div class="gn-card-body">'
-      +'<div class="gn-card-source"><i class="bx bx-news"></i>'+item._source+'</div>'
-      +'<div class="gn-card-title">'+trunc(item.title,90)+'</div>'
-      +'<div class="gn-card-meta"><span class="gn-card-date">'+timeAgo(item.pubDate)+'</span><span class="gn-card-read">Read <i class='bx bx-right-arrow-alt'></i></span></div>'
-      +'</div></a>';
-  }
+  // function renderCard(item){
+  //   var img=(item.thumbnail&&item.thumbnail.startsWith('http'))?item.thumbnail:'';
+  //   return '<a href="'+item.link+'" target="_blank" rel="noopener nofollow" class="gn-card">'
+  //     +(img?'<img src="'+img+'" alt="" class="gn-card-img" loading="lazy" onerror="this.style.display='none'">':'')
+  //     +'<div class="gn-card-body">'
+  //     +'<div class="gn-card-source"><i class="bx bx-news"></i>'+item._source+'</div>'
+  //     +'<div class="gn-card-title">'+trunc(item.title,90)+'</div>'
+  //     +'<div class="gn-card-meta"><span class="gn-card-date">'+timeAgo(item.pubDate)+'</span><span class="gn-card-read">Read <i class='bx bx-right-arrow-alt'></i></span></div>'
+  //     +'</div></a>';
+  // }
+
+function renderCard(item) {
+    var img = (item.thumbnail && item.thumbnail.startsWith('http'))
+        ? item.thumbnail
+        : '';
+
+    return '<a href="' + item.link + '" target="_blank" rel="noopener nofollow" class="gn-card">'
+        + (img
+            ? '<img src="' + img + '" alt="" class="gn-card-img" loading="lazy" onerror="this.style.display=\'none\'">'
+            : '')
+        + '<div class="gn-card-body">'
+            + '<div class="gn-card-source"><i class="bx bx-news"></i>' + item._source + '</div>'
+            + '<div class="gn-card-title">' + trunc(item.title, 90) + '</div>'
+            + '<div class="gn-card-meta">'
+                + '<span class="gn-card-date">' + timeAgo(item.pubDate) + '</span>'
+                + '<span class="gn-card-read">Read <i class="bx bx-right-arrow-alt"></i></span>'
+            + '</div>'
+        + '</div>'
+    + '</a>';
+}
 
   function showPage(){
     var grid = document.getElementById('gnGrid');
