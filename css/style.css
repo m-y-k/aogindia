@@ -6246,3 +6246,40 @@ body:not(.has-broadcast) .navbar {
   }
 }
 
+/* =====================================================
+   MOBILE FIXES — pillar / service pages (2026.11)
+   ===================================================== */
+@media (max-width: 768px) {
+  /* Contact CTAs: neutralise desktop inline sizing so they stay compact */
+  .contact-section .hero-cta,
+  #pillar-contact .hero-cta {
+    font-size: 0.8rem !important;
+    padding: 13px 22px !important;
+    line-height: 1.35;
+    max-width: 100%;
+    text-align: center;
+    white-space: normal;
+  }
+
+  /* Strategy framework: collapse the inline 2-column grid */
+  .strategy-framework-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* YouTube format guide: fit all columns without clipping */
+  #yt-formats table {
+    table-layout: fixed;
+    font-size: 0.72rem !important;
+  }
+
+  #yt-formats th,
+  #yt-formats td {
+    padding: 0.5rem 0.35rem !important;
+    line-height: 1.35;
+    word-break: break-word;
+  }
+}
+

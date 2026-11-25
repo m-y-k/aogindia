@@ -272,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateFormFields = () => {
       const userType = document.getElementById('userType')?.value || '';
       const brandQueryType = document.getElementById('brandQueryType')?.value || '';
-      const creatorQueryType = document.getElementById('creatorQueryType')?.value || '';
       const discovery = document.getElementById('discovery')?.value || '';
       const messageLabel = document.getElementById('messageLabel');
       const messageInput = document.getElementById('message');
