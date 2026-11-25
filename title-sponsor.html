@@ -95,7 +95,6 @@
 /* ===== BRAND X AOG VISUAL ===== */
 .ts-brandx{padding:72px 24px;border-top:1px solid rgba(255,122,26,.1)}
 .ts-brandx-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.ts-brandx-left{}
 .ts-brandx-left .ts-h2{text-align:left}
 .ts-brandx-left .ts-label{display:block}
 .ts-brandx-bullets{list-style:none;padding:0;margin:0 0 24px}
@@ -144,7 +143,7 @@
   .ts-team-badge{padding:24px 20px}
 }
 
-/* testimonials moved — see brand carousel CSS */
+
 
 
 
@@ -156,10 +155,6 @@
 
 /* Mobile fixes for new sections */
 @media(max-width:640px){
-  .ts-testimonial-grid{grid-template-columns:1fr;gap:16px}
-  .ts-social-proof{padding:48px 18px}
-  .ts-testimonial{padding:20px 18px}
-  .ts-testimonial-text{font-size:.82rem}
 
 
 }
@@ -226,34 +221,6 @@
   }
   .ts-tier-f{order:0!important}
   .ts-tier-scroll-hint{display:flex!important;justify-content:center;gap:8px;margin-top:12px}
-}
-
-/* ===== BRAND TESTIMONIAL CAROUSEL ===== */
-.ts-social-proof{padding:72px 24px;border-top:1px solid rgba(255,122,26,.1)}
-.ts-social-proof-inner{max-width:1100px;margin:0 auto}
-.ts-tcarousel-wrap{position:relative;margin-top:40px}
-.ts-tcarousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:16px}
-.ts-tcarousel::-webkit-scrollbar{display:none}
-.ts-testimonial{flex:0 0 calc(50% - 10px);scroll-snap-align:start;background:rgba(13,16,12,.9);border:1px solid rgba(255,122,26,.14);padding:28px 26px;position:relative;box-sizing:border-box}
-.ts-testimonial::before{content:open-quote;position:absolute;top:-8px;left:18px;font-size:4rem;line-height:1;color:var(--accent,#ff7a1a);opacity:.2;font-family:Georgia,serif}
-.ts-testimonial-text{font-size:.88rem;color:#c8bfa8;line-height:1.75;font-style:italic;margin-bottom:18px}
-.ts-testimonial-author{display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,122,26,.1);padding-top:14px}
-.ts-testimonial-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading,'Black Ops One',sans-serif);font-size:.85rem;color:#070806;flex-shrink:0}
-.ts-avatar-r{background:linear-gradient(135deg,#ff7a1a,#ffc23a)}
-.ts-avatar-b{background:linear-gradient(135deg,#ffc23a,#ff7a1a)}
-.ts-avatar-s{background:linear-gradient(135deg,#ff4a1a,#ff7a1a)}
-.ts-avatar-w{background:linear-gradient(135deg,#1aff7a,#ffc23a)}
-.ts-testimonial-meta{display:flex;flex-direction:column}
-.ts-testimonial-name{font-family:var(--font-heading,'Black Ops One',sans-serif);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;color:#f4ead4}
-.ts-testimonial-role{font-family:var(--font-mono,monospace);font-size:.6rem;color:#a8a08a;margin-top:2px}
-.ts-tcar-nav{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px}
-.ts-tcar-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,122,26,.25);cursor:pointer;transition:background .2s,transform .2s}
-.ts-tcar-dot.active{background:var(--accent,#ff7a1a);transform:scale(1.3)}
-.ts-anon-note{font-family:var(--font-mono,monospace);font-size:.6rem;color:#6a6258;text-align:center;margin-top:12px}
-@media(max-width:640px){
-  .ts-social-proof{padding:48px 18px}
-  .ts-testimonial{flex:0 0 88vw;padding:18px 16px}
-  .ts-testimonial-text{font-size:.8rem}
 }
 
 /* ===== EMAIL PREVIEW MODAL ===== */
@@ -943,72 +910,6 @@ details[open] .ts-faq-q::after{content:'-'}
 
 
 
-  <!-- BRAND TESTIMONIALS CAROUSEL -->
-  <section class="ts-social-proof">
-    <div class="ts-social-proof-inner">
-      <div data-aos="fade-up">
-        <p class="ts-label">What Brands Say</p>
-        <h2 class="ts-h2">Brands That <span>Trusted the Network</span></h2>
-        <p class="ts-sub">Gaming brands and apps that ran campaigns through AOG India's creator network.</p>
-      </div>
-      <div class="ts-tcarousel-wrap" data-aos="fade-up" data-aos-delay="80">
-        <div class="ts-tcarousel" id="tCarousel">
-          <!-- Rooter -->
-          <div class="ts-testimonial">
-            <p class="ts-testimonial-text">&ldquo;Rooter needed creators who already lived inside gaming culture &mdash; not influencers paid to pretend. AOG India gave us exactly that. The installs we tracked from creator integrations outperformed our in-app ad spend 3x in the same period.&rdquo;</p>
-            <div class="ts-testimonial-author">
-              <div class="ts-testimonial-avatar ts-avatar-r">R</div>
-              <div class="ts-testimonial-meta">
-                <div class="ts-testimonial-name">Rooter</div>
-                <div class="ts-testimonial-role">India's Gaming &amp; Esports Streaming Platform &middot; Campaign Partner</div>
-              </div>
-            </div>
-          </div>
-          <!-- BonusBuddy -->
-          <div class="ts-testimonial">
-            <p class="ts-testimonial-text">&ldquo;BonusBuddy's entire audience is gamers aged 16&ndash;28. AOG India's creator network is where they spend their time. Within 2 weeks of our campaign going live, we saw a 40% spike in new signups from the 18&ndash;24 segment.&rdquo;</p>
-            <div class="ts-testimonial-author">
-              <div class="ts-testimonial-avatar ts-avatar-b">B</div>
-              <div class="ts-testimonial-meta">
-                <div class="ts-testimonial-name">BonusBuddy</div>
-                <div class="ts-testimonial-role">Gaming Rewards Platform &middot; Campaign Partner</div>
-              </div>
-            </div>
-          </div>
-          <!-- Spinbot -->
-          <div class="ts-testimonial">
-            <p class="ts-testimonial-text">&ldquo;What surprised us was how organically creators talked about Spinbot. There was no forced script &mdash; they genuinely integrated our app into their stream flow. That authenticity is what drove conversions our paid ads never could.&rdquo;</p>
-            <div class="ts-testimonial-author">
-              <div class="ts-testimonial-avatar ts-avatar-s">S</div>
-              <div class="ts-testimonial-meta">
-                <div class="ts-testimonial-name">Spinbot</div>
-                <div class="ts-testimonial-role">Gaming App &middot; Campaign Partner</div>
-              </div>
-            </div>
-          </div>
-          <!-- D2C brand (anonymized) -->
-          <div class="ts-testimonial">
-            <p class="ts-testimonial-text">&ldquo;Category exclusivity was the game-changer. Our competitor ran ads everywhere &mdash; but inside the gaming creator ecosystem, only our brand existed. That positioning was invaluable during our product launch.&rdquo;</p>
-            <div class="ts-testimonial-author">
-              <div class="ts-testimonial-avatar ts-avatar-w">D</div>
-              <div class="ts-testimonial-meta">
-                <div class="ts-testimonial-name">D2C Accessories Brand</div>
-                <div class="ts-testimonial-role">Marketing Head &middot; Mumbai &middot; Standard Partner</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="ts-tcar-nav" id="tCarNav">
-          <div class="ts-tcar-dot active" data-idx="0"></div>
-          <div class="ts-tcar-dot" data-idx="1"></div>
-          <div class="ts-tcar-dot" data-idx="2"></div>
-          <div class="ts-tcar-dot" data-idx="3"></div>
-        </div>
-      </div>
-      <p class="ts-anon-note">* Rooter, BonusBuddy and Spinbot are campaign partners. The last testimonial is anonymized at brand request.</p>
-    </div>
-  </section>
-
   <!-- BRAND X AOG VISUAL -->
   <section class="ts-brandx" id="partnership-visual">
     <div class="ts-brandx-inner" data-aos="fade-up">
@@ -1079,37 +980,37 @@ details[open] .ts-faq-q::after{content:'-'}
       </div>
       <div class="ts-faq-list" data-aos="fade-up" data-aos-delay="100">
         <div class="ts-faq-item">
-          <details>
+          <details open>
             <summary class="ts-faq-q">How much does title sponsorship with AOG India cost?</summary>
             <div class="ts-faq-a"><p>Base Title Partner starts at <strong>&#8377;5,00,000 per month</strong> (minimum 3-month commitment), delivering 5M+ monthly impressions. Standard is &#8377;9,00,000/month for 10M+ impressions. Elite is custom-priced for 20M+ impressions. Email <a href="mailto:partnerships@aogindia.com">partnerships@aogindia.com</a> for a formal proposal.</p></div>
           </details>
         </div>
         <div class="ts-faq-item">
-          <details>
+          <details open>
             <summary class="ts-faq-q">What types of brands are a good fit?</summary>
             <div class="ts-faq-a"><p>Any brand targeting India's 14&ndash;28 age group. Gaming hardware (headsets, chairs, mice, keyboards), mobile apps and games, D2C brands (food, beverages, supplements, apparel), fintech, smartphones, and any brand that wants Gen Z to genuinely <em>trust</em> them.</p></div>
           </details>
         </div>
         <div class="ts-faq-item">
-          <details>
+          <details open>
             <summary class="ts-faq-q">What does "logo on stream" mean?</summary>
             <div class="ts-faq-a"><p>During live streams, creators place your brand's logo in their stream overlay &mdash; visually on-screen throughout the entire session. Viewers see your brand as part of the gaming environment, not an interruption. It is the gaming equivalent of jersey or stadium branding &mdash; constant, organic visibility.</p></div>
           </details>
         </div>
         <div class="ts-faq-item">
-          <details>
+          <details open>
             <summary class="ts-faq-q">Is there category exclusivity?</summary>
             <div class="ts-faq-a"><p>Yes. Title sponsorship is fully exclusive within your product category across the entire AOG India creator network. No competitor brand in your category will appear in any AOG-managed content during your partnership period. Your brand owns the space.</p></div>
           </details>
         </div>
         <div class="ts-faq-item">
-          <details>
+          <details open>
             <summary class="ts-faq-q">How do you track performance?</summary>
             <div class="ts-faq-a"><p>Every placement includes UTM-tagged tracking links. Monthly performance reports cover: total impressions by format, engagement rates per content type, click data from UTM links, creator-level breakdown, and audience demographic snapshot. Standard and Elite tiers include weekly dashboard access.</p></div>
           </details>
         </div>
         <div class="ts-faq-item">
-          <details>
+          <details open>
             <summary class="ts-faq-q">How do I apply or get more information?</summary>
             <div class="ts-faq-a"><p>Email <a href="mailto:partnerships@aogindia.com?subject=Title%20Sponsorship%20Inquiry">partnerships@aogindia.com</a> with your brand name and the tier you are interested in. We respond within 1&ndash;2 business days with a formal proposal, media kit, and next steps. Only 1 title sponsor at a time &mdash; early inquiry is recommended.</p></div>
           </details>
@@ -1445,25 +1346,6 @@ details[open] .ts-faq-q::after{content:'-'}
     grid.addEventListener('scroll', function(){
       var cardW = grid.firstElementChild ? grid.firstElementChild.offsetWidth + 14 : grid.scrollWidth / 3;
       var idx = Math.min(2, Math.max(0, Math.round(grid.scrollLeft / cardW)));
-      dots.forEach(function(d, i){ if (d) d.classList.toggle('active', i === idx); });
-    }, { passive: true });
-  })();
-
-  // Testimonial carousel dots sync & click
-  (function(){
-    var car = document.getElementById('tCarousel');
-    var dots = document.querySelectorAll('#tCarNav .ts-tcar-dot');
-    if (!car || !dots.length) return;
-    dots.forEach(function(dot) {
-      dot.addEventListener('click', function() {
-        var idx = parseInt(this.getAttribute('data-idx'));
-        var cardW = car.firstElementChild ? car.firstElementChild.offsetWidth + 20 : car.scrollWidth / dots.length;
-        car.scrollTo({ left: idx * cardW, behavior: 'smooth' });
-      });
-    });
-    car.addEventListener('scroll', function(){
-      var cardW = car.firstElementChild ? car.firstElementChild.offsetWidth + 20 : car.scrollWidth / dots.length;
-      var idx = Math.min(dots.length - 1, Math.max(0, Math.round(car.scrollLeft / cardW)));
       dots.forEach(function(d, i){ if (d) d.classList.toggle('active', i === idx); });
     }, { passive: true });
   })();

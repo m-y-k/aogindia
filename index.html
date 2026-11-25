@@ -1346,6 +1346,94 @@ body, html { overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-fon
     </div>
   </section>
 
+  <!-- ========== BRAND REVIEWS ========== -->
+  <style>
+    .brand-reviews{padding:72px 24px;border-top:1px solid rgba(255,122,26,.1)}
+    .brand-reviews-wrap{position:relative;margin-top:40px}
+    .brand-reviews-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:16px}
+    .brand-reviews-track::-webkit-scrollbar{display:none}
+    .brand-review-card{flex:0 0 calc(50% - 10px);scroll-snap-align:start;background:rgba(13,16,12,.9);border:1px solid rgba(255,122,26,.14);padding:28px 26px;position:relative;box-sizing:border-box}
+    .brand-review-card::before{content:open-quote;position:absolute;top:-8px;left:18px;font-size:4rem;line-height:1;color:var(--accent,#ff7a1a);opacity:.2;font-family:Georgia,serif}
+    .brand-review-text{font-size:.88rem;color:#c8bfa8;line-height:1.75;font-style:italic;margin-bottom:18px}
+    .brand-review-author{display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,122,26,.1);padding-top:14px}
+    .brand-review-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading,'Black Ops One',sans-serif);font-size:.85rem;color:#070806;flex-shrink:0}
+    .br-avatar-r{background:linear-gradient(135deg,#ff7a1a,#ffc23a)}
+    .br-avatar-b{background:linear-gradient(135deg,#ffc23a,#ff7a1a)}
+    .br-avatar-s{background:linear-gradient(135deg,#ff4a1a,#ff7a1a)}
+    .br-avatar-w{background:linear-gradient(135deg,#1aff7a,#ffc23a)}
+    .brand-review-meta{display:flex;flex-direction:column}
+    .brand-review-name{font-family:var(--font-heading,'Black Ops One',sans-serif);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;color:#f4ead4}
+    .brand-review-role{font-family:var(--font-mono,monospace);font-size:.6rem;color:#a8a08a;margin-top:2px}
+    .brand-reviews-nav{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px}
+    .brand-reviews-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,122,26,.25);cursor:pointer;transition:background .2s,transform .2s}
+    .brand-reviews-dot.active{background:var(--accent,#ff7a1a);transform:scale(1.3)}
+    .brand-reviews-note{font-family:var(--font-mono,monospace);font-size:.6rem;color:#6a6258;text-align:center;margin-top:12px}
+    @media(max-width:640px){
+      .brand-reviews{padding:48px 18px}
+      .brand-review-card{flex:0 0 88vw;padding:18px 16px}
+      .brand-review-text{font-size:.8rem}
+    }
+  </style>
+  <section class="brand-reviews" id="brand-reviews" aria-label="Brand reviews and testimonials">
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <h2>Brands That <span>Trusted the Network</span></h2>
+        <p>Gaming brands and apps that ran campaigns through AOG India's creator network.</p>
+      </div>
+      <div class="brand-reviews-wrap" data-aos="fade-up" data-aos-delay="80">
+        <div class="brand-reviews-track" id="brandReviewTrack">
+          <div class="brand-review-card">
+            <p class="brand-review-text">&ldquo;Rooter needed creators who already lived inside gaming culture &mdash; not influencers paid to pretend. AOG India gave us exactly that. The installs we tracked from creator integrations outperformed our in-app ad spend 3x in the same period.&rdquo;</p>
+            <div class="brand-review-author">
+              <div class="brand-review-avatar br-avatar-r">R</div>
+              <div class="brand-review-meta">
+                <div class="brand-review-name">Rooter</div>
+                <div class="brand-review-role">India's Gaming &amp; Esports Streaming Platform &middot; Campaign Partner</div>
+              </div>
+            </div>
+          </div>
+          <div class="brand-review-card">
+            <p class="brand-review-text">&ldquo;BonusBuddy's entire audience is gamers aged 16&ndash;28. AOG India's creator network is where they spend their time. Within 2 weeks of our campaign going live, we saw a 40% spike in new signups from the 18&ndash;24 segment.&rdquo;</p>
+            <div class="brand-review-author">
+              <div class="brand-review-avatar br-avatar-b">B</div>
+              <div class="brand-review-meta">
+                <div class="brand-review-name">BonusBuddy</div>
+                <div class="brand-review-role">Gaming Rewards Platform &middot; Campaign Partner</div>
+              </div>
+            </div>
+          </div>
+          <div class="brand-review-card">
+            <p class="brand-review-text">&ldquo;What surprised us was how organically creators talked about Spinbot. There was no forced script &mdash; they genuinely integrated our app into their stream flow. That authenticity is what drove conversions our paid ads never could.&rdquo;</p>
+            <div class="brand-review-author">
+              <div class="brand-review-avatar br-avatar-s">S</div>
+              <div class="brand-review-meta">
+                <div class="brand-review-name">Spinbot</div>
+                <div class="brand-review-role">Gaming App &middot; Campaign Partner</div>
+              </div>
+            </div>
+          </div>
+          <div class="brand-review-card">
+            <p class="brand-review-text">&ldquo;Category exclusivity was the game-changer. Our competitor ran ads everywhere &mdash; but inside the gaming creator ecosystem, only our brand existed. That positioning was invaluable during our product launch.&rdquo;</p>
+            <div class="brand-review-author">
+              <div class="brand-review-avatar br-avatar-w">D</div>
+              <div class="brand-review-meta">
+                <div class="brand-review-name">D2C Accessories Brand</div>
+                <div class="brand-review-role">Marketing Head &middot; Mumbai &middot; Standard Partner</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-reviews-nav" id="brandReviewNav">
+          <div class="brand-reviews-dot active" data-idx="0"></div>
+          <div class="brand-reviews-dot" data-idx="1"></div>
+          <div class="brand-reviews-dot" data-idx="2"></div>
+          <div class="brand-reviews-dot" data-idx="3"></div>
+        </div>
+      </div>
+      <p class="brand-reviews-note">* Rooter, BonusBuddy and Spinbot are campaign partners. The last testimonial is anonymized at brand request.</p>
+    </div>
+  </section>
+
 
   <section class="stats" id="stats">
     <div class="container">
@@ -1455,7 +1543,7 @@ body, html { overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-fon
   </section>
 
   <!-- ========== TEAM ========== -->
-  <section class="team" id="team" aria-label="AOG India eSports founding team">
+  <section class="team" id="team" aria-label="AOG India eSports founding team" hidden style="display:none !important;">
     <div class="container">
       <div class="section-heading" data-aos="fade-up">
         <h2>Meet the <span>Team</span></h2>
@@ -2179,6 +2267,27 @@ body, html { overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-fon
         btn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
       }
     };
+  </script>
+
+  <!-- Brand reviews carousel dots -->
+  <script defer>
+    (function () {
+      var car = document.getElementById('brandReviewTrack');
+      var dots = document.querySelectorAll('#brandReviewNav .brand-reviews-dot');
+      if (!car || !dots.length) return;
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var idx = parseInt(this.getAttribute('data-idx'));
+          var cardW = car.firstElementChild ? car.firstElementChild.offsetWidth + 20 : car.scrollWidth / dots.length;
+          car.scrollTo({ left: idx * cardW, behavior: 'smooth' });
+        });
+      });
+      car.addEventListener('scroll', function () {
+        var cardW = car.firstElementChild ? car.firstElementChild.offsetWidth + 20 : car.scrollWidth / dots.length;
+        var idx = Math.min(dots.length - 1, Math.max(0, Math.round(car.scrollLeft / cardW)));
+        dots.forEach(function (d, i) { if (d) d.classList.toggle('active', i === idx); });
+      }, { passive: true });
+    })();
   </script>
 
   <script>
